@@ -1,7 +1,7 @@
 <?php
 // creëer hier je routes
-// 1. Zorg dat je een controller aanmaakt voor je pagina en zet deze in de map 'controller'.
-// 2. Maak een php bestand aan waarin je de html schrijft voor je pagina.
+// 1. Zorg dat je een controller aanmaakt voor je pagina en zet deze in de map 'controller'. Zorg er ook voor dat je de class een extends controller geeft.
+// 2. Maak een php bestand aan waarin je de html schrijft voor je pagina en zet deze in de map 'view'.
 //
 // Route::set("*De naam van je route*", function() {
 //     *1. Controller van de pagina*::CreateView("*de naam van php bestand voor je view*")
@@ -31,8 +31,4 @@ Route::set('index.php', function () {
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
     aboutus::test();
-});
-
-Route::set('contactus', function () {
-    contactus::CreateView('contactus');
 });

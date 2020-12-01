@@ -5,8 +5,7 @@ class aboutus extends controller {
 
     public static function test() {
         $test = self::query("SELECT * FROM users");
-        print_r($test);
-
+        $_SESSION['user'] = $test;
         // voorbeeld
         // bij elke refresh komt er een nieuwe user in de database met de username tester.
 
