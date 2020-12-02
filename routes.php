@@ -28,6 +28,10 @@ Route::set('index.php', function () {
     Index::CreateView('Index');
 });
 
+Route::set('opdrachten', function () {
+    excersises::CreateView('excersises');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
     aboutus::test();
