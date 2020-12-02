@@ -32,3 +32,7 @@ Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
     aboutus::test();
 });
+
+Route::set('inloggen', function () {
+    inloggen::CreateView('inloggen');
+});
