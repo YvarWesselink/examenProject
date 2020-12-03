@@ -9,7 +9,7 @@
         <h2>Login</h2>
     </div>
     
-    <form method="post" action="login.php">
+    <form method="post" action="login">
         
         <div class="input-group">
         <label>Username:</label>
@@ -22,11 +22,11 @@
         </div>
         
         <div class="input_group">
-            <button type="submit" name="login" class="btn">Login</button>
+            <button type="submit" action="index.php"  name="login" class="btn">Login</button>
         </div>
         
         <p>
-         Not yet a member? <a href="inloggen.php">Sign up</a>
+         Not yet a member? <a href="inloggen">Sign up</a>
         </p>
             
     </form>

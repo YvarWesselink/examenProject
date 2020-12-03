@@ -9,7 +9,9 @@
         <h2>Register</h2>
     </div>
     
-    <form method="post" action="inloggin.php">
+    <form method="post" action="inloggen">
+        <!-- display errors here -->
+        <?php include('errors.php'); ?>
         
         <div class="input-group">
         <label>Username:</label>
@@ -36,7 +38,7 @@
         </div>
         
         <p>
-         Already a member? <a href="login.php">Log in</a>
+         Already a member? <a href="login">Log in</a>
         </p>
             
     </form>
