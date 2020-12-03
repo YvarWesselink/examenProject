@@ -147,6 +147,7 @@ nav .overlay:hover {
   position: absolute;
   overflow: hidden;
   left: 21%;
+  border-radius: 0 0 15px 15px;
 }
 
 nav > ul {

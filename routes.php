@@ -34,7 +34,7 @@ Route::set('opdrachten', function () {
 
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
-    aboutus::test();
+//    aboutus::test();
 });
 
 Route::set('inloggen', function () {
