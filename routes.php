@@ -40,7 +40,3 @@ Route::set('aboutus', function () {
 Route::set('inloggen', function () {
     inloggen::CreateView('inloggen');
 });
-
-Route::set('login', function () {
-    login::CreateView('login');
-});
