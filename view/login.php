@@ -6,10 +6,10 @@
 </head>
 <body>
     <div class="header">
-        <h2>Register</h2>
+        <h2>Login</h2>
     </div>
     
-    <form method="post" action="inloggin.php">
+    <form method="post" action="login.php">
         
         <div class="input-group">
         <label>Username:</label>
@@ -17,26 +17,16 @@
         </div>
         
         <div class="input-group">
-        <label>Email:</label>
-        <input type="text" name="email"> 
-        </div>
-        
-        <div class="input-group">
         <label>Password:</label>
         <input type="password" name="password_1"> 
         </div>
         
-        <div class="input-group">
-        <label>Confirm password:</label>
-        <input type="password" name="password_2"> 
-        </div>
-        
         <div class="input_group">
-            <button type="submit" name="register" class="btn">Register</button>
+            <button type="submit" name="login" class="btn">Login</button>
         </div>
         
         <p>
-         Already a member? <a href="login.php">Log in</a>
+         Not yet a member? <a href="inloggen.php">Sign up</a>
         </p>
             
     </form>
