@@ -22,7 +22,7 @@
         <ul>
             <li><a href="#">Sites</a></li>
             <li><a href="#">Voorwaarden</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="inloggen">Login</a></li>
         </ul>
     </div>
     <div class="logo">
@@ -31,7 +31,7 @@
     <div class="overlay"></div>
     <div class="border-bottom"></div>
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="#">Over ons</a></li>
         <li><a href="#">Foto's</a></li>
         <li><a href="#">Contact</a></li>
