@@ -8,7 +8,7 @@
 
     <!-- Style CSS Links -->
     <link rel="stylesheet" href="../public/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/homepage.css">
 <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
@@ -132,58 +132,58 @@
 <!-- End Nieuws Section -->
 <!-- ---------------------------- -->
 <!-- Start Foto's Section -->
-<section class="fotos">
-    <h2>Foto's Album</h2>
-    <div class="fotos-sec">
-        <div class="fotos-childs">
-            <div class="childs first-child">
-                <div class="album-img">
-                    <img src="/public/img/foto1.png" alt="">
-                </div>
-                <div class="child-info">
-                    <h2>Side Event Epe</h2>
-                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="fotos-childs">
-            <div class="childs second-child">
-                <div class="album-img">
-                    <img src="/public/img/foto2.png" alt="">
-                </div>
-                <div class="child-info">
-                    <h2>Schoolfeest Rijssen</h2>
-                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="fotos-sec">
-        <div class="fotos-childs">
-            <div class="childs third-child">
-                <div class="album-img">
-                    <img src="/public/img/foto3.png" alt="">
-                </div>
-                <div class="child-info">
-                    <h2>Sportdag Dalfsen Hörstel</h2>
-                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="fotos-childs">
-            <div class="childs fourth-child">
-                <div class="album-img">
-                    <img src="/public/img/foto4.png" alt="">
-                </div>
-                <div class="child-info">
-                    <h2>RIBW Activiteiten middag</h2>
-                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<section class="fotos">-->
+<!--    <h2>Foto's Album</h2>-->
+<!--    <div class="fotos-sec">-->
+<!--        <div class="fotos-childs">-->
+<!--            <div class="childs first-child">-->
+<!--                <div class="album-img">-->
+<!--                    <img src="/public/img/foto1.png" alt="">-->
+<!--                </div>-->
+<!--                <div class="child-info">-->
+<!--                    <h2>Side Event Epe</h2>-->
+<!--                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="fotos-childs">-->
+<!--            <div class="childs second-child">-->
+<!--                <div class="album-img">-->
+<!--                    <img src="/public/img/foto2.png" alt="">-->
+<!--                </div>-->
+<!--                <div class="child-info">-->
+<!--                    <h2>Schoolfeest Rijssen</h2>-->
+<!--                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="clearfix"></div>-->
+<!--    <div class="fotos-sec">-->
+<!--        <div class="fotos-childs">-->
+<!--            <div class="childs third-child">-->
+<!--                <div class="album-img">-->
+<!--                    <img src="/public/img/foto3.png" alt="">-->
+<!--                </div>-->
+<!--                <div class="child-info">-->
+<!--                    <h2>Sportdag Dalfsen Hörstel</h2>-->
+<!--                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="fotos-childs">-->
+<!--            <div class="childs fourth-child">-->
+<!--                <div class="album-img">-->
+<!--                    <img src="/public/img/foto4.png" alt="">-->
+<!--                </div>-->
+<!--                <div class="child-info">-->
+<!--                    <h2>RIBW Activiteiten middag</h2>-->
+<!--                    <a href="#">Bekijk <i class="fas fa-arrow-right icons"></i></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <div class="clearfix"></div>
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->

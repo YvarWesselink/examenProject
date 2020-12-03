@@ -254,7 +254,7 @@ nav > ul li a:hover {
     width: 100%;
     min-height: 600px;
     position: relative;
-    margin: -175px auto 265px;
+    margin: -225px auto 25px;
     padding-top: 200px;
 }
 
@@ -262,46 +262,46 @@ nav > ul li a:hover {
   width: 60%;
   line-height: 1.8;
   border-radius: 5px;
-  box-shadow: -1px 15px 18px 0 rgba(0, 0, 0, .5);
-  margin: 50px auto;
+  /*box-shadow: -1px 15px 18px 0 rgba(0, 0, 0, .5);*/
+  margin: 0 auto;
   padding: 35px;
   overflow: hidden;
   background-color: #fff;
 }
 
-.region .region-info::before {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: #ed135d;
-  top: 221px;
-  left: 22%;
-  -webkit-transition: all .7s ease-in-out;
-  -moz-transition: all .7s ease-in-out;
-  -o-transition: all .7s ease-in-out;
-  transition: all .7s ease-in-out;
-}
+/*.region .region-info::before {*/
+/*  content: "";*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  z-index: -1;*/
+/*  width: 65px;*/
+/*  height: 65px;*/
+/*  border-radius: 50%;*/
+/*  background: #ed135d;*/
+/*  top: 221px;*/
+/*  left: 22%;*/
+/*  -webkit-transition: all .7s ease-in-out;*/
+/*  -moz-transition: all .7s ease-in-out;*/
+/*  -o-transition: all .7s ease-in-out;*/
+/*  transition: all .7s ease-in-out;*/
+/*}*/
 
-.region .region-info::after {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-  width: 440px;
-  height: 440px;
-  border-radius: 50%;
-  background: #ffad00;
-  right: 9.5%;
-  bottom: -150px;
-  -webkit-transition: all .7s ease-in-out;
-  -moz-transition: all .7s ease-in-out;
-  -o-transition: all .7s ease-in-out;
-  transition: all .7s ease-in-out;
-}
+/*.region .region-info::after {*/
+/*  content: "";*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  z-index: -1;*/
+/*  width: 440px;*/
+/*  height: 440px;*/
+/*  border-radius: 50%;*/
+/*  background: #ffad00;*/
+/*  right: 9.5%;*/
+/*  bottom: -150px;*/
+/*  -webkit-transition: all .7s ease-in-out;*/
+/*  -moz-transition: all .7s ease-in-out;*/
+/*  -o-transition: all .7s ease-in-out;*/
+/*  transition: all .7s ease-in-out;*/
+/*}*/
 
 .region:hover .region-info::before,
 .region:hover .region-info::after,
@@ -350,7 +350,7 @@ nav > ul li a:hover {
 .info .container > div {
   position: relative;
   width: 45%;
-  height: 350px;
+  height: 480px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
@@ -376,13 +376,13 @@ nav > ul li a:hover {
 }
 
 .info .container div.child h2 {
-  padding: 15px;
+  padding: 30px;
   font-size: 26px;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -o-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+  /*text-shadow: 2px 2px rgba(0, 0, 0, 0.6);*/
 }
 
 .info .container div.child a {
@@ -416,30 +416,30 @@ nav > ul li a:hover {
   float: left;
 }
 
-.info .container::before {
-  content: "";
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  display: block;
-  border-top: 5px solid #ed135d;
-  border-left: 5px solid #ed135d;
-  margin-top: -30px;
-  margin-left: 3px;
-}
+/*.info .container::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  height: 100px;*/
+/*  width: 100px;*/
+/*  display: block;*/
+/*  border-top: 5px solid #ed135d;*/
+/*  border-left: 5px solid #ed135d;*/
+/*  margin-top: -30px;*/
+/*  margin-left: 3px;*/
+/*}*/
 
-.info .container::after {
-  content: "";
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  display: block;
-  border-bottom: 5px solid #005a81;
-  border-right: 5px solid #005a81;
-  margin-bottom: 20px;
-  bottom: 0;
-  right: 0;
-}
+/*.info .container::after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  height: 100px;*/
+/*  width: 100px;*/
+/*  display: block;*/
+/*  border-bottom: 5px solid #005a81;*/
+/*  border-right: 5px solid #005a81;*/
+/*  margin-bottom: 20px;*/
+/*  bottom: 0;*/
+/*  right: 0;*/
+/*}*/
 
 .info .container > div:last-of-type {
   margin: 0 2.5% 0 0;
@@ -473,14 +473,15 @@ nav > ul li a:hover {
 }
 
 hr {
-  position: absolute;
-  height: 300px;
-  width: 5px;
-  background-color: #ffc000;
-  border: none;
-  z-index: 9;
-  right: 49.8%;
-  margin-top: 30px;
+  display: none;
+  /*position: absolute;*/
+  /*height: 300px;*/
+  /*width: 5px;*/
+  /*background-color: #ffc000;*/
+  /*border: none;*/
+  /*z-index: 9;*/
+  /*right: 49.8%;*/
+  /*margin-top: 30px;*/
 }
 
 /*
