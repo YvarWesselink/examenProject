@@ -6,10 +6,43 @@ class excersises extends Database {
     public static function CreateView($viewName)
     {
         require_once("./view/$viewName.php");
-        $sql = `INSERT INTO projecten/opdrachten (Opdracht, Aantal studenten, Opmerkingen, Uitvoerings dag en datum, Locatie adres en plaats van uitvoering, Deadline, Budget, Taken voor studenten, Tijd)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        $stmt = mysqli_prepare($sql);
-        $stmt->bind_param("sssssssss", $_POST['Opdracht'], $_POST['Aantal studenten'], $_POST['Opmerkingen'], $_POST['Uitvoerings dag en datum'], $_POST['Locaite adres en plaats van uitvoering'], $_POST['Deadline'], $_POST['Budget'], $_POST['Taken voor studenten'], $_POST['Tijd']);
-        $stmt->execute();
+
     }
+
+}
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'praktijkplaza');
+
+global $conn;
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+if(isset($_POST['sendExcersise'])){
+    $opdracht = $_POST['Opdracht'];
+    $aantalStudenten = $_POST['AantalStudenten'];
+    $opmerkingen = $_POST['Opmerkingen'];
+    $uitvoeringsDagEnDatum = $_POST['UitvoeringsDagEnDatum'];
+    $locatieAdresEnPlaatsVanUitvoering = $_POST['LocatieAdresEnPlaatsVanUitvoering'];
+    $deadline = $_POST['Deadline'];
+    $budget = $_POST['Budget'];
+    $takenVoorStudenten = $_POST['TakenVoorStudenten'];
+    $tijd = $_POST['Tijd'];
+    createExcersise($opdracht, $aantalStudenten, $opmerkingen, $uitvoeringsDagEnDatum, $locatieAdresEnPlaatsVanUitvoering, $deadline, $budget, $takenVoorStudenten, $tijd);
+}
+
+function createExcersise($opdracht, $aantalStudenten, $opmerkingen, $uitvoeringsDagEnDatum, $locatieAdresEnPlaatsVanUitvoering, $deadline, $budget, $takenVoorStudenten, $tijd){
+    global $conn;
+    $sql = "INSERT INTO projectenopdrachten (Opdracht, AantalStudenten, Opmerkingen, UitvoeringsDagEnDatum, LocatieAdresEnPlaatsVanUitvoering, Deadline, Budget, TakenVoorStudenten, Tijd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sssssssss', $opdracht, $aantalStudenten, $opmerkingen, $uitvoeringsDagEnDatum, $locatieAdresEnPlaatsVanUitvoering, $deadline, $budget, $takenVoorStudenten, $tijd);
+    if ( false === $stmt ) {
+        die('prepare() failed: ' . htmlspecialchars($stmt->error));
+    }
+    $stmt->bind_param('sssssssss', $opdracht, $aantalStudenten, $opmerkingen, $uitvoeringsDagEnDatum, $locatieAdresEnPlaatsVanUitvoering, $deadline, $budget, $takenVoorStudenten, $tijd);
+    if ( false === $stmt) {
+        die('bind_param() failed: ' . htmlspecialchars($stmt->error));
+    }
+    $stmt->execute();
 }
