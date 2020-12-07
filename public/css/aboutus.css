@@ -19,7 +19,6 @@
 
 .info-container h1 {
     font-size: 30pt;
-    margin-bottom: 25px;
 }
 
 .sport-container h3 {
@@ -33,4 +32,19 @@
 
 .sport-container p {
     margin-bottom: 25px;
+}
+
+.sport-container h2 {
+    font-size: 20pt;
+    color: #ED135D;
+    margin: 0 0 15px 0;
+}
+
+.sport-container ol {
+    margin-bottom: 25px;
+    padding: revert;
+}
+
+.sport-container ul {
+    padding: revert;
 }
