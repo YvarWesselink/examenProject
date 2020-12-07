@@ -26,7 +26,7 @@
         </div>
         
         <div class="input_group">
-            <button type="submit" action="index.php"  name="login" class="btn">Login</button>
+            <button type="submit" name="login" class="btn">Login</button>
         </div>
         
         <p>
