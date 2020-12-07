@@ -1,0 +1,36 @@
+.info-container {
+    width: 85%;
+    min-height: 600px;
+    position: relative;
+    margin: -225px auto 25px;
+    padding-top: 200px;
+}
+
+.info-container .sport-container {
+    width: 60%;
+    line-height: 1.8;
+    border-radius: 5px;
+    /*box-shadow: -1px 15px 18px 0 rgba(0, 0, 0, .5);*/
+    margin: 0 auto;
+    padding: 35px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.info-container h1 {
+    font-size: 30pt;
+    margin-bottom: 25px;
+}
+
+.sport-container h3 {
+    color: #ED135D;
+    font-size: 15pt;
+}
+
+.sport-container {
+    line-height: 1.8;
+}
+
+.sport-container p {
+    margin-bottom: 25px;
+}
