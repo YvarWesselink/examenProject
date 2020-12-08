@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login pagina</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<title>Login</title>
 </head>
 <body>
-    <div class="header">
-        <h2>Login</h2>
-    </div>
+
+<div id="login">
+<h3>Login</h3>
+<form method="post" action="" name="login">
+<label>Username or Email</label>
+<input type="text" name="usernameEmail" autocomplete="off" />
+<label>Password</label>
+<input type="password" name="password" autocomplete="off"/>
+<div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
+<input type="submit" class="button" name="loginSubmit" value="Login">
+</form>
+</div>
     
-    <form method="post" action="login">
-        
-        <div class="input-group">
-
-<form method="post" action="login.php">
-
-    <div class="input-group">
-        <label>Username:</label>
-        <input type="text" name="username">
-    </div>
-
-    <div class="input-group">
-        <label>Password:</label>
-        <input type="password" name="password_1"> 
-        </div>
-        
-        <div class="input_group">
-            <button type="submit" name="login" class="btn">Login</button>
-        </div>
-        
-        <p>
-         Not yet a member? <a href="inloggen">Sign up</a>
-        </p>
-            
-            </form>
-
-
-</body>
+    </body>
 </html>
