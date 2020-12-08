@@ -13,8 +13,20 @@
   font-family: Arial, Tahoma, sans-serif;
   font-size: 16px;
   color: #005a81;
+  /*text-decoration: none;*/
+  /*list-style-type: none;*/
+}
+
+.back-red a {
   text-decoration: none;
-  list-style-type: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
+.footer ul li a {
+  text-decoration: none;
 }
 
 .container {

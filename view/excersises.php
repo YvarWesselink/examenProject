@@ -1,4 +1,6 @@
-<h1>Opdrachten</h1>
+<h1>Opdrachten indienen</h1>
+<!-- Dit is het form waar je de opdracht in kunt vullen. -->
+<h2>1 Opdracht</h2>
 <form method="post" >
   <label for="fname">Opdracht:</label>
   <input type="text" id="fname" name="Opdracht"><br><br>
@@ -18,5 +20,25 @@
   <input type="text" id="lname" name="TakenVoorStudenten"><br><br>  
   <label for="fname">Tijd:</label>
   <input type="text" id="fname" name="Tijd"><br><br>
-  <input type="submit" name="sendExcersise" value="submit">
+<!-- Dit is het form voor de gegevens van het bedrijf. -->
+  <h2>2 Contact/bedrijf gegevens</h2>
+  <label for="fname">Email:</label>
+  <input type="text" id="fname" name="Email"><br><br>
+  <label for="lname">Herhaal email:</label>
+  <input type="text" id="lname" name="HerhaalEmail"><br><br>  
+  <label for="fname">Naam organistatie:</label>
+  <input type="text" id="fname" name="NaamOrganisatie"><br><br>
+  <label for="lname">Naam contactpersoon:</label>
+  <input type="text" id="lname" name="NaamContactpersoon"><br><br>    
+  <label for="lname">Vaste telefoon:</label>
+  <input type="text" id="lname" name="VasteTelefoon"><br><br>  
+  <label for="fname">Mobiel:</label>
+  <input type="text" id="fname" name="Mobiel"><br><br>
+  <label for="lname">Straat en huisnummer:</label>
+  <input type="text" id="lname" name="StraatEnHuisnummer"><br><br>  
+  <label for="fname">Woonplaats:</label>
+  <input type="text" id="fname" name="Woonplaats"><br><br>
+  <label for="lname">Postcode:</label>
+  <input type="text" id="lname" name="Postcode"><br><br>  
+  <input type="submit" name="sendExcersise" value="Opdracht aanmaken">
 </form>

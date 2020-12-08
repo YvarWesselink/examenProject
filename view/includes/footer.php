@@ -37,9 +37,9 @@
         <div>
             <ul>
                 <li><a href="/index.php" target="_blank">Home</a></li>
-                <li><a href="#" target="_blank">Contact</a></li>
-                <li><a href="#" target="_blank">Voorwaarden</a></li>
-                <li><a href="#" target="_blank">Facebook</a></li>
+                <li><a href="/contact" target="_blank">Contact</a></li>
+                <li><a href="/voorwaarden" target="_blank">Voorwaarden</a></li>
+                <li><a href="https://www.facebook.com/projectbureausalland/" target="_blank">Facebook</a></li>
             </ul>
         </div>
     </div>

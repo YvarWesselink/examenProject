@@ -44,3 +44,11 @@ Route::set('inloggen', function () {
 Route::set('login', function () {
     login::CreateView('login');
 });
+
+Route::set('contact', function () {
+    Contact::CreateView('contact');
+});
+
+Route::set('voorwaarden', function () {
+    Voorwaarden::CreateView('voorwaarden');
+});
