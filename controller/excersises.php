@@ -56,8 +56,8 @@ try {
     $stmt->execute();
   }  
   
-  $sql2 = "INSERT INTO contactbedrijfgegevens(Email, NaamOrganisatie, NaamContactpersoon, VasteTelefoon, Mobiel, StraatEnHuisnummer, Woonplaats, Postcode) VALUES (:Email, :NaamOrganisatie, :NaamContactpersoon, :VasteTelefoon, :Mobiel, :StraatEnHuisnummer, :Woonplaats, :Postcode)";
-  $stmt = $conn->prepare($sql2);
+  $sql = "INSERT INTO contactbedrijfgegevens(Email, NaamOrganisatie, NaamContactpersoon, VasteTelefoon, Mobiel, StraatEnHuisnummer, Woonplaats, Postcode) VALUES (:Email, :NaamOrganisatie, :NaamContactpersoon, :VasteTelefoon, :Mobiel, :StraatEnHuisnummer, :Woonplaats, :Postcode)";
+  $stmt = $conn->prepare($sql);
   $stmt->bindParam(':Email', $Email);
   $stmt->bindParam(':NaamOrganisatie', $NaamOrganisatie);
   $stmt->bindParam(':NaamContactpersoon', $NaamContactpersoon);
