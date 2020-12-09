@@ -38,7 +38,7 @@ Route::set('aboutus', function () {
 });
 
 Route::set('inloggen', function () {
-    inloggen::CreateView('inloggen');
+    login::CreateView('inloggen');
 });
 
 Route::set('login', function () {

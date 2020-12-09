@@ -5,11 +5,11 @@ class Database
 {
     // vul hier je database gegevens in.
     public static $host = "localhost";
-    public static $dbName = "praktijkplaza";
+    public static $dbName = "examenopdracht";
     public static $username = "root";
     public static $password = "";
 
-    private static function connect() {
+    public static function connect() {
         $pdo = new PDO("mysql:host=".self::$host.";dbname=".self::$dbName.";charset=utf8", self::$username, self::$password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
