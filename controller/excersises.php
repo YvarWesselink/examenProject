@@ -73,7 +73,6 @@ try {
       echo 'Je moet de tijd nog invullen.';
     } else {
       $stmt->execute();
-      // echo 'Alle velden zijn ingevuld';
     }
   }  
   
@@ -90,6 +89,7 @@ try {
 
   if(isset($_POST['sendExcersise'])){
     $email = $_POST['Email'];
+    $herhaalEmail = $_POST['HerhaalEmail'];
     $naamOrganisatie = $_POST['NaamOrganisatie'];
     $naamContactpersoon = $_POST['NaamContactpersoon'];
     $vasteTelefoon = $_POST['VasteTelefoon'];
@@ -101,6 +101,7 @@ try {
 
   if(isset($_POST['sendExcersise'])){
     $Email = $email;
+    $HerhaalEmail = $herhaalEmail;
     $NaamOrganisatie = $naamOrganisatie;
     $NaamContactpersoon = $naamContactpersoon;
     $VasteTelefoon = $vasteTelefoon;
@@ -108,7 +109,27 @@ try {
     $StraatEnHuisnummer = $straatEnHuisnummer;
     $Woonplaats = $woonplaats;
     $Postcode = $postcode;
-    $stmt->execute();
+    if($email == ''){
+      echo 'Je moet de email nog invullen.' ;
+    } else if ($herhaalEmail != $email){
+      echo 'De emails komen niet overeen.';
+    } else if ($naamOrganisatie == ''){
+      echo 'Je moet de naam van de organisatie nog invullen.';
+    } else if($naamContactpersoon == ''){
+      echo 'Je moet de opmerking nog invullen.';
+    } else if($vasteTelefoon == ''){
+      echo 'Je moet de vaste telefoon nog invullen.';
+    } else if($mobiel == ''){
+      echo 'Je moet de mobiele telefoon nog invullen.';
+    } else if($straatEnHuisnummer == ''){
+      echo 'Je moet straat en huisnummer nog invullen.';
+    } else if($woonplaats == ''){
+      echo 'Je moet de woonplaats nog invullen.';
+    } else if($postcode == ''){
+      echo 'Je moet de postcode nog invullen.';
+    } else {
+      $stmt->execute();
+    }
   }
 } catch(PDOException $e) {
   echo "Error: " . $e->getMessage();
