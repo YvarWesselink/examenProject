@@ -53,7 +53,27 @@ try {
     $Budget = $budget;
     $TakenVoorStudenten = $takenVoorStudenten;
     $Tijd = $tijd;
-    $stmt->execute();
+    if($opdracht == ''){
+      echo 'Je moet de opdracht nog invullen.' ;
+    } else if ($aantalStudenten == ''){
+      echo 'Je moet het aantal studenten nog invullen.';
+    } else if($opmerkingen == ''){
+      echo 'Je moet de opmerking nog invullen.';
+    } else if($uitvoeringsDagEnDatum == ''){
+      echo 'Je moet uitvoerings dag en datum nog invullen.';
+    } else if($locatieAdresEnPlaatsVanUitvoering == ''){
+      echo 'Je moet de locatie, adres en plaats van de uitvoering nog invullen.';
+    } else if($deadline == ''){
+      echo 'Je moet de deadline nog invullen.';
+    } else if($budget == ''){
+      echo 'Je moet het budget nog invullen.';
+    } else if($takenVoorStudenten == ''){
+      echo 'Je moet de taken voor de studenten nog invullen.';
+    } else if($tijd == ''){
+      echo 'Je moet de tijd nog invullen.';
+    } else {
+      $stmt->execute();
+    }
   }  
   
   $sql = "INSERT INTO contactbedrijfgegevens(Email, NaamOrganisatie, NaamContactpersoon, VasteTelefoon, Mobiel, StraatEnHuisnummer, Woonplaats, Postcode) VALUES (:Email, :NaamOrganisatie, :NaamContactpersoon, :VasteTelefoon, :Mobiel, :StraatEnHuisnummer, :Woonplaats, :Postcode)";
@@ -69,6 +89,7 @@ try {
 
   if(isset($_POST['sendExcersise'])){
     $email = $_POST['Email'];
+    $herhaalEmail = $_POST['HerhaalEmail'];
     $naamOrganisatie = $_POST['NaamOrganisatie'];
     $naamContactpersoon = $_POST['NaamContactpersoon'];
     $vasteTelefoon = $_POST['VasteTelefoon'];
@@ -80,6 +101,7 @@ try {
 
   if(isset($_POST['sendExcersise'])){
     $Email = $email;
+    $HerhaalEmail = $herhaalEmail;
     $NaamOrganisatie = $naamOrganisatie;
     $NaamContactpersoon = $naamContactpersoon;
     $VasteTelefoon = $vasteTelefoon;
@@ -87,7 +109,27 @@ try {
     $StraatEnHuisnummer = $straatEnHuisnummer;
     $Woonplaats = $woonplaats;
     $Postcode = $postcode;
-    $stmt->execute();
+    if($email == ''){
+      echo 'Je moet de email nog invullen.' ;
+    } else if ($herhaalEmail != $email){
+      echo 'De emails komen niet overeen.';
+    } else if ($naamOrganisatie == ''){
+      echo 'Je moet de naam van de organisatie nog invullen.';
+    } else if($naamContactpersoon == ''){
+      echo 'Je moet de opmerking nog invullen.';
+    } else if($vasteTelefoon == ''){
+      echo 'Je moet de vaste telefoon nog invullen.';
+    } else if($mobiel == ''){
+      echo 'Je moet de mobiele telefoon nog invullen.';
+    } else if($straatEnHuisnummer == ''){
+      echo 'Je moet straat en huisnummer nog invullen.';
+    } else if($woonplaats == ''){
+      echo 'Je moet de woonplaats nog invullen.';
+    } else if($postcode == ''){
+      echo 'Je moet de postcode nog invullen.';
+    } else {
+      $stmt->execute();
+    }
   }
 } catch(PDOException $e) {
   echo "Error: " . $e->getMessage();
