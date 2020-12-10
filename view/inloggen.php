@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>login</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/registration.css"/>
 </head>
 <body>
     <div id="signup">
-        <h3>Registreren:</h3>
+        <h3>Registreren</h3>
         <form method="post" action="" name="signup">
             <label>Naam:</label>
             <input type="text" name="nameReg" autocomplete="off" />
