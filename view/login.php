@@ -6,11 +6,11 @@
 </head>
 <body>
     <div id="login">
-        <h3>Login</h3>
+        <h3>Inloggen</h3>
         <form method="post" action="" name="login">
-            <label>Username or Email</label>
+            <label>Username of Email:</label>
             <input type="text" name="usernameEmail" autocomplete="off" />
-            <label>Password</label>
+            <label>Wachtwoord:</label>
             <input type="password" name="password" autocomplete="off"/>
             <input type="submit" class="button" name="loginSubmit" value="Login">
         </form>

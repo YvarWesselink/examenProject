@@ -6,17 +6,17 @@
 </head>
 <body>
     <div id="signup">
-        <h3>Registration</h3>
+        <h3>Registreren:</h3>
         <form method="post" action="" name="signup">
-            <label>Name</label>
+            <label>Naam:</label>
             <input type="text" name="nameReg" autocomplete="off" />
-            <label>Email</label>
+            <label>Email:</label>
             <input type="text" name="emailReg" autocomplete="off" />
-            <label>Username</label>
+            <label>Username:</label>
             <input type="text" name="usernameReg" autocomplete="off" />
-            <label>Password</label>
+            <label>Wachtwoord:</label>
             <input type="password" name="passwordReg" autocomplete="off"/>
-            <input type="submit" class="button" name="signupSubmit" value="Signup">
+            <input type="submit" class="button" name="signupSubmit" value="Aanmelden">
         </form>
     </div>
 </body>
