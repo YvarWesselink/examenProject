@@ -27,6 +27,12 @@ if(isset($_POST["signupSubmit"])) {
   $email = $_POST["emailReg"];
   $name = $_POST["nameReg"];
 
+  $uid = Login::userRegistration($username, $password, $email, $name);
+
+  if ($uid) {
+    echo "<script> location.href='/login'; </script>";
+  }
+
   //$username_check = preg_match('~^[A-Za-z0-9_]{3,20}$~i', $username);
   //$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
   //$password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
