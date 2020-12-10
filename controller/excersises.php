@@ -53,7 +53,28 @@ try {
     $Budget = $budget;
     $TakenVoorStudenten = $takenVoorStudenten;
     $Tijd = $tijd;
-    $stmt->execute();
+    if($opdracht == ''){
+      echo 'Je moet de opdracht nog invullen.' ;
+    } else if ($aantalStudenten == ''){
+      echo 'Je moet het aantal studenten nog invullen.';
+    } else if($opmerkingen == ''){
+      echo 'Je moet de opmerking nog invullen.';
+    } else if($uitvoeringsDagEnDatum == ''){
+      echo 'Je moet uitvoerings dag en datum nog invullen.';
+    } else if($locatieAdresEnPlaatsVanUitvoering == ''){
+      echo 'Je moet de locatie, adres en plaats van de uitvoering nog invullen.';
+    } else if($deadline == ''){
+      echo 'Je moet de deadline nog invullen.';
+    } else if($budget == ''){
+      echo 'Je moet het budget nog invullen.';
+    } else if($takenVoorStudenten == ''){
+      echo 'Je moet de taken voor de studenten nog invullen.';
+    } else if($tijd == ''){
+      echo 'Je moet de tijd nog invullen.';
+    } else {
+      $stmt->execute();
+      // echo 'Alle velden zijn ingevuld';
+    }
   }  
   
   $sql = "INSERT INTO contactbedrijfgegevens(Email, NaamOrganisatie, NaamContactpersoon, VasteTelefoon, Mobiel, StraatEnHuisnummer, Woonplaats, Postcode) VALUES (:Email, :NaamOrganisatie, :NaamContactpersoon, :VasteTelefoon, :Mobiel, :StraatEnHuisnummer, :Woonplaats, :Postcode)";
