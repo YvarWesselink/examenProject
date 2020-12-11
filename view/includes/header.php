@@ -21,7 +21,14 @@
         <ul>
             <li><a href="#">Sites</a></li>
             <li><a href="/voorwaarden">Voorwaarden</a></li>
-            <li><a href="inloggen">Login</a></li>
+            <?php
+            session_start();
+            if (empty($_SESSION['username'])) {
+                echo "<li><a href='inloggen'>Login</a></li>";
+            }
+            $username = $_SESSION['username'];
+            echo "<li><a>$username</a></li>";
+            ?>
         </ul>
     </div>
     <div class="logo">

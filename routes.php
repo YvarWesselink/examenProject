@@ -37,11 +37,11 @@ Route::set('aboutus', function () {
 //    aboutus::test();
 });
 
-Route::set('inloggen', function () {
-    login::CreateView('inloggen');
+Route::set('registreren', function () {
+    login::CreateView('registreren');
 });
 
-Route::set('login', function () {
+Route::set('inloggen', function () {
     login::CreateView('login');
 });
 

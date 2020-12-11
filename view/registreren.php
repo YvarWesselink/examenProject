@@ -38,6 +38,9 @@ include_once "includes/header.php"
         <input type="password" name="passwordReg" autocomplete="off"/>
         <input type="submit" class="button" name="signupSubmit" value="Aanmelden">
     </form>
+
+    <p>Heeft u al een account?</p>
+    <a href="/inloggen">klik hier.</a>
 </div>
 <!-- End Signup Section -->
 <!-- ---------------------------- -->
