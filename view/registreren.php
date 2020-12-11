@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
 <!-- ---------------------------- -->
 <!-- Start Navbar -->
 <?php
@@ -20,16 +24,19 @@ include_once "includes/header.php"
 <div class="clearfix"></div>
 <!-- End Banner Section -->
 <!-- ---------------------------- -->
-<!-- ---------------------------- -->
 <!-- Start Signup Section -->
 <div id="signup">
-    <h3>Inloggen</h3>
-    <form method="post" action="" name="login">
-        <label>Username of Email:</label>
-        <input type="text" name="usernameEmail" autocomplete="off" />
+    <h3>Registreren</h3>
+    <form method="post" action="" name="signup">
+        <label>Naam:</label>
+        <input type="text" name="nameReg" autocomplete="off" />
+        <label>Email:</label>
+        <input type="text" name="emailReg" autocomplete="off" />
+        <label>Username:</label>
+        <input type="text" name="usernameReg" autocomplete="off" />
         <label>Wachtwoord:</label>
-        <input type="password" name="password" autocomplete="off"/>
-        <input type="submit" class="button" name="loginSubmit" value="Login">
+        <input type="password" name="passwordReg" autocomplete="off"/>
+        <input type="submit" class="button" name="signupSubmit" value="Aanmelden">
     </form>
 </div>
 <!-- End Signup Section -->

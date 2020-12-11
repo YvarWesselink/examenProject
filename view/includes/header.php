@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/public/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="/public/css/homepage.css">
     <link rel="stylesheet" href="/public/css/aboutus.css">
+    <link rel="stylesheet"  href="/public/css/registration.css"/>
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
