@@ -15,18 +15,20 @@ $username = "root";
 $password = "";
 
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=examenopdracht", $username, $password);
+  $conn = new PDO("mysql:host=$servername;dbname=praktijkplaza", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-  $sql = "INSERT INTO projectenopdrachten(Opdracht, AantalStudenten, Opmerkingen, UitvoeringsDagEnDatum, LocatieAdresEnPlaatsVanUitvoering, Deadline, Budget, TakenVoorStudenten, Tijd) VALUES (:Opdracht, :AantalStudenten, :Opmerkingen, :UitvoeringsDagEnDatum, :LocatieAdresEnPlaatsVanUitvoering, :Deadline, :Budget, :TakenVoorStudenten, :Tijd)";
+  $sql = "INSERT INTO projectenopdrachten(Opdracht, AantalStudenten, Opmerkingen, UitvoeringsDagEnDatum, Straat, Huisnummer, Postcode, Plaats, Budget, TakenVoorStudenten, Tijd) VALUES (:Opdracht, :AantalStudenten, :Opmerkingen, :UitvoeringsDagEnDatum, :LocatieAdresEnPlaatsVanUitvoering, :Deadline, :Budget, :TakenVoorStudenten, :Tijd)";
   $stmt = $conn->prepare($sql);
   $stmt->bindParam(':Opdracht', $Opdracht);
   $stmt->bindParam(':AantalStudenten', $AantalStudenten);
   $stmt->bindParam(':Opmerkingen', $Opmerkingen);
   $stmt->bindParam(':UitvoeringsDagEnDatum', $UitvoeringsDagEnDatum);
-  $stmt->bindParam(':LocatieAdresEnPlaatsVanUitvoering', $LocatieAdresEnPlaatsVanUitvoering);
-  $stmt->bindParam(':Deadline', $Deadline);
+  $stmt->bindParam(':Straat', $Straat);
+  $stmt->bindParam(':Huisnummer', $Huisnummer);
+  $stmt->bindParam(':Postcode', $Postcode);
+  $stmt->bindParam(':Plaats', $Plaats);
   $stmt->bindParam(':Budget', $Budget);
   $stmt->bindParam(':TakenVoorStudenten', $TakenVoorStudenten);
   $stmt->bindParam(':Tijd', $Tijd);
@@ -36,8 +38,10 @@ try {
     $aantalStudenten = $_POST['AantalStudenten'];
     $opmerkingen = $_POST['Opmerkingen'];
     $uitvoeringsDagEnDatum = $_POST['UitvoeringsDagEnDatum'];
-    $locatieAdresEnPlaatsVanUitvoering = $_POST['LocatieAdresEnPlaatsVanUitvoering'];
-    $deadline = $_POST['Deadline'];
+    $straat = $_POST['Straat'];
+    $huisnummer = $_POST['Huisnummer'];
+    $postcode = $_POST['Postcode'];
+    $plaats = $_POST['Plaats'];
     $budget = $_POST['Budget'];
     $takenVoorStudenten = $_POST['TakenVoorStudenten'];
     $tijd = $_POST['Tijd'];
@@ -48,8 +52,10 @@ try {
     $AantalStudenten = $aantalStudenten;
     $Opmerkingen = $opmerkingen;
     $UitvoeringsDagEnDatum = $uitvoeringsDagEnDatum;
-    $LocatieAdresEnPlaatsVanUitvoering = $locatieAdresEnPlaatsVanUitvoering;
-    $Deadline = $deadline;
+    $Straat = $straat;
+    $Huisnummer = $huisnummer;
+    $Postcode = $postcode;
+    $Plaats = $plaats;
     $Budget = $budget;
     $TakenVoorStudenten = $takenVoorStudenten;
     $Tijd = $tijd;
@@ -61,10 +67,14 @@ try {
       echo 'Je moet de opmerking nog invullen.';
     } else if($uitvoeringsDagEnDatum == ''){
       echo 'Je moet uitvoerings dag en datum nog invullen.';
-    } else if($locatieAdresEnPlaatsVanUitvoering == ''){
-      echo 'Je moet de locatie, adres en plaats van de uitvoering nog invullen.';
-    } else if($deadline == ''){
-      echo 'Je moet de deadline nog invullen.';
+    } else if($straat == ''){
+      echo 'Je moet de straat nog invullen.';
+    } else if($huisnummer == ''){
+      echo 'Je moet het huisnummer nog invullen.';
+    } else if($postcode == ''){
+      echo 'Je moet de postcode nog invullen.';
+    } else if($plaats == ''){
+      echo 'Je moet de plaats nog invullen.';
     } else if($budget == ''){
       echo 'Je moet het budget nog invullen.';
     } else if($takenVoorStudenten == ''){
