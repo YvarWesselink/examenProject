@@ -9,7 +9,7 @@ if (empty($_SESSION['username'])) {
 
 <body>
     <div class="admin-container">
-        <a href="/Acgegevens" class="admin-button">
+        <a href="/acgegevens" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/user.png">
@@ -65,7 +65,7 @@ if (empty($_SESSION['username'])) {
         </a>
     </div>
 
-    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div class="royalties">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 </body>
 </html>

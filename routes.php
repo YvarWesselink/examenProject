@@ -60,3 +60,7 @@ Route::set('adminpanel', function () {
 Route::set('txthome', function () {
     Admin::CreateView('txthome');
 });
+
+Route::set('acgegevens', function () {
+    Admin::CreateView('acgegevens');
+});

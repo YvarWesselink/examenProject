@@ -47,3 +47,19 @@ if (isset($_POST['upload'])) {
 
     Admin::uploadHomeTXT($titel, $tussenkop, $txthome);
 }
+
+if (isset($_POST['edit-user'])) {
+    $username = $_POST['username'];
+    $voornaam = $_POST['voornaam'];
+    $achternaam = $_POST['achternaam'];
+    $email = $_POST['email'];
+    $straat = $_POST['straat'];
+    $plaats = $_POST['plaats'];
+    $postcode = $_POST['postcode'];
+    $mobiel = $_POST['mobiel'];
+    $website = $_POST['website'];
+
+    $id = $_SESSION['uid'];
+
+    Admin::editUser($username, $voornaam, $achternaam, $email, $straat, $plaats, $postcode, $mobiel, $website, $id);
+}

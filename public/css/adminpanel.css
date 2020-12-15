@@ -31,7 +31,7 @@
 
 /* end admin panel */
 
-/* start txt home aanpasbaar */
+/* start txt home aanpassen */
 
 .txthome-container {
     top: 20vh;
@@ -102,3 +102,10 @@
     border: none;
     border-radius: 5px;
 }
+
+.royalties {
+    position: absolute;
+    bottom: 0;
+}
+
+/* end txt home aanpassen */
