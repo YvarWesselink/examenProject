@@ -39,3 +39,11 @@ if(isset($_POST["signupSubmit"])) {
 
   Login::userRegistration($username, $password, $email, $name);
 }
+
+if (isset($_POST['upload'])) {
+    $titel = "<h2>".$_POST['titel']."</h2>";
+    $tussenkop = "<h3>".$_POST['tussenkop']."</h3>";
+    $txthome = "<p>".$_POST['hometxt']."</p>";
+
+    Admin::uploadHomeTXT($titel, $tussenkop, $txthome);
+}

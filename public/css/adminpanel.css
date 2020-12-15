@@ -28,3 +28,14 @@
 .button-bot p {
     padding: 25px;
 }
+
+/* end admin panel */
+
+/* start txt home aanpasbaar */
+
+.txthome-container {
+    top: 25vh;
+    position: relative;
+    margin: 0 auto;
+    width: 500px;
+}
