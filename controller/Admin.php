@@ -14,6 +14,8 @@ class Admin extends controller
         $st->bindParam(":tussenkopje", $tussenkop,PDO::PARAM_STR);
         $st->bindParam(":txthome", $txthome,PDO::PARAM_STR);
         $st->execute();
+
+        header("Location: /txthome");
     }
 
     public static function downloadTXT() {
@@ -24,6 +26,6 @@ class Admin extends controller
 
         $home = $st->fetch(PDO::FETCH_ASSOC);
 
-        echo $home['titel'].$home['tussenkopje'].$home['home'];
+        return $home;
     }
 }

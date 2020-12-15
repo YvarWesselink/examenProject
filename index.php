@@ -41,9 +41,9 @@ if(isset($_POST["signupSubmit"])) {
 }
 
 if (isset($_POST['upload'])) {
-    $titel = "<h2>".$_POST['titel']."</h2>";
-    $tussenkop = "<h3>".$_POST['tussenkop']."</h3>";
-    $txthome = "<p>".$_POST['hometxt']."</p>";
+    $titel = $_POST['titel'];
+    $tussenkop = $_POST['tussenkop'];
+    $txthome = $_POST['hometxt'];
 
     Admin::uploadHomeTXT($titel, $tussenkop, $txthome);
 }

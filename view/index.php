@@ -26,7 +26,9 @@ include_once "includes/header.php"
 <section class="region">
     <div class="region-info">
         <?php
-        Admin::downloadTXT();
+        $home = Admin::downloadTXT();
+
+        echo "<h2>".$home['titel']."</h2>"."<h3>".$home['tussenkopje']."</h3>"."<p>".$home['home']."</p>";
         ?>
         <span></span>
     </div>

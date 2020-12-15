@@ -34,7 +34,7 @@ if (empty($_SESSION['username'])) {
         <a href="/#" class="admin-button">
             <div>
                 <div class="button-top">
-
+                    <img src="/public/img/group.png">
                 </div>
                 <div class="button-bot">
                     <p>Gebruikers Beheer</p>
@@ -45,7 +45,7 @@ if (empty($_SESSION['username'])) {
         <a href="/#" class="admin-button">
             <div>
                 <div class="button-top">
-
+                    <img src="/public/img/database.png">
                 </div>
                 <div class="button-bot">
                     <p>Database Pagina</p>
@@ -56,7 +56,7 @@ if (empty($_SESSION['username'])) {
         <a href="/#" class="admin-button">
             <div>
                 <div class="button-top">
-
+                    <img src="/public/img/editopdracht.png">
                 </div>
                 <div class="button-bot">
                     <p>Opdracht formulier aanpassen</p>
@@ -64,6 +64,9 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
     </div>
+
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
 </body>
 </html>
 
