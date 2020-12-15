@@ -52,3 +52,11 @@ Route::set('contact', function () {
 Route::set('voorwaarden', function () {
     Voorwaarden::CreateView('voorwaarden');
 });
+
+Route::set('adminpanel', function () {
+    Admin::CreateView('adminpanel');
+});
+
+Route::set('txthome', function () {
+    Admin::CreateView('txthome');
+});

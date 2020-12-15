@@ -1,0 +1,30 @@
+.admin-container {
+    display: flex;
+    top: 25vh;
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.admin-container img {
+    width: 100px;
+    height: auto;
+    align-content: center;
+}
+
+.admin-button {
+    padding: 25px;
+}
+
+.button-top {
+    background-color: green;
+    padding: 60px;
+}
+
+.button-bot {
+    background-color: yellow;
+}
+
+.button-bot p {
+    padding: 25px;
+}

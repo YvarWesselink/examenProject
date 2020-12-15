@@ -17,7 +17,7 @@ if(isset($_POST["loginSubmit"])) {
   $uid = Login::userLogin($username , $password);
 
   if ($uid) {
-        echo "<script> location.href='/index.php'; </script>";
+        echo "<script> location.href='/adminpanel'; </script>";
     }
 }
 

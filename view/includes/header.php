@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/public/css/homepage.css">
     <link rel="stylesheet" href="/public/css/aboutus.css">
     <link rel="stylesheet"  href="/public/css/registration.css"/>
+    <link rel="stylesheet" href="/public/css/adminpanel.css"/>
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
@@ -27,7 +28,7 @@
                 echo "<li><a href='inloggen'>Login</a></li>";
             }
             $username = $_SESSION['username'];
-            echo "<li><a>$username</a></li>";
+            echo "<li><a href='/adminpanel'>$username</a></li>";
             ?>
         </ul>
     </div>
