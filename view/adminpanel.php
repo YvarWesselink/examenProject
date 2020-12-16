@@ -4,6 +4,7 @@
 include_once 'view/includes/header.php';
 if (empty($_SESSION['username'])) {
     header('Location: index.php');
+    $username = $_SESSION['username'];
 }
 ?>
 
@@ -59,7 +60,18 @@ if (empty($_SESSION['username'])) {
                     <img src="/public/img/editopdracht.png">
                 </div>
                 <div class="button-bot">
-                    <p>Opdracht formulier aanpassen</p>
+                    <p>Formulier aanpassen</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="/#" class="admin-button">
+            <div>
+                <div class="button-top">
+                    <img src="/public/img/editopdracht.png">
+                </div>
+                <div class="button-bot">
+                    <p>Nog niks</p>
                 </div>
             </div>
         </a>

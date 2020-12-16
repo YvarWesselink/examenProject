@@ -7,6 +7,7 @@
   border-radius: 5px;font-family: arial;
   line-height: 16px;color: #333333; font-size: 15px;
   background: #ffffff;rgba(200,200,200,0.7);
+  margin-top: 20vh;
 }
 
 #signup h3, #signup h3 {
@@ -35,7 +36,7 @@
 
 #signup .button, #signup .button {
   background-color: #ed135d;
-  border-color: $BDC7D8;
+  border-color: #BDC7D8;
   font-weight: bold;
   margin: 25px auto 0;
   padding: 12px 15px;
