@@ -62,7 +62,7 @@ class login extends controller {
       $count=$st->rowCount();
       if($count<1)
       {
-      $stmt = $pdo->prepare("INSERT INTO users(username,password,email,name) VALUES (:username,:hash_password,:email,:name)");
+      $stmt = $pdo->prepare("INSERT INTO users(username,password,email,voornaam) VALUES (:username,:hash_password,:email,:name)");
       $stmt->bindParam("username", $username,PDO::PARAM_STR) ;
       $hash_password= hash('sha256', $password); //Password encryption
       $stmt->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
