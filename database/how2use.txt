@@ -1,0 +1,32 @@
+Hallo in deze map staan een aantal bestanden
+deze bestanden zijn de database structuur 
+
+voor het geval deze veranderd moeten worden kan je de huidige importeren en de structuur veranderen.
+
+
+doe dit door met een host client een local host te hosten.
+
+ga dan naar localhost/phpmyadmin 
+maak een database genaamd examenopdracht "moet veranderen voor launch"
+
+
+klik dan in het menu boven aan de pagina op importeren en selecteer een voor een de .sql bestanden
+
+de bestanden maken automatisch een lege tabel aan deze kan worden ingevoerd met website informatie
+
+
+
+
+maak wel een admin acount lokaal aan zodat je de website kan veranderen.
+dit doe je in users. 
+door eerst op de website te registreren met admin.
+naam: admin
+username: admin
+pasword: admin
+useremail: admin@admin.admin
+
+dan ga je in de database en verander je user level naar "placeholder"
+
+
+mvg- examen kanidaten 2020 
+fuck corona
