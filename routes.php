@@ -64,3 +64,7 @@ Route::set('txthome', function () {
 Route::set('acgegevens', function () {
     Admin::CreateView('acgegevens');
 });
+
+Route::set('logout', function () {
+    Admin::logout();
+});

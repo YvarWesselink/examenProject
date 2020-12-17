@@ -63,4 +63,11 @@ class Admin extends controller
 
         return $user;
     }
+
+    public static function logout() {
+        session_start();
+        unset($_SESSION['uid']);
+        unset($_SESSION['username']);
+        header('Location: /index.php');
+    }
 }

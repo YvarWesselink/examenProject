@@ -23,7 +23,10 @@
             <li><a href="#">Sites</a></li>
             <li><a href="/voorwaarden">Voorwaarden</a></li>
             <?php
-            session_start();
+            if (empty($_SESSION)) {
+                session_start();
+            }
+
             if (empty($_SESSION['username'])) {
                 echo "<li><a href='inloggen'>Login</a></li>";
             }

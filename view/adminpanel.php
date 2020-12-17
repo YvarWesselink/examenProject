@@ -65,13 +65,13 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/logout" class="admin-button">
             <div>
                 <div class="button-top">
-                    <img src="/public/img/editopdracht.png">
+                    <img src="/public/img/logout.png">
                 </div>
                 <div class="button-bot">
-                    <p>Nog niks</p>
+                    <p>Log Uit</p>
                 </div>
             </div>
         </a>
