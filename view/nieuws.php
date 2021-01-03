@@ -1,5 +1,8 @@
 <?PHP 
 include 'includes/db.php';
+include 'includes/header.php';
+include 'includes/footer.php';
+
 ?>
 
 <h2>Nieuws</h2>
