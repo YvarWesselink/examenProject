@@ -25,18 +25,11 @@ include_once "includes/header.php"
 <!-- Start Region Section -->
 <section class="region">
     <div class="region-info">
-        <h2>Welkom op de site van Landstede Projectbureau Salland</h2>
-        <h3>Heeft u een evenement of activiteit waar studenten u bij kunnen helpen?</h3>
-        <h3>Plaats dan hier uw opdracht.</h3>
-        <p>Op deze website vindt u informatie over PraktijkPlaza, SportEve en Kindactief. In alle gevallen gaat het
-            studenten die evenementen of activiteiten ondersteunen of organiseren ten behoeve van de samenleving.
-            Landstede heeft vele opleidingen en wij zijn dus in staat om op velerlei gebied actief te zijn.
-            Studenten van de diverse opleidingen lezen voor in de bibliotheek, organiseren een sporttoernooi voor
-            mensen met een beperking of doen het secretariaatswerk voor een festival. Afhankelijk van de opdracht
-            gebeurt dit gratis of tegen een geringe vergoeding. Zie hiervoor de algemene voorwaarden. Actuele nieuws
-            en informatie per projectteam vindt u onder alle projectteams. Een opdracht plaatst u heel eenvoudig
-            door het opdrachtformulier in te vullen. Na ontvangst van het opdrachtformulier nemen wij zo spoedig
-            mogelijk contact met u op.</p>
+        <?php
+        $home = Admin::downloadTXT();
+
+        echo "<h2>".$home['titel']."</h2>"."<h3>".$home['tussenkopje']."</h3>"."<p>".$home['home']."</p>";
+        ?>
         <span></span>
     </div>
 </section>

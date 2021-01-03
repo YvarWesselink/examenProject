@@ -28,37 +28,49 @@ include_once "includes/header.php"
       <form method="post" class="opdrachtIndienenForm" >
         <div>
           <label for="fname">Opdracht</label><br>
-          <input type="text" id="fname" name="Opdracht" style="width: 33vw; height: 15vh;"><br><br>
+          <input type="text" id="fname" name="Opdracht" style="width: 33vw;"><br><br>
+          <label for="lname">Aantal deelnemers</label><br>
+          <input type="text" id="lname" name="AantalDeelnemers" maxlength="2" size="number"><br><br>  
+          <label for="lname">Uitvoerings dag en datum</label><br>
+          <input type="date" id="lname" name="UitvoeringsDagEnDatum"><br><br>            
+          <label for="lname">Straat</label><br>
+          <input type="text" id="lname" name="Straat"><br><br>                            
+          <label for="lname">Postcode</label><br>
+          <input type="text" id="lname" name="Postcode"><br><br>  
           <label for="lname">Aantal studenten</label><br>
           <input type="text" id="lname" name="AantalStudenten" maxlength="2" size="number"><br><br>  
-          <label for="lname">Uitvoerings dag en datum</label><br>
-          <input type="text" id="lname" name="UitvoeringsDagEnDatum"><br><br>  
-          <label for="fname">Locatie adres en plaats van uitvoering</label><br>
-          <input type="text" id="fname" name="LocatieAdresEnPlaatsVanUitvoering"><br><br>
-          <label for="lname">Deadline</label><br>
-          <input type="text" id="lname" name="Deadline"><br><br>  
-          <label for="lname">Taken voor studenten</label><br>
-          <input type="text" id="lname" name="TakenVoorStudenten"><br><br>  
         </div>
         <div class="rightSideExcersiseForm">
-          <label for="fname">Opmerkingen</label><br>
-          <input type="text" id="fname" name="Opmerkingen" style="height: 24vh;"><br><br>
           <label for="fname">Budget</label><br>
           <input type="text" id="fname" name="Budget"><br><br>
           <label for="fname">Tijd</label><br>
-          <input type="text" id="fname" name="Tijd"><br><br>
+          <input type="time" id="fname" name="Tijd"><br><br>
+          <label for="lname">Huisnummer</label><br>
+          <input type="text" id="lname" name="Huisnummer"><br><br>  
+          <label for="fname">Plaats</label><br>
+          <input type="text" id="fname" name="Plaats"><br><br> 
+          <label for="FormStatus">Status</label><br>
+          <select class="status" name="FormStatus">
+            <option value="wachten">Wachten</option>
+            <option value="wachten">Afgekeurd</option>
+            <option value="wachten">Goedgekeurd</option>
+          </select>
         </div>
+        <label for="lname">Taken voor studenten</label><br>
+        <input type="text" id="lname" name="TakenVoorStudenten" style="width: 33vw; height: 24vh;"><br><br>  
+        <label for="fname">Opmerkingen</label><br>
+        <input type="text" id="fname" name="Opmerkingen" style="width: 33vw; height: 24vh;"><br><br>
       <!-- Dit is het form voor de gegevens van het bedrijf. -->
         <h2 class="h2Style">2 Contact/bedrijf gegevens</h2>
         <div>
-          <label for="fname">Email</label><br>
-          <input type="text" id="fname" name="Email" style="width: 33vw;"><br><br>
-          <label for="lname">Herhaal email</label><br>
-          <input type="text" id="lname" name="HerhaalEmail" style="width: 33vw;"><br><br>  
           <label for="fname">Naam organistatie</label><br>
           <input type="text" id="fname" name="NaamOrganisatie"><br><br>
           <label for="lname">Vaste telefoon</label><br>
           <input type="text" id="lname" name="VasteTelefoon"><br><br>  
+          <label for="fname">Email</label><br>
+          <input type="text" id="fname" name="Email" style="width: 33vw;"><br><br>
+          <label for="lname">Herhaal email</label><br>
+          <input type="text" id="lname" name="HerhaalEmail" style="width: 33vw;"><br><br>  
         </div>
         <div class="rightSideContactForm">
           <label for="lname">Naam contactpersoon</label><br>
@@ -66,17 +78,22 @@ include_once "includes/header.php"
           <label for="fname">Mobiel</label><br>
           <input type="text" id="fname" name="Mobiel"><br><br>
         </div>
+        <h4 class="h2Style" style="margin-bottom: 3vh;">Contactadres</h4>
         <div>
-          <label for="lname">Straat en huisnummer</label><br>
-          <input type="text" id="lname" name="StraatEnHuisnummer" style="width: 33vw;"><br><br>  
-          <label for="fname">Woonplaats</label><br>
-          <input type="text" id="fname" name="Woonplaats"><br><br>
-          <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken"> 
-        </div>
-        <div class="rightSideContactForm2">
+          <label for="lname">Straat</label><br>
+          <input type="text" id="lname" name="Straat" style="width: 33vw; "><br><br>
+          <label for="lname">Huisnummer</label><br>
+          <input type="text" id="lname" name="Huisnummer"><br><br>  
           <label for="lname">Postcode</label><br>
           <input type="text" id="lname" name="Postcode"><br><br><br>
         </div>
+        <div class="rightSideContactForm2">
+          <label for="lname">Toevoeging</label><br>
+          <input type="text" id="lname" name="Toevoeging"><br><br>            
+          <label for="fname">Plaats</label><br>
+          <input type="text" id="fname" name="Plaats"><br><br>
+        </div>
+          <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken"> 
       </form>
     </div>
 </section>
@@ -99,9 +116,14 @@ input{
   width: 15vw;
 }
 
+.status {
+
+}
+
 .rightSideExcersiseForm {
   margin-left: 18vw;
   margin-top: -49.5vh;
+  margin-bottom: 5vh;
 }
 .h2Style{
   background-color: #ed135d; 
@@ -114,12 +136,13 @@ input{
 
 .rightSideContactForm{
   margin-left: 18vw;
-  margin-top: -19.9vh;
+  margin-top: -39.5vh;
+  margin-bottom: 20vh;
 }
 
 .rightSideContactForm2{
   margin-left: 18vw;
-  margin-top: -14vh;
+  margin-top: -22.5vh;
 }
 
 .sendExcersiseBtn{
