@@ -52,3 +52,7 @@ Route::set('contact', function () {
 Route::set('voorwaarden', function () {
     Voorwaarden::CreateView('voorwaarden');
 });
+
+Route::set('viewdb', function () {
+    viewdb::CreateView('viewdb');
+});
