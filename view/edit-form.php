@@ -17,11 +17,14 @@ if (empty($_SESSION['username'])) {
         </div>
         <div class="txthome-sub">
             <p>Formulier</p>
-            <button class="add-form">+</button>
+            <div class="add-form">+</div>
         </div>
 
         <form method="post" class="form">
-
+            <?php
+            echo Admin::getElements();
+            ?>
+            <input class="submit-form" type="submit" name="update">
         </form>
     </div>
 </div>

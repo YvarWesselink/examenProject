@@ -63,3 +63,10 @@ if (isset($_POST['edit-user'])) {
 
     Admin::editUser($username, $voornaam, $achternaam, $email, $straat, $plaats, $postcode, $mobiel, $website, $id);
 }
+
+if (isset($_POST['update'])) {
+    $titel = $_POST['titel'];
+    $inputType = $_POST['input-type'];
+
+    Admin::uploadElementOp($titel, $inputType);
+}

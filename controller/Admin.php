@@ -70,4 +70,45 @@ class Admin extends controller
         unset($_SESSION['username']);
         header('Location: /index.php');
     }
+
+    public static function uploadElementOp($titel, $inputType) {
+        $pdo = self::connect();
+
+        switch ($inputType) {
+            case "date":
+            case "time":
+            case "txt":
+                $st = $pdo->prepare("ALTER TABLE projectenopdrachten ADD $titel varchar(255)");
+                break;
+            case "valuta":
+            case "int":
+                $st = $pdo->prepare("ALTER TABLE projectenopdrachten ADD $titel int(255)");
+                break;
+        }
+
+        $st->execute();
+
+        header('Location: /formulier');
+    }
+
+    public static function getElements() {
+        $pdo = self::connect();
+        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
+        $st->execute();
+
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tables);
+
+        $i = 1;
+        while ($count > $i) {
+            echo "<div>".$tables[$i]['Field']."<button type='button' class='deleteRow'>-</button></div>"."<br>";
+            $i ++;
+        }
+    }
+
+    public static function deleteElementOp($column) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("ALTER TABLE projectenopdrachten DROP COLUMN $column");
+        $st->execute();
+    }
 }

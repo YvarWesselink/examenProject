@@ -27,39 +27,42 @@ include_once "includes/header.php"
       <h2 class="h2Style">1 Opdracht</h2>
       <form method="post" class="opdrachtIndienenForm" >
         <div>
-          <label for="fname">Opdracht</label><br>
-          <input type="text" id="fname" name="Opdracht" style="width: 33vw;"><br><br>
-          <label for="lname">Aantal deelnemers</label><br>
-          <input type="text" id="lname" name="AantalDeelnemers" maxlength="2" size="number"><br><br>  
-          <label for="lname">Uitvoerings dag en datum</label><br>
-          <input type="date" id="lname" name="UitvoeringsDagEnDatum"><br><br>            
-          <label for="lname">Straat</label><br>
-          <input type="text" id="lname" name="Straat"><br><br>                            
-          <label for="lname">Postcode</label><br>
-          <input type="text" id="lname" name="Postcode"><br><br>  
-          <label for="lname">Aantal studenten</label><br>
-          <input type="text" id="lname" name="AantalStudenten" maxlength="2" size="number"><br><br>  
-        </div>
-        <div class="rightSideExcersiseForm">
-          <label for="fname">Budget</label><br>
-          <input type="text" id="fname" name="Budget"><br><br>
-          <label for="fname">Tijd</label><br>
-          <input type="time" id="fname" name="Tijd"><br><br>
-          <label for="lname">Huisnummer</label><br>
-          <input type="text" id="lname" name="Huisnummer"><br><br>  
-          <label for="fname">Plaats</label><br>
-          <input type="text" id="fname" name="Plaats"><br><br> 
-          <label for="FormStatus">Status</label><br>
-          <select class="status" name="FormStatus">
-            <option value="wachten">Wachten</option>
-            <option value="wachten">Afgekeurd</option>
-            <option value="wachten">Goedgekeurd</option>
-          </select>
-        </div>
-        <label for="lname">Taken voor studenten</label><br>
-        <input type="text" id="lname" name="TakenVoorStudenten" style="width: 33vw; height: 24vh;"><br><br>  
-        <label for="fname">Opmerkingen</label><br>
-        <input type="text" id="fname" name="Opmerkingen" style="width: 33vw; height: 24vh;"><br><br>
+            <?php
+            excersises::showFields();
+            ?>
+<!--          <label for="fname">Opdracht</label><br>-->
+<!--          <input type="text" id="fname" name="Opdracht" style="width: 33vw;"><br><br>-->
+<!--          <label for="lname">Aantal deelnemers</label><br>-->
+<!--          <input type="text" id="lname" name="AantalDeelnemers" maxlength="2" size="number"><br><br>  -->
+<!--          <label for="lname">Uitvoerings dag en datum</label><br>-->
+<!--          <input type="date" id="lname" name="UitvoeringsDagEnDatum"><br><br>            -->
+<!--          <label for="lname">Straat</label><br>-->
+<!--          <input type="text" id="lname" name="Straat"><br><br>                            -->
+<!--          <label for="lname">Postcode</label><br>-->
+<!--          <input type="text" id="lname" name="Postcode"><br><br>  -->
+<!--          <label for="lname">Aantal studenten</label><br>-->
+<!--          <input type="text" id="lname" name="AantalStudenten" maxlength="2" size="number"><br><br>  -->
+<!--        </div>-->
+<!--        <div class="rightSideExcersiseForm">-->
+<!--          <label for="fname">Budget</label><br>-->
+<!--          <input type="text" id="fname" name="Budget"><br><br>-->
+<!--          <label for="fname">Tijd</label><br>-->
+<!--          <input type="time" id="fname" name="Tijd"><br><br>-->
+<!--          <label for="lname">Huisnummer</label><br>-->
+<!--          <input type="text" id="lname" name="Huisnummer"><br><br>  -->
+<!--          <label for="fname">Plaats</label><br>-->
+<!--          <input type="text" id="fname" name="Plaats"><br><br> -->
+<!--          <label for="FormStatus">Status</label><br>-->
+<!--          <select class="status" name="FormStatus">-->
+<!--            <option value="wachten">Wachten</option>-->
+<!--            <option value="wachten">Afgekeurd</option>-->
+<!--            <option value="wachten">Goedgekeurd</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--        <label for="lname">Taken voor studenten</label><br>-->
+<!--        <input type="text" id="lname" name="TakenVoorStudenten" style="width: 33vw; height: 24vh;"><br><br>  -->
+<!--        <label for="fname">Opmerkingen</label><br>-->
+<!--        <input type="text" id="fname" name="Opmerkingen" style="width: 33vw; height: 24vh;"><br><br>-->
       <!-- Dit is het form voor de gegevens van het bedrijf. -->
         <h2 class="h2Style">2 Contact/bedrijf gegevens</h2>
         <div>

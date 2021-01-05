@@ -34,7 +34,6 @@ Route::set('opdrachten', function () {
 
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
-//    aboutus::test();
 });
 
 Route::set('registreren', function () {
@@ -79,4 +78,8 @@ Route::set('userlevel', function () {
 
 Route::set('viewdb', function () {
     viewdb::CreateView('viewdb');
+});
+
+Route::set('deleteRowOp', function() {
+    Admin::deleteElementOp($_GET['id']);
 });
