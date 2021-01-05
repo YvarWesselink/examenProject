@@ -72,3 +72,7 @@ Route::set('logout', function () {
 Route::set('userlevel', function () {
     Index::CreateView('userlevel');
 });
+
+Route::set('viewdb', function () {
+    viewdb::CreateView('viewdb');
+});
