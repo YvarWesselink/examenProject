@@ -68,3 +68,7 @@ Route::set('acgegevens', function () {
 Route::set('logout', function () {
     Admin::logout();
 });
+
+Route::set('formulier', function () {
+    Admin::CreateView('edit-form');
+});
