@@ -72,3 +72,11 @@ Route::set('logout', function () {
 Route::set('formulier', function () {
     Admin::CreateView('edit-form');
 });
+
+Route::set('userlevel', function () {
+    Index::CreateView('userlevel');
+});
+
+Route::set('viewdb', function () {
+    viewdb::CreateView('viewdb');
+});
