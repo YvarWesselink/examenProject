@@ -1,35 +1,47 @@
 #login, #signup {
-  width: 300px; border: 1px solid #d6d7da;
-  padding: 0px 20px 20px 20px;
+  width: 450px;
+  border: 1px solid #d6d7da;
+  margin: 50px auto;
+  padding: 50px;
+  text-align: center;
   border-radius: 5px;font-family: arial;
   line-height: 16px;color: #333333; font-size: 15px;
-  background: #ffffff;rgba(200,200,200,0.7) 0 4px 10px -1px
+  background: #ffffff;rgba(200,200,200,0.7);
+  margin-top: 20vh;
 }
 
-h3 {
-  color:#005a81
+#signup h3, #signup h3 {
+  text-align: center;
+  font-size: 26px;
+  padding-bottom: 50px;
+  color:#005a81;
 }
 
-form label {
+#signup form label, #signup form label {
   font-weight: bold;
+  text-align: left;
 }
 
-form label, form input {
+#signup form label, #signup form input, #signup form label, #signup form input {
   display: block;
-  margin-bottom: 5px;
-  width: 90%
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: left;
 }
 
-form input {
+#signup form input, #signup form input {
   border: solid 1px #666666;padding: 10px;
   border: solid 1px #BDC7D8; margin-bottom: 20px
 }
 
-.button {
-  background-color: #ed135d ;
-  border-color: $BDC7D8;
+#signup .button, #signup .button {
+  background-color: #ed135d;
+  border-color: #BDC7D8;
   font-weight: bold;
+  margin: 25px auto 0;
   padding: 12px 15px;
   max-width: 100px;
+  display: block;
   color: #ffffff;
+  text-align: center;
 }

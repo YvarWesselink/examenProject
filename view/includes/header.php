@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/public/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="/public/css/homepage.css">
     <link rel="stylesheet" href="/public/css/aboutus.css">
+    <link rel="stylesheet"  href="/public/css/registration.css"/>
+    <link rel="stylesheet" href="/public/css/adminpanel.css"/>
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
@@ -20,7 +22,17 @@
         <ul>
             <li><a href="#">Sites</a></li>
             <li><a href="/voorwaarden">Voorwaarden</a></li>
-            <li><a href="inloggen">Login</a></li>
+            <?php
+            if (empty($_SESSION)) {
+                session_start();
+            }
+
+            if (empty($_SESSION['username'])) {
+                echo "<li><a href='inloggen'>Login</a></li>";
+            }
+            $username = $_SESSION['username'];
+            echo "<li><a href='/adminpanel'>$username</a></li>";
+            ?>
         </ul>
     </div>
     <div class="logo">

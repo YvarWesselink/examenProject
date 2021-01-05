@@ -37,11 +37,11 @@ Route::set('aboutus', function () {
 //    aboutus::test();
 });
 
-Route::set('inloggen', function () {
-    login::CreateView('inloggen');
+Route::set('registreren', function () {
+    login::CreateView('registreren');
 });
 
-Route::set('login', function () {
+Route::set('inloggen', function () {
     login::CreateView('login');
 });
 
@@ -51,4 +51,24 @@ Route::set('contact', function () {
 
 Route::set('voorwaarden', function () {
     Voorwaarden::CreateView('voorwaarden');
+});
+
+Route::set('adminpanel', function () {
+    Admin::CreateView('adminpanel');
+});
+
+Route::set('txthome', function () {
+    Admin::CreateView('txthome');
+});
+
+Route::set('acgegevens', function () {
+    Admin::CreateView('acgegevens');
+});
+
+Route::set('logout', function () {
+    Admin::logout();
+});
+
+Route::set('userlevel', function () {
+    Index::CreateView('userlevel');
 });
