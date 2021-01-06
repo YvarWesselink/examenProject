@@ -28,8 +28,12 @@ Route::set('index.php', function () {
     Index::CreateView('Index');
 });
 
-Route::set('opdrachten', function () {
+Route::set('opdrachten-formulier', function () {
     excersises::CreateView('excersises');
+});
+
+Route::set('opdrachten', function () {
+    excersises::CreateView('excersisesDb');
 });
 
 Route::set('aboutus', function () {
