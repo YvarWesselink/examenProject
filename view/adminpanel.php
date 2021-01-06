@@ -54,7 +54,7 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/formulier" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/editopdracht.png">

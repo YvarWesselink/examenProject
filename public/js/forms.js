@@ -1,0 +1,38 @@
+$(document).ready(function () {
+
+    // voeg een form toe aan de pagina.
+    $(".add-form").click( function() {
+        $('.submit-form').remove();
+        $('.form').append('<div>' +
+            '<input type="text" name="titel">' +
+            '<select name="input-type">' +
+            '<option value="txt">Tekstvlak</option>' +
+            '<option value="int">Nummeriek</option>' +
+            '<option value="date">Datum</option>' +
+            '<option value="time">Tijd</option>' +
+            '<option value="valuta">Valuta</option>' +
+            '</select>' +
+            '<button type="button" class="delete-form">-</button>' +
+            '</div>')
+        $('.form').append('<input class="submit-form" type="submit" name="update">');
+        }
+    );
+
+    $(document).delegate('button', 'click', function () {
+        $(this).parent('div').remove();
+    })
+
+    $('.deleteRow').click(function () {
+        alert("Dit verwijdert ook alle data in deze rij!")
+
+        var id = $(this).parent('div').text().slice(0,-1);
+
+        $.ajax({
+            url: '/deleteRowOp',
+            data: {'id' : id},
+            type: 'GET'
+        })
+
+    })
+});
+

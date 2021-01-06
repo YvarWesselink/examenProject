@@ -6,7 +6,22 @@ class excersises extends Database {
     public static function CreateView($viewName)
     {
         require_once("./view/$viewName.php");
-    }    
+    }
+
+    public static function showFields() {
+        $pdo = self::connect();
+        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
+        $st->execute();
+
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tables);
+
+        $i = 1;
+        while ($count > $i) {
+            echo "<label for='fname'>".$tables[$i]['Field']."</label>"."<br>"."<input type='text' name='".$tables[$i]['Field']."'><br>";
+            $i ++;
+        }
+    }
 }
 
 global $conn;
