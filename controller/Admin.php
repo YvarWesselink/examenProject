@@ -71,18 +71,22 @@ class Admin extends controller
         header('Location: /index.php');
     }
 
-    public static function uploadElementOp($titel, $inputType) {
+    public static function uploadElementOp($titel, $inputType, $type) {
         $pdo = self::connect();
 
         switch ($inputType) {
             case "date":
+                $st = $pdo->prepare("ALTER TABLE $type ADD $titel date");
+                break;
             case "time":
+                $st = $pdo->prepare("ALTER TABLE $type ADD $titel time");
+                break;
             case "txt":
-                $st = $pdo->prepare("ALTER TABLE projectenopdrachten ADD $titel varchar(255)");
+                $st = $pdo->prepare("ALTER TABLE $type ADD $titel varchar(255)");
                 break;
             case "valuta":
             case "int":
-                $st = $pdo->prepare("ALTER TABLE projectenopdrachten ADD $titel int(255)");
+                $st = $pdo->prepare("ALTER TABLE $type ADD $titel int(255)");
                 break;
         }
 
@@ -91,7 +95,7 @@ class Admin extends controller
         header('Location: /formulier');
     }
 
-    public static function getElements() {
+    public static function getElementsForm() {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
         $st->execute();
@@ -106,9 +110,30 @@ class Admin extends controller
         }
     }
 
+    public static function getElementsFormCont() {
+        $pdo = self::connect();
+        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
+        $st->execute();
+
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tables);
+
+        $i = 1;
+        while ($count > $i) {
+            echo "<div>".$tables[$i]['Field']."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            $i ++;
+        }
+    }
+
     public static function deleteElementOp($column) {
         $pdo = self::connect();
         $st = $pdo->prepare("ALTER TABLE projectenopdrachten DROP COLUMN $column");
+        $st->execute();
+    }
+
+    public static function deleteElementCo($column) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevens DROP COLUMN $column");
         $st->execute();
     }
 }

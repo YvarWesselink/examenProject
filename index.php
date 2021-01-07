@@ -67,6 +67,7 @@ if (isset($_POST['edit-user'])) {
 if (isset($_POST['update'])) {
     $titel = $_POST['titel'];
     $inputType = $_POST['input-type'];
+    $type = $_POST['type'];
 
-    Admin::uploadElementOp($titel, $inputType);
+    Admin::uploadElementOp($titel, $inputType, $type);
 }
