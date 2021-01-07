@@ -26,7 +26,7 @@ if (empty($_SESSION['username'])) {
             <?php
             echo Admin::getElementsForm();
             ?>
-            <input class="submit-form" type="submit" name="update">
+            <input class="submit-form-1" type="submit" name="update">
             <input type="hidden" name="type" value="projectenopdrachten">
         </form>
 
@@ -40,7 +40,7 @@ if (empty($_SESSION['username'])) {
             <?php
             echo Admin::getElementsFormCont();
             ?>
-            <input class="submit-form" type="submit" name="update">
+            <input class="submit-form-2" type="submit" name="update">
             <input type="hidden" name="type" value="contactbedrijfgegevens">
         </form>
     </div>

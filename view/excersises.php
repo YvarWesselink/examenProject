@@ -20,77 +20,22 @@ include_once "includes/header.php"
 <div class="clearfix"></div>
 <!-- End Banner Section -->
 
-<section class="info-container">
-    <div class="sport-container">
-      <h1>Opdrachten Indienen</h1>
-      <!-- Dit is het form waar je de opdracht in kunt vullen. -->
-      <h2 class="h2Style">1 Opdracht</h2>
-      <form method="post" class="opdrachtIndienenForm" >
+<div class="txthome-container opdracht">
+    <div class="txthome-main">
+        <h1>Opdrachten Indienen</h1>
+        <h3>*hier moet nog een tekstje komen.*</h3>
+    </div>
+    <!-- Dit is het form waar je de opdracht in kunt vullen. -->
+    <div class="txthome-sub">
+        <p>1 Opdracht </p>
+    </div>
+    <form method="post" class="opdrachtIndienenForm" >
         <div>
             <?php
             excersises::showFields();
             ?>
-      <!-- Dit is het form voor de gegevens van het bedrijf. -->
-
-          <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken"> 
-      </form>
-    </div>
-</section>
-
-<?php
-include_once "includes/footer.php";
-?>
-
+            <!-- Dit is het form voor de gegevens van het bedrijf. -->
+            <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken">
+    </form>
+</div>
 </html>
-
-<!--<style> -->
-<!--.opdrachtIndienenForm {-->
-<!--  /* hier kan de opmaak van het form */-->
-<!--}-->
-<!---->
-<!--input{-->
-<!--  border-radius: 5px;-->
-<!--  height: 4vh;-->
-<!--  padding: 5px;-->
-<!--  width: 15vw;-->
-<!--}-->
-<!---->
-<!--.status {-->
-<!---->
-<!--}-->
-<!---->
-<!--.rightSideExcersiseForm {-->
-<!--  margin-left: 18vw;-->
-<!--  margin-top: -49.5vh;-->
-<!--  margin-bottom: 5vh;-->
-<!--}-->
-<!--.h2Style{-->
-<!--  background-color: #ed135d; -->
-<!--  color: white !important; -->
-<!--  padding: 5px; -->
-<!--  width: 33vw; -->
-<!--  border-radius: 15px;-->
-<!--  box-shadow: 3px 3px 5px darkgrey;-->
-<!--}-->
-<!---->
-<!--.rightSideContactForm{-->
-<!--  margin-left: 18vw;-->
-<!--  margin-top: -39.5vh;-->
-<!--  margin-bottom: 20vh;-->
-<!--}-->
-<!---->
-<!--.rightSideContactForm2{-->
-<!--  margin-left: 18vw;-->
-<!--  margin-top: -22.5vh;-->
-<!--}-->
-<!---->
-<!--.sendExcersiseBtn{-->
-<!--  cursor: pointer;-->
-<!--  background-color: #ed135d;-->
-<!--  color: white;-->
-<!--  border: none;-->
-<!--  width: 33vw;-->
-<!--  font-size: 20px !important;-->
-<!--  box-shadow: 3px 3px 5px darkgrey;-->
-<!--}-->
-<!--</style>-->

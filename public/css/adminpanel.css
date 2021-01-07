@@ -75,6 +75,7 @@
     border-radius: 5px;
     background-color: #ED135D;
     margin-bottom: 5px;
+    display: flex;
 }
 
 .txthome-sub p {
@@ -124,3 +125,92 @@
 }
 
 /* end txt home aanpassen */
+
+/* start opdracht formulier aanpassen */
+
+.add-form-1, .add-form-2 {
+    right: 8px;
+    background-color: #17D23C;
+    color: white;
+    font-size: 20pt;
+    height: 34px;
+    width: 34px;
+    border-radius: 5px;
+
+    text-align: center;
+    padding-top: 2px;
+    cursor: pointer;
+}
+
+.add-form-1 {
+    top: 155px;
+    position: absolute;
+}
+
+.add-form-2 {
+    top: 5px;
+    position: relative;
+    right: -500px;
+}
+
+.add-form-3 {
+    padding: 7px 0 7px 5px;
+    border: 1px #333333 solid;
+    border-radius: 5px;
+    margin: 15px 0 -30px 0;
+}
+
+.deleteRow, .deleteRowC {
+    position: absolute;
+    right: 8px;
+    background-color: #D21717;
+    color: white;
+    font-size: 20pt;
+    height: 34px;
+    width: 34px;
+    border-radius: 5px;
+
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-top: -2px;
+}
+
+.submit-form-1, .submit-form-2 {
+    border: none;
+    color: white;
+    background-color: #ED135D;
+    border-radius: 5px;
+    padding: 15px 10px 15px 10px;
+    margin: 25px 0 25px 0;
+}
+
+.add-forms {
+    padding: 7px 0 7px 5px;
+    border: 1px #333333 solid;
+    border-radius: 5px;
+    margin: 15px 0 -30px 0;
+    margin-bottom: 15px;
+}
+
+.delete-form {
+    position: relative;
+    right: -397px;
+    background-color: #D21717;
+    color: white;
+    font-size: 20pt;
+    height: 34px;
+    width: 34px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-top: -2px;
+    top: 2px;
+}
+
+.opdracht {
+    top: 5vh;
+}
+
+/* end opdracht formulier aanpassen */

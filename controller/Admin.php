@@ -105,7 +105,7 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div>".$tables[$i]['Field']."<button type='button' class='deleteRow'>-</button></div>"."<br>";
+            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRow'>-</button></div>"."<br>";
             $i ++;
         }
     }
@@ -120,7 +120,7 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div>".$tables[$i]['Field']."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
             $i ++;
         }
     }
