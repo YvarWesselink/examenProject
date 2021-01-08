@@ -70,6 +70,7 @@ class excersises extends Database {
     public static function UploadExersise($waarden) {
         $pdo = self::connect();
 
+        // get columns from 'projectenopdrachten'
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
         $st->execute();
 
@@ -79,23 +80,30 @@ class excersises extends Database {
         $rij = 1;
         $war = 0;
 
-//        print_r($tables[1]['Field']);
-//        exit();
+        // define arrays
+        $tableAr = array();
+        $waardeAr = array();
 
+        // push data from 'projectenopdrachten' to array.
         while ($count > $rij) {
-            $table = $tables[$rij]['Field'];
-            $waarde = $waarden[$table];
+            // push column values of database to array
+            array_push($tableAr, $tables[$rij]['Field']);
 
-            echo $table;
-
-//            $st = $pdo->prepare("INSERT INTO projectenopdrachten($table) VALUES ($waarde)");
-//            $st->execute();
+            // push row values of database to array
+            $wIndex = $tables[$rij]['Field'];
+            array_push($waardeAr, "'".$waarden[$wIndex]."'");
 
             $rij++;
             $war++;
         }
 
-        exit();
+        $table = implode(", ", $tableAr);
+        $waarde = implode(", ", $waardeAr);
+
+        $st = $pdo->prepare("INSERT INTO projectenopdrachten($table) VALUES ($waarde)");
+        $st->execute();
+
+
 //        try {
 //
 //            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -244,5 +252,36 @@ class excersises extends Database {
 //            echo "Error: " . $e->getMessage();
 //        }
 //        $conn = null;
+
+        // get columns from 'contactbedrijfgegevens'
+        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
+        $st->execute();
+
+        $tablesCO = $st->fetchAll(PDO::FETCH_ASSOC);
+        $countCO = count($tablesCO);
+
+        // inex of the contactbedrijfgegevens (minus 1 (id))
+        $rijCO = 1;
+
+        //define arrays
+        $tableCoAr = array();
+        $waardeCoAr = array();
+
+        while ($countCO > $rijCO) {
+            array_push($tableCoAr, $tablesCO[$rijCO]['Field']);
+
+            $oIndex = $tablesCO[$rijCO]['Field'];
+            array_push($waardeCoAr, "'".$waarden[$oIndex]."'");
+
+            $count ++;
+            $rijCO ++;
+        }
+
+        $table = implode(", ", $tableCoAr);
+        $waarde = implode(", ", $waardeCoAr);
+
+        $st = $pdo->prepare("INSERT INTO contactbedrijfgegevens ($table) VALUES ($waarde)");
+        $st->execute();
+
     }
 }
