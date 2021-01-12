@@ -32,7 +32,15 @@ include_once "includes/header.php"
     <form method="post" class="opdrachtIndienenForm" >
         <div>
             <?php
-            excersises::showFields();
+            $errormsg = "";
+            if (isset($_POST['sendExcersise'])) {
+                $errormsg = excersises::checkExcersise($_POST);
+
+                if (!array_filter($errormsg)) {
+                    excersises::UploadExersise($_POST);
+                }
+            }
+            excersises::showFields($errormsg);
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
             <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken">

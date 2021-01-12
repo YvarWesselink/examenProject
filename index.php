@@ -71,7 +71,3 @@ if (isset($_POST['update'])) {
 
     Admin::uploadElementOp($titel, $inputType, $type);
 }
-
-if (isset($_POST['sendExcersise'])) {
-    excersises::UploadExersise($_POST);
-}

@@ -8,7 +8,7 @@ class excersises extends Database {
         require_once("./view/$viewName.php");
     }
 
-    public static function showFields() {
+    public static function showFields($errormsg) {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
         $st->execute();
@@ -33,7 +33,22 @@ class excersises extends Database {
                     break;
             }
 
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' type='$type' name='".$tables[$i]['Field']."'><br>";
+            if (empty($errormsg)) {
+                $error = "";
+            } else {
+                $error = $errormsg[$tables[$i]['Field']];
+            }
+
+            if (isset($_POST['sendExcersise'])) {
+                $value = $_POST;
+                $key = $tables[$i]['Field'];
+
+                $backLog = $value[$key];
+            } else {
+                $backLog = "";
+            }
+
+            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
             $i ++;
         }
 
@@ -45,6 +60,7 @@ class excersises extends Database {
         $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
         $countt = count($tabless);
 
+        $e = 0;
         $x = 1;
         while ($countt > $x) {
             switch ($tabless[$x]['Type']) {
@@ -62,9 +78,57 @@ class excersises extends Database {
                     break;
             }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' type='$typee' name='".$tabless[$x]['Field']."'><br>";
+            if (empty($errormsg)) {
+                $error = "";
+            } else {
+                $error = $errormsg[$tabless[$x]['Field']];
+            }
+
+            if (isset($_POST['sendExcersise'])) {
+                $value = $_POST;
+                $key = $tabless[$x]['Field'];
+
+                $backLog = $value[$key];
+            } else {
+                $backLog = "";
+            }
+
+            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
             $x ++;
+            $e ++;
         }
+    }
+
+    public static function checkExcersise($waarden) {
+
+        $errormsg = array();
+
+        $errorKey = array();
+        $errorVal = array();
+
+        foreach ($waarden as $key => $value) {
+            array_push($errorKey, $key);
+        }
+
+        foreach ($waarden as $waarde) {
+            if (empty($waarde)) {
+                $error = "Voer een waarde in.";
+                array_push($errorVal, $error);
+            } elseif (!preg_match('/^[a-zA-Z0-9^"\'\/. -]*$/', $waarde)) {
+                $error = "Gebruik geen rare karakters.";
+                array_push($errorVal, $error);
+            } elseif ($waarde) {
+                array_push($errorVal, "");
+            }
+        }
+
+        $i = 0;
+        foreach ($waarden as $waarde) {
+            $errormsg[$errorKey[$i]] = $errorVal[$i];
+            $i++;
+        }
+
+        return $errormsg;
     }
 
     public static function UploadExersise($waarden) {
