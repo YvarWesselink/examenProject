@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include_once "includes/header.php"
+include_once "includes/header.php";
 ?>
 
 <!-- Start Banner Section -->
@@ -20,9 +20,9 @@ include_once "includes/header.php"
 <div class="clearfix"></div>
 <!-- End Banner Section -->
 <?php
-echo "<div style='box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
-echo "<table style=''>";
-echo "<tr><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerking</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th></tr>";
+echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
+echo "<table style='text-align: center;'>";
+echo "<tr><th></th><th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerking</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator {
   function __construct($it) {
@@ -35,20 +35,18 @@ class TableRows extends RecursiveIteratorIterator {
 
   function beginChildren() {
     echo "<tr>";
-  }
+    echo "<td><a href='' name='edit' style='cursor: pointer; text-decoration: none;' class='fa fa-edit editBtn'> Wijzigen</a></td>";
+    echo "<td><button onclick='deleteDatabaseRow()' type='submit' class='fa fa-trash deleteBtn'> Verwijderen</button></td>";
+    echo "<td><button onclick='getDatabaseId()' type='submit' class='fa fa-trash deleteBtn'> db id</button></td>";
+}
 
   function endChildren() {
     echo "</tr>" . "\n";
   }
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "praktijkplaza";
-
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $stmt = $conn->prepare("SELECT project_id, Opdracht, FormStatus, Opmerkingen, AantalStudenten, UitvoeringsDagEnDatum FROM projectenopdrachten");
   $stmt->execute();
@@ -66,12 +64,45 @@ echo "</table>";
 ?>
 <br>
 <br>
+<script>
+  function getDatabaseId() {
+    document.write('<?php 
+      if(isset($_GET['getDatabaseId'])){
+        $conn = self::connect();
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT project_id INTO @id FROM projectenopdrachten");
+        $stmt->execute();
+        $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = @id");
+        $stmt->execute();
+      }
+  ?>')
+  }
+</script>
+<script>
+  function deleteDatabaseRow() {
+    document.write('<?php 
+      $conn = self::connect();
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = 1");
+      $stmt->execute();
+    ?>')
+  }
+</script>
+<?php 
+//  if(isset($_GET['getDatabaseId'])){
+//    $conn = self::connect();
+//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    $stmt = $conn->prepare("SELECT project_id INTO @id FROM projectenopdrachten");
+//    alert( $id);
+//    $stmt->execute();
+//  }
+// ?>
+  
 <?php
-include_once "includes/footer.php";
+  include_once "includes/footer.php";
 ?>
 
 </html>
-
 <style>
 table {
   border-collapse: collapse;
@@ -90,5 +121,16 @@ tr:nth-child(even){background-color: #f8a0bd}
 th {
   background-color: #ffffff;
   color: #005a81;
+}
+
+.deleteBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+.editBtn {
+  color: green;
 }
 </style>
