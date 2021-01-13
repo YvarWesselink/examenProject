@@ -44,7 +44,7 @@
     <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="aboutus">Over ons</a></li>
-        <li><a href="#">Foto's</a></li>
+        <li><a href="/">Foto's</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/opdrachten">Opdracht</a></li>
     </ul>

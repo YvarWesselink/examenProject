@@ -91,3 +91,7 @@ Route::set('deleteRowOp', function() {
 Route::set('deleteRowCo', function() {
     Admin::deleteElementCo($_GET['id']);
 });
+
+Route::set('nieuws', function () {
+    nieuws::CreateView('nieuws');
+});

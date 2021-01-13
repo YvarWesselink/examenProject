@@ -66,7 +66,7 @@ include_once "includes/header.php"
             <span class="date">07 NOVEMBER 2017</span>
             <div class="content">
                 <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                <a href="/nieuws">Lees meer <i class="fas fa-arrow-right icons"></i></a>
             </div>
         </div>
         <div class="nieuws-container right">
