@@ -136,4 +136,10 @@ class Admin extends controller
         $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevens DROP COLUMN $column");
         $st->execute();
     }
+
+    public static function deleteElementExc($id) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("DELETE FROM projectenopdrachten WHERE project_id = $id");
+        $st->execute();
+    }
 }

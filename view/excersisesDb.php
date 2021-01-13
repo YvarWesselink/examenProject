@@ -22,7 +22,7 @@ include_once "includes/header.php";
 <?php
 echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
 echo "<table style='text-align: center;'>";
-echo "<tr><th></th><th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerking</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th></tr>";
+echo "<tr><th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerking</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator {
   function __construct($it) {
@@ -36,8 +36,7 @@ class TableRows extends RecursiveIteratorIterator {
   function beginChildren() {
     echo "<tr>";
     echo "<td><a href='' name='edit' style='cursor: pointer; text-decoration: none;' class='fa fa-edit editBtn'> Wijzigen</a></td>";
-    echo "<td><button onclick='deleteDatabaseRow()' type='submit' class='fa fa-trash deleteBtn'> Verwijderen</button></td>";
-    echo "<td><button onclick='getDatabaseId()' type='submit' class='fa fa-trash deleteBtn'> db id</button></td>";
+    echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button></td>";
 }
 
   function endChildren() {
@@ -64,39 +63,35 @@ echo "</table>";
 ?>
 <br>
 <br>
+
 <script>
-  function getDatabaseId() {
-    document.write('<?php 
-      if(isset($_GET['getDatabaseId'])){
-        $conn = self::connect();
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT project_id INTO @id FROM projectenopdrachten");
-        $stmt->execute();
-        $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = @id");
-        $stmt->execute();
-      }
-  ?>')
-  }
+$('.deleteTableRow').click(function () {
+    if (confirm("Weet je zeker dat je deze rij wilt verwijderen, dit verwijdert ook alle data in de rij!")) {
+        var id = $(this).parent('td').text().slice(0,-1);
+        $.ajax({
+            url: '/deleteRowExc',
+            data: {'id' : id},
+            type: 'GET'
+        })
+        $(document).delegate('button', 'click', function () {
+            $(this).parent('td').remove();
+        })
+    } else {
+        console.log("niet verwijderd");
+    }
+})
 </script>
-<script>
+
+<!-- <script>
   function deleteDatabaseRow() {
     document.write('<?php 
-      $conn = self::connect();
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = 1");
-      $stmt->execute();
+      // $conn = self::connect();
+      // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      // $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = 1");
+      // $stmt->execute();
     ?>')
   }
-</script>
-<?php 
-//  if(isset($_GET['getDatabaseId'])){
-//    $conn = self::connect();
-//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//    $stmt = $conn->prepare("SELECT project_id INTO @id FROM projectenopdrachten");
-//    alert( $id);
-//    $stmt->execute();
-//  }
-// ?>
+</script> -->
   
 <?php
   include_once "includes/footer.php";
