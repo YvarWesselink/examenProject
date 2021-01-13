@@ -28,6 +28,14 @@ Route::set('index.php', function () {
     Index::CreateView('Index');
 });
 
+Route::set('zwolle', function () {
+    Index::CreateView('zwolle');
+});
+
+Route::set('salland', function () {
+    Index::CreateView('salland');
+});
+
 Route::set('opdrachten', function () {
     excersises::CreateView('excersises');
 });
@@ -90,12 +98,4 @@ Route::set('deleteRowOp', function() {
 
 Route::set('deleteRowCo', function() {
     Admin::deleteElementCo($_GET['id']);
-});
-
-Route::set('deleteRowExc', function() {
-    Admin::deleteElementExc($_GET['id']);
-});
-
-Route::set('nieuws', function () {
-    nieuws::CreateView('nieuws');
 });
