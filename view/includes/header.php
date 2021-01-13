@@ -14,6 +14,17 @@
     <!-- JS Script -->
     <script src="/public/js/jquery-2.1.1.min.js"></script>
     <script src="/public/js/forms.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (window.location.href.match(/(salland)/) != null) {
+                $('nav').addClass("blauw");
+                $('div.back-red').addClass("b-blauw");
+                $('div.border-bottom').addClass("blauw");
+                $('.nieuws-container .content a').addClass("blauw");
+                $('.nieuws-container .content a i').addClass("blauw");
+            }
+        });
+    </script>
 </head>
 
 <body>
