@@ -115,3 +115,7 @@ Route::set('foto-uploaden', function () {
 Route::set('deleteRowNews', function() {
     Admin::deleteElementNews($_GET['id']);
 });
+
+Route::set('nieuws', function () {
+    Index::CreateView('nieuws');
+});
