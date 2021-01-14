@@ -112,7 +112,7 @@ include_once "includes/header.php";
           var id = $(this).attr('id');
           console.log(id);
           $.ajax({
-              url: '/deleteRowUser0',
+              url: '/deleteRowUser',
               data: {'id' : id},
               type: 'GET'
           })
