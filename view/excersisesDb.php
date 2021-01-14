@@ -30,12 +30,13 @@ include_once "includes/header.php";
     $i = 0;
     echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
     
     while($count > $i){
       $project_id = $row[$i]['project_id'];
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."> Verwijderen</button></td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
       echo "<td>". $row[$i]['FormStatus'] ."</td>";
@@ -61,15 +62,46 @@ include_once "includes/header.php";
     $i = 0;
     echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Gebruikers</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th>Gebuikersnaam</th><th>Voornaam</th><th>Achternaam</th><th>E-mail</th>";
+    echo "<th></th><th></th><th>Gebuikersnaam</th><th>Voornaam</th><th>Achternaam</th><th>E-mail</th>";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."> Verwijderen</button></td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['username'] ."</td>";
       echo "<td>". $row[$i]['voornaam'] ."</td>";
       echo "<td>". $row[$i]['achternaam'] ."</td>";
       echo "<td>". $row[$i]['email'] ."</td>";
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div>";
+  }
+?>
+
+<!-- Get all data from db for the news -->
+<?php 
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM feedback");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Nieuws</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Naam</th><th>E-mail</th><th>Bedrijf</th><th>Opmerkingen</th>";
+    
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['Name'] ."</td>";
+      echo "<td>". $row[$i]['Email'] ."</td>";
+      echo "<td>". $row[$i]['Company'] ."</td>";
+      echo "<td>". $row[$i]['Comments'] ."</td>";
       echo "</tr>";
       $i ++;
     }
@@ -126,6 +158,27 @@ include_once "includes/header.php";
   })
 </script>
 
+<!-- Delete function for the news table -->
+<script>
+  $('.deleteTableRowNews').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).attr('id');
+          console.log(id);
+          $.ajax({
+              url: '/deleteRowNews',
+              data: {'id' : id},
+              type: 'GET'
+          })
+          $(document).delegate('button', 'click', function () {
+            $(this).parent('div').remove();
+          })
+          location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
 <style>
 table {
   border-collapse: collapse;
@@ -140,10 +193,15 @@ table {
   border: none;
   cursor: pointer;
   color: red;
+  font-size: 22px !important;
 }
 
 .editBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   color: green;
+  font-size: 22px !important;
 }
 
 th, td {

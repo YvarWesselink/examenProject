@@ -184,6 +184,12 @@ class Admin extends controller
         $st->execute();
     }
 
+    public static function deleteElementNews($id) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("DELETE FROM feedback WHERE userID = $id");
+        $st->execute();
+    }
+
 
     public static function downloadEditUserLV(){    
         $pdo = self::connect();
