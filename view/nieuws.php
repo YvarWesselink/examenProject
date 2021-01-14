@@ -5,8 +5,7 @@
 include_once "includes/header.php"
 ?>
 
-<h2>Nieuws</h2>
-<formmethod="post"action="<?phpechohtmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<formmethod="post"action="<?phpechohtmlspecialchars($_SERVER["PHP_SELF"]);?>"> <br><br><br><br><br><br><br>
   Volledige naam: <inputtype="text"name="name"required>
 <br><br>
   Email Adres: <inputtype="text"name="email"required>
