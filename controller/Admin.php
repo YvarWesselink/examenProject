@@ -142,26 +142,26 @@ class Admin extends controller
         $st = $pdo->prepare("DELETE FROM projectenopdrachten WHERE project_id = $id");
         $st->execute();
     }
-}
 
-public static function downloadEditUserLV(){    
-    $pdo = self::connect();
-    $st =  $pdo->prepare("SELECT * FROM users");
-    $st->execute();
-    
-    $user=  $st->fetchAll(PDO::FETCH_ASSOC);
-    
 
-return $user;
-}
+    public static function downloadEditUserLV(){    
+        $pdo = self::connect();
+        $st =  $pdo->prepare("SELECT * FROM users");
+        $st->execute();
 
-public static function editUserLV($uid, $user_lv){
-    $pdo = self::connect();
-    $st = $pdo->prepare("UPDATE users SET user_lv=:userlv WHERE uid=:id");
-    $st->bindParam(":id", $uid, PDO::PARAM_STR);
-    $st->bindParam(":userlv", $user_lv, PDO::PARAM_STR);
-    $st->execute();
-    header("Location: /adminpanel");
+        $user=  $st->fetchAll(PDO::FETCH_ASSOC);
+
+
+    return $user;
     }
+
+    public static function editUserLV($uid, $user_lv){
+        $pdo = self::connect();
+        $st = $pdo->prepare("UPDATE users SET user_lv=:userlv WHERE uid=:id");
+        $st->bindParam(":id", $uid, PDO::PARAM_STR);
+        $st->bindParam(":userlv", $user_lv, PDO::PARAM_STR);
+        $st->execute();
+        header("Location: /adminpanel");
+        }
 
 }
