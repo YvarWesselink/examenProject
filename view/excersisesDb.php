@@ -26,17 +26,17 @@ include_once "includes/header.php";
   $result = $conn->query("SELECT * FROM projectenopdrachten");
   if ($result->rowCount() > 0){
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    print_r($row);
     $count = count($row);
     $i = 0;
     echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th> </th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+    echo "<th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
     
     while($count > $i){
       $project_id = $row[$i]['project_id'];
       echo "<tr>";
-      // echo "<td><a href='' name='edit' style='cursor: pointer; text-decoration: none;' class='fa fa-edit editBtn'> Wijzigen</a></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."> Verwijderen</button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
       echo "<td>". $row[$i]['FormStatus'] ."</td>";
@@ -44,10 +44,6 @@ include_once "includes/header.php";
       echo "<td>". $row[$i]['AantalStudenten'] ."</td>";
       echo "<td>". $row[$i]['UitvoeringsDagEnDatum'] ."</td>";
       echo "</tr>";
-      // echo "<div class='main-content'>";
-      // echo "<div class='deleteAndId'> <button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button> " .$row[$i]['project_id']. "</div>" .$row[$i]['Opdracht']. " " .$row[$i]['FormStatus']. " " .$row[$i]['Opmerkingen']. " " .$row[$i]['AantalStudenten']. " " .$row[$i]['UitvoeringsDagEnDatum']."";
-      // echo "</div>";
-      echo "<div class='deleteAndId'> <button type='submit' class='fa fa-trash deleteBtn deleteTableRow'></button> " .$row[$i]['project_id']. "</div>";
       $i ++;
     }
     echo "<table>";
@@ -55,19 +51,17 @@ include_once "includes/header.php";
     echo "<div>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
-
+<br>
+<br>
 </html>
 <?php
-  // include_once "includes/footer.php";
+  include_once "includes/footer.php";
 ?>
 
 <script>
   $('.deleteTableRow').click(function () {
       if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
-          var id = $(this).parent('div').text().slice(-2);
-          // var id = "<?php echo $project_id; ?>";
-          console.log(id);
-          console.log('test');
+          var id = $(this).attr('id');
           $.ajax({
               url: '/deleteRowExc',
               data: {'id' : id},
@@ -75,9 +69,8 @@ include_once "includes/header.php";
           })
           $(document).delegate('button', 'click', function () {
             $(this).parent('div').remove();
-            // id.remove();
           })
-          // location.reload();
+          location.reload();
       } else {
           console.log("niet verwijderd");
       }
@@ -92,18 +85,6 @@ table {
   margin-left: 5vw;
   box-shadow: 5px 5px 10px darkgrey;
 }
-
-.main-content {
-  width: 90%;
-  margin-left: 5vw;
-  padding: 8px;
-  text-align: center;
-  box-shadow: 5px 5px 10px darkgrey;
-}
-
-/* .deleteAndId {
-  margin-left: -75vw;
-} */
 
 .deleteBtn {
   background-color: transparent;
@@ -126,7 +107,5 @@ th {
   background-color: #ffffff;
   color: #005a81;
 }
-
-tr
 
 </style>
