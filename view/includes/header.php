@@ -40,7 +40,7 @@
             }
 
             if (empty($_SESSION['username'])) {
-                echo "<li><a href='inloggen'>Login</a></li>";
+                echo "<li><a href='login'>Login</a></li>";
             }
             $username = $_SESSION['username'];
             echo "<li><a href='/adminpanel'>$username</a></li>";

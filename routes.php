@@ -52,7 +52,7 @@ Route::set('registreren', function () {
     login::CreateView('registreren');
 });
 
-Route::set('inloggen', function () {
+Route::set('login', function () {
     login::CreateView('login');
 });
 
