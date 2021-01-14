@@ -1,5 +1,5 @@
-<?PHP 
-include 'includes/db.php';
+<?PHP
+include 'includes/Database.php';
 include 'includes/header.php';
 include 'includes/footer.php';
 
@@ -63,7 +63,5 @@ function clean($userInput) {
     return $userInput;
   }
   $conn = null;
-  
+
   ?>
-  
-  
