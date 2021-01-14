@@ -19,85 +19,71 @@ include_once "includes/header.php";
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
-<?php
-echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
-echo "<table style='text-align: center;'>";
-echo "<tr><th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerking</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th></tr>";
 
-class TableRows extends RecursiveIteratorIterator {
-  function __construct($it) {
-    parent::__construct($it, self::LEAVES_ONLY);
-  }
-
-  function current() {
-    return "<td style='width:250px;border:0px solid black; text-align: center;'>" . parent::current(). "</td>";
-  }
-
-  function beginChildren() {
-    echo "<tr>";
-    echo "<td><a href='' name='edit' style='cursor: pointer; text-decoration: none;' class='fa fa-edit editBtn'> Wijzigen</a></td>";
-    echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button></td>";
-}
-
-  function endChildren() {
-    echo "</tr>" . "\n";
-  }
-}
-
-try {
+<?php 
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $stmt = $conn->prepare("SELECT project_id, Opdracht, FormStatus, Opmerkingen, AantalStudenten, UitvoeringsDagEnDatum FROM projectenopdrachten");
-  $stmt->execute();
-
-  // set the resulting array to associative
-  $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-    echo $v;
-  }
-} catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
-}
-$conn = null;
-echo "</table>";
-?>
-<br>
-<br>
-
-<script>
-$('.deleteTableRow').click(function () {
-    if (confirm("Weet je zeker dat je deze rij wilt verwijderen, dit verwijdert ook alle data in de rij!")) {
-        var id = $(this).parent('td').text().slice(0,-1);
-        $.ajax({
-            url: '/deleteRowExc',
-            data: {'id' : id},
-            type: 'GET'
-        })
-        $(document).delegate('button', 'click', function () {
-            $(this).parent('td').remove();
-        })
-    } else {
-        console.log("niet verwijderd");
+  $result = $conn->query("SELECT * FROM projectenopdrachten");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th> </th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+    
+    while($count > $i){
+      $project_id = $row[$i]['project_id'];
+      echo "<tr>";
+      // echo "<td><a href='' name='edit' style='cursor: pointer; text-decoration: none;' class='fa fa-edit editBtn'> Wijzigen</a></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button></td>";
+      echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
+      echo "<td>". $row[$i]['Opdracht'] ."</td>";
+      echo "<td>". $row[$i]['FormStatus'] ."</td>";
+      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
+      echo "<td>". $row[$i]['AantalStudenten'] ."</td>";
+      echo "<td>". $row[$i]['UitvoeringsDagEnDatum'] ."</td>";
+      echo "</tr>";
+      // echo "<div class='main-content'>";
+      // echo "<div class='deleteAndId'> <button type='submit' class='fa fa-trash deleteBtn deleteTableRow'> Verwijderen</button> " .$row[$i]['project_id']. "</div>" .$row[$i]['Opdracht']. " " .$row[$i]['FormStatus']. " " .$row[$i]['Opmerkingen']. " " .$row[$i]['AantalStudenten']. " " .$row[$i]['UitvoeringsDagEnDatum']."";
+      // echo "</div>";
+      echo "<div class='deleteAndId'> <button type='submit' class='fa fa-trash deleteBtn deleteTableRow'></button> " .$row[$i]['project_id']. "</div>";
+      $i ++;
     }
-})
-</script>
-
-<!-- <script>
-  function deleteDatabaseRow() {
-    document.write('<?php 
-      // $conn = self::connect();
-      // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      // $stmt = $conn->prepare("DELETE FROM projectenopdrachten WHERE project_id = 1");
-      // $stmt->execute();
-    ?>')
+    echo "<table>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div>";
   }
-</script> -->
-  
-<?php
-  include_once "includes/footer.php";
 ?>
 
 </html>
+<?php
+  // include_once "includes/footer.php";
+?>
+
+<script>
+  $('.deleteTableRow').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).parent('div').text().slice(-2);
+          // var id = "<?php echo $project_id; ?>";
+          console.log(id);
+          console.log('test');
+          $.ajax({
+              url: '/deleteRowExc',
+              data: {'id' : id},
+              type: 'GET'
+          })
+          $(document).delegate('button', 'click', function () {
+            $(this).parent('div').remove();
+            // id.remove();
+          })
+          // location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
 <style>
 table {
   border-collapse: collapse;
@@ -105,6 +91,29 @@ table {
   border-radius: 5px;
   margin-left: 5vw;
   box-shadow: 5px 5px 10px darkgrey;
+}
+
+.main-content {
+  width: 90%;
+  margin-left: 5vw;
+  padding: 8px;
+  text-align: center;
+  box-shadow: 5px 5px 10px darkgrey;
+}
+
+/* .deleteAndId {
+  margin-left: -75vw;
+} */
+
+.deleteBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+.editBtn {
+  color: green;
 }
 
 th, td {
@@ -118,14 +127,6 @@ th {
   color: #005a81;
 }
 
-.deleteBtn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: red;
-}
+tr
 
-.editBtn {
-  color: green;
-}
 </style>
