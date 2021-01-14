@@ -79,3 +79,7 @@ if (isset($_POST['edit-userlevel'])) {
 
     Admin::editUserLV($uid, $user_lv);
 }
+
+if (isset($_POST['but_upload'])){
+    Admin::uploadImage();
+}

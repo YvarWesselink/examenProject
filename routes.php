@@ -107,3 +107,7 @@ Route::set('deleteRowExc', function() {
 Route::set('deleteRowUser', function() {
     Admin::deleteElementUser($_GET['id']);
 });
+
+Route::set('foto-uploaden', function () {
+    Admin::CreateView('uploadImage');
+});

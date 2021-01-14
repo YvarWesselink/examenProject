@@ -75,6 +75,17 @@ if (empty($_SESSION['username'])) {
                 </div>
             </div>
         </a>
+
+        <a href="/foto-uploaden" class="admin-button">
+            <div>
+                <div class="button-top">
+                    <img src="/public/img/logout.png">
+                </div>
+                <div class="button-bot">
+                    <p>Foto's Uploaden</p>
+                </div>
+            </div>
+        </a>
     </div>
 
     <div class="royalties">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
