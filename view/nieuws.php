@@ -1,7 +1,7 @@
 <?PHP
-include 'includes/database';
-include 'includes/header';
-include 'includes/footer';
+include 'includes/database.php';
+include 'includes/header.php';
+include 'includes/footer.php';
 
 ?>
 
