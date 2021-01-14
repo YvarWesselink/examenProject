@@ -32,7 +32,7 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/userlevel" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/group.png">

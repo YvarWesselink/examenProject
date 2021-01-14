@@ -71,3 +71,11 @@ if (isset($_POST['update'])) {
 
     Admin::uploadElementOp($titel, $inputType, $type);
 }
+
+if (isset($_POST['edit-userlevel'])) {
+    $uid=$_POST['useridea'];
+    $user_lv= $_POST['usrlvs'];
+    
+
+    Admin::editUserLV($uid, $user_lv);
+}
