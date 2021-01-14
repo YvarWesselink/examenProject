@@ -28,20 +28,31 @@ Route::set('index.php', function () {
     Index::CreateView('Index');
 });
 
+Route::set('zwolle', function () {
+    Index::CreateView('zwolle');
+});
+
+Route::set('salland', function () {
+    Index::CreateView('salland');
+});
+
 Route::set('opdrachten', function () {
     excersises::CreateView('excersises');
 });
 
+Route::set('opdrachten-formulier', function () {
+    excersises::CreateView('excersisesDb');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
-//    aboutus::test();
 });
 
 Route::set('registreren', function () {
     login::CreateView('registreren');
 });
 
-Route::set('inloggen', function () {
+Route::set('login', function () {
     login::CreateView('login');
 });
 
@@ -69,10 +80,38 @@ Route::set('logout', function () {
     Admin::logout();
 });
 
+Route::set('formulier', function () {
+    Admin::CreateView('edit-form');
+});
+
 Route::set('userlevel', function () {
     Index::CreateView('userlevel');
 });
 
 Route::set('viewdb', function () {
     viewdb::CreateView('viewdb');
+});
+
+Route::set('deleteRowOp', function() {
+    Admin::deleteElementOp($_GET['id']);
+});
+
+Route::set('deleteRowCo', function() {
+    Admin::deleteElementCo($_GET['id']);
+});
+
+Route::set('deleteRowExc', function() {
+    Admin::deleteElementExc($_GET['id']);
+});
+
+Route::set('deleteRowUser', function() {
+    Admin::deleteElementUser($_GET['id']);
+});
+
+Route::set('foto-uploaden', function () {
+    Admin::CreateView('uploadImage');
+});
+
+Route::set('deleteRowNews', function() {
+    Admin::deleteElementNews($_GET['id']);
 });

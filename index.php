@@ -63,3 +63,23 @@ if (isset($_POST['edit-user'])) {
 
     Admin::editUser($username, $voornaam, $achternaam, $email, $straat, $plaats, $postcode, $mobiel, $website, $id);
 }
+
+if (isset($_POST['update'])) {
+    $titel = $_POST['titel'];
+    $inputType = $_POST['input-type'];
+    $type = $_POST['type'];
+
+    Admin::uploadElementOp($titel, $inputType, $type);
+}
+
+if (isset($_POST['edit-userlevel'])) {
+    $uid=$_POST['useridea'];
+    $user_lv= $_POST['usrlvs'];
+    
+
+    Admin::editUserLV($uid, $user_lv);
+}
+
+if (isset($_POST['but_upload'])){
+    Admin::uploadImage();
+}

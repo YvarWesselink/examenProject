@@ -32,7 +32,7 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/userlevel" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/group.png">
@@ -43,7 +43,7 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/opdrachten-formulier" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/database.png">
@@ -54,7 +54,7 @@ if (empty($_SESSION['username'])) {
             </div>
         </a>
 
-        <a href="/#" class="admin-button">
+        <a href="/formulier" class="admin-button">
             <div>
                 <div class="button-top">
                     <img src="/public/img/editopdracht.png">
@@ -72,6 +72,17 @@ if (empty($_SESSION['username'])) {
                 </div>
                 <div class="button-bot">
                     <p>Log Uit</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="/foto-uploaden" class="admin-button">
+            <div>
+                <div class="button-top">
+                    <img src="/public/img/logout.png">
+                </div>
+                <div class="button-bot">
+                    <p>Foto's Uploaden</p>
                 </div>
             </div>
         </a>

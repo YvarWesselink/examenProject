@@ -9,5 +9,4 @@ $(document).ready(function () {
             $('nav').css({'box-shadow':'none'});
           }
       });
-
 });

@@ -13,6 +13,18 @@
 
     <!-- JS Script -->
     <script src="/public/js/jquery-2.1.1.min.js"></script>
+    <script src="/public/js/forms.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (window.location.href.match(/(salland)/) != null) {
+                $('nav').addClass("blauw");
+                $('div.back-red').addClass("b-blauw");
+                $('div.border-bottom').addClass("blauw");
+                $('.nieuws-container .content a').addClass("blauw");
+                $('.nieuws-container .content a i').addClass("blauw");
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -28,7 +40,7 @@
             }
 
             if (empty($_SESSION['username'])) {
-                echo "<li><a href='inloggen'>Login</a></li>";
+                echo "<li><a href='login'>Login</a></li>";
             }
             $username = $_SESSION['username'];
             echo "<li><a href='/adminpanel'>$username</a></li>";
@@ -43,7 +55,7 @@
     <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="aboutus">Over ons</a></li>
-        <li><a href="#">Foto's</a></li>
+        <li><a href="/">Foto's</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/opdrachten">Opdracht</a></li>
     </ul>
