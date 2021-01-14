@@ -15,7 +15,6 @@ include_once "view/includes/header.php";
     $user= Admin::downloadEditUserLV();
     
     foreach($user as $x){
-        //print_r($x);
         echo '
         <div class="userblokje">
             <label>
