@@ -19,14 +19,13 @@ include_once "includes/header.php";
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
-
+<!-- Get all data from db for the excersises -->
 <?php 
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM projectenopdrachten");
   if ($result->rowCount() > 0){
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
-    print_r($row);
     $count = count($row);
     $i = 0;
     echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
@@ -51,6 +50,34 @@ include_once "includes/header.php";
     echo "<div>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
+<!-- Get all data from db for the users -->
+<?php 
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM users");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Gebruikers</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th>Gebuikersnaam</th><th>Voornaam</th><th>Achternaam</th><th>E-mail</th>";
+    
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."> Verwijderen</button></td>";
+      echo "<td id='id'>". $row[$i]['username'] ."</td>";
+      echo "<td>". $row[$i]['voornaam'] ."</td>";
+      echo "<td>". $row[$i]['achternaam'] ."</td>";
+      echo "<td>". $row[$i]['email'] ."</td>";
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div>";
+  }
+?>
 <br>
 <br>
 </html>
@@ -58,12 +85,34 @@ include_once "includes/header.php";
   include_once "includes/footer.php";
 ?>
 
+<!-- Delete function for the excersise table -->
 <script>
   $('.deleteTableRow').click(function () {
       if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
           var id = $(this).attr('id');
           $.ajax({
               url: '/deleteRowExc',
+              data: {'id' : id},
+              type: 'GET'
+          })
+          $(document).delegate('button', 'click', function () {
+            $(this).parent('div').remove();
+          })
+          location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
+<!-- Delete function for the users table -->
+<script>
+  $('.deleteTableRowUser').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).attr('id');
+          console.log(id);
+          $.ajax({
+              url: '/deleteRowUser0',
               data: {'id' : id},
               type: 'GET'
           })

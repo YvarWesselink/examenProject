@@ -103,3 +103,7 @@ Route::set('deleteRowCo', function() {
 Route::set('deleteRowExc', function() {
     Admin::deleteElementExc($_GET['id']);
 });
+
+Route::set('deleteRowUser', function() {
+    Admin::deleteElementUser($_GET['id']);
+});

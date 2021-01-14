@@ -143,6 +143,12 @@ class Admin extends controller
         $st->execute();
     }
 
+    public static function deleteElementUser($id) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("DELETE FROM user WHERE 'uid' = $id");
+        $st->execute();
+    }
+
 
     public static function downloadEditUserLV(){    
         $pdo = self::connect();
