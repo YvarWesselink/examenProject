@@ -58,35 +58,35 @@ include_once "includes/header.php"
 <!-- End Information Section -->
 <!-- ---------------------------- -->
 <!-- Start Nieuws Section -->
-<section class="nieuws">
-    <h2>Nieuws</h2>
-    <div class="timeline">
-        <div class="nieuws-container left">
-            <span class="icon"></span>
-            <span class="date">07 NOVEMBER 2017</span>
-            <div class="content">
-                <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
-            </div>
-        </div>
-        <div class="nieuws-container right">
-            <span class="icon"></span>
-            <span class="date">27 JUNE 2017</span>
-            <div class="content">
-                <h2>Kidsspeelmiddag op 28 juni</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
-            </div>
-        </div>
-        <div class="nieuws-container left">
-            <span class="icon"></span>
-            <span class="date data-2">14 JUNE 2017</span>
-            <div class="content">
-                <h2>Groot nieuws</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<section class="nieuws">-->
+<!--    <h2>Nieuws</h2>-->
+<!--    <div class="timeline">-->
+<!--        <div class="nieuws-container left">-->
+<!--            <span class="icon"></span>-->
+<!--            <span class="date">07 NOVEMBER 2017</span>-->
+<!--            <div class="content">-->
+<!--                <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>-->
+<!--                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="nieuws-container right">-->
+<!--            <span class="icon"></span>-->
+<!--            <span class="date">27 JUNE 2017</span>-->
+<!--            <div class="content">-->
+<!--                <h2>Kidsspeelmiddag op 28 juni</h2>-->
+<!--                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="nieuws-container left">-->
+<!--            <span class="icon"></span>-->
+<!--            <span class="date data-2">14 JUNE 2017</span>-->
+<!--            <div class="content">-->
+<!--                <h2>Groot nieuws</h2>-->
+<!--                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f9f9f9" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,122.7C960,117,1200,139,1320,149.3L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
 <div class="clearfix"></div>
 <!-- End Nieuws Section -->
