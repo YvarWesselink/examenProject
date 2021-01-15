@@ -127,3 +127,7 @@ Route::set('foto-uploaden', function () {
 Route::set('nieuws', function () {
     Index::CreateView('nieuws');
 });
+
+Route::set('album-weergeven', function () {
+    Index::CreateView('albumWeergeven');
+});

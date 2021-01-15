@@ -18,7 +18,7 @@ class Admin extends controller
         header("Location: /txthome");
     }
 
-    public static function uploadImage() {
+    public static function uploadImage($album) {
         try {
             $pdo = self::connect();
 
@@ -39,18 +39,107 @@ class Admin extends controller
                 $image_base64 = base64_encode(file_get_contents($_FILES['file']['tmp_name']) );
                 $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
                 // Insert record
-                $stmt = $pdo->prepare("insert into images(image) values('".$image."')");
-                $stmt->execute();
+                $data = [
+                    'image' => $image,
+                    'album' => $album,
+                ];
+
+                $stmt = $pdo->prepare("insert into images(image, album) values(:image, :album)");
+                $stmt->execute($data);
 
                 // Upload file
                 move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
             }
 
-            echo "<script> location.href='/adminpanel'; </script>";
+            echo "<script> location.href='/foto-uploaden'; </script>";
 
         } catch (PDOException $e) {
             echo '{"error":{"text":'. $e->getMessage() .'}}';
         }
+    }
+
+    public static function downloadAlbums() {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM albums");
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($albums)) {
+            echo "<option> - Maak eerst een album aan - </option>";
+        } else {
+            foreach ($albums as $album) {
+                print_r("<option value='".$album['naam']."'>".$album['naam']."</option>");
+            }
+        }
+    }
+
+    public static function downloadFotos() {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM albums");
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($albums)) {
+            echo "<p>Er zijn nog geen albums</p>";
+        } else {
+            foreach ($albums as $album) {
+                try {
+                    $naam = $album['naam'];
+                    $st = $pdo->prepare("SELECT * FROM images WHERE album = :album");
+                    $st->bindParam(':album', $naam);
+                    $st->execute();
+
+                    $foto = $st->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (empty($foto)) {
+                        echo "<div class='album'>";
+                        echo "<p>$naam</p>";
+                        echo "Nog geen foto's in dit album geplaatst";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='album'>";
+                        echo "<p>$naam</p>";
+                        echo "<img style='height: 100px; width: auto' src='".$foto[0]['image']."'>";
+                        echo "<form method='post' action='/album-weergeven'>";
+                        echo "<input type='hidden' name='album' value='$naam'>";
+                        echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
+                        echo "</form>";
+                        echo "</div>";
+                    }
+                } catch (PDOException $e) {
+                    echo '{"error":{"text":'. $e->getMessage() .'}}';
+                }
+            }
+        }
+    }
+
+    public static function downloadAlbumImages($album) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT image FROM images where album = :album");
+        $st->bindParam(":album", $album);
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($albums as $album) {
+            echo "<div class='image'>";
+            echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
+            echo "</div>";
+        }
+    }
+
+    public static function uploadAlbum($naam) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("INSERT INTO albums(naam) values('".$naam."')");
+        $st->execute();
+
+        echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
     public static function downloadTXT() {

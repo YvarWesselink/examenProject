@@ -81,5 +81,11 @@ if (isset($_POST['edit-userlevel'])) {
 }
 
 if (isset($_POST['but_upload'])){
-    Admin::uploadImage();
+    $album = $_POST['album'];
+    Admin::uploadImage($album);
+}
+
+if (isset($_POST['albums'])) {
+    $naam = $_POST['naam'];
+    Admin::uploadAlbum($naam);
 }
