@@ -34,8 +34,8 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['project_id'] ."></button></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowOldExc' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowOldExc' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
       echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
@@ -59,7 +59,7 @@ include_once "includes/header.php";
 
 <!-- Delete function for the users table -->
 <script>
-  $('.deleteTableRowUser').click(function () {
+  $('.deleteTableRowOldExc').click(function () {
       if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
           var id = $(this).attr('id');
           console.log(id);

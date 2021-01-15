@@ -188,6 +188,12 @@ class Admin extends controller
         $pdo = self::connect();
         $st = $pdo->prepare("DELETE FROM feedback WHERE userID = $id");
         $st->execute();
+    }    
+    
+    public static function deleteElementOldExc($id) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("DELETE FROM oudeopdrachten WHERE project_id = $id");
+        $st->execute();
     }
 
 

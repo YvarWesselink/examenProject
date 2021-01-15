@@ -112,12 +112,16 @@ Route::set('deleteRowUser', function() {
     Admin::deleteElementUser($_GET['id']);
 });
 
-Route::set('foto-uploaden', function () {
-    Admin::CreateView('uploadImage');
-});
-
 Route::set('deleteRowNews', function() {
     Admin::deleteElementNews($_GET['id']);
+});
+
+Route::set('deleteRowOldExc', function() {
+    Admin::deleteElementNews($_GET['id']);
+});
+
+Route::set('foto-uploaden', function () {
+    Admin::CreateView('uploadImage');
 });
 
 Route::set('nieuws', function () {
