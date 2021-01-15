@@ -44,6 +44,10 @@ Route::set('opdrachten-formulier', function () {
     excersises::CreateView('excersisesDb');
 });
 
+Route::set('oude-opdrachten', function () {
+    oudeOpdrachten::CreateView('oudeOpdrachten');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
 });
