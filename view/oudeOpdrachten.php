@@ -23,23 +23,24 @@ include_once "includes/header.php";
 <?php 
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $result = $conn->query("SELECT * FROM users");
+  $result = $conn->query("SELECT * FROM oudeopdrachten ORDER BY `project_id` DESC");
   if ($result->rowCount() > 0){
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
     $count = count($row);
     $i = 0;
     echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Gebruikers</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th></th><th>Gebuikersnaam</th><th>Voornaam</th><th>Achternaam</th><th>E-mail</th>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal studenten</th><th>Uitvoerings dag en datum</th>";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
-      echo "<td id='id'>". $row[$i]['username'] ."</td>";
-      echo "<td>". $row[$i]['voornaam'] ."</td>";
-      echo "<td>". $row[$i]['achternaam'] ."</td>";
-      echo "<td>". $row[$i]['email'] ."</td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
+      echo "<td>". $row[$i]['Opdracht'] ."</td>";
+      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
+      echo "<td>". $row[$i]['Aantal studenten'] ."</td>";
+      echo "<td>". $row[$i]['Uitvoerings dag en datum'] ."</td>";
       echo "</tr>";
       $i ++;
     }
