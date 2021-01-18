@@ -117,7 +117,7 @@ Route::set('deleteRowNews', function() {
 });
 
 Route::set('deleteRowOldExc', function() {
-    Admin::deleteElementNews($_GET['id']);
+    Admin::deleteElementOldExc($_GET['id']);
 });
 
 Route::set('foto-uploaden', function () {

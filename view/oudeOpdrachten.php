@@ -64,7 +64,7 @@ include_once "includes/header.php";
           var id = $(this).attr('id');
           console.log(id);
           $.ajax({
-              url: '/deleteRowUser',
+              url: '/deleteRowOldExc',
               data: {'id' : id},
               type: 'GET'
           })
