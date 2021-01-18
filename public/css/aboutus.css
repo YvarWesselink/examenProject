@@ -48,3 +48,14 @@
 .sport-container ul {
     padding: revert;
 }
+
+/* @media screen and (min-width: 320px) and (max-width: 425px){
+
+    .info-container {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        margin: 25px auto 25px;
+        padding-top: 0;
+      }
+} */
