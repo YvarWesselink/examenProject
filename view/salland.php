@@ -25,12 +25,9 @@ include_once "includes/header.php"
 <!-- Start Region Section -->
 <section class="region">
     <div class="region-info">
-        <?php
-        $home = Admin::downloadTXT();
-
-        echo "<h2>".$home['titel']."</h2>"."<h3>".$home['tussenkopje']."</h3>"."<p>".$home['home']."</p>";
-        ?>
-        <span></span>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga. Libero numquam laborum eligendi impedit at obcaecati dolore, alias corrupti rerum ab ratione perspiciatis maxime eaque fuga repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga. Libero numquam laborum eligendi impedit at obcaecati dolore, alias corrupti rerum ab ratione perspiciatis maxime eaque fuga repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga.
+    <br>
+        <span style="color: red; font-size: 14px;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
     </div>
 </section>
 <div class="clearfix"></div>
@@ -40,28 +37,43 @@ include_once "includes/header.php"
 <section class="nieuws">
     <h2>Nieuws</h2>
     <div class="timeline">
-        <div class="nieuws-container left">
-            <span class="icon"></span>
-            <span class="date">07 NOVEMBER 2017</span>
-            <div class="content">
-                <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+    <div class="all-content">
+            <div class="nieuws-container left">
+                <span class="icon"></span>
+                <span class="date">07 NOVEMBER 2017</span>
+                <div class="content">
+                    <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
+                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                </div>
+            </div>
+            <div class="image">
+                <img src="../public/img/foto1.png" alt="">
             </div>
         </div>
-        <div class="nieuws-container right">
-            <span class="icon"></span>
-            <span class="date">27 JUNE 2017</span>
-            <div class="content">
-                <h2>Kidsspeelmiddag op 28 juni</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+        <div class="all-content">
+            <div class="nieuws-container right">
+                <span class="icon"></span>
+                <span class="date">27 JUNE 2017</span>
+                <div class="content">
+                    <h2>Kidsspeelmiddag op 28 juni</h2>
+                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                </div>
+            </div>
+            <div class="image img-left">
+                <img src="../public/img/foto2.png" alt="">
             </div>
         </div>
-        <div class="nieuws-container left">
-            <span class="icon"></span>
-            <span class="date data-2">14 JUNE 2017</span>
-            <div class="content">
-                <h2>Groot nieuws</h2>
-                <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+        <div class="all-content">
+            <div class="nieuws-container left">
+                <span class="icon"></span>
+                <span class="date data-2">14 JUNE 2017</span>
+                <div class="content">
+                    <h2>Groot nieuws</h2>
+                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                </div>
+            </div>
+            <div class="image">
+                <img src="../public/img/foto3.png" alt="">
             </div>
         </div>
     </div>
