@@ -1262,6 +1262,10 @@ footer {
   .add-form-2 {
     right: -148px;
   }
+    
+  #login, #signup{
+    width: 100%
+  }
 
   footer{
     min-height: 325px;
