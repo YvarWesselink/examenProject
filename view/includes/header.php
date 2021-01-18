@@ -5,23 +5,15 @@
 
     <!-- Style CSS Links -->
     <link rel="stylesheet" href="/public/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="/public/css/homepage.css">
     <link rel="stylesheet" href="/public/css/aboutus.css">
     <link rel="stylesheet"  href="/public/css/registration.css"/>
     <link rel="stylesheet" href="/public/css/adminpanel.css"/>
-
-    <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
-
+    <link rel="stylesheet" href="/public/css/homepage.css">
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/public/js/jquery-2.1.1.min.js"></script>
     <script src="/public/js/forms.js"></script>
-    <script type="text/javascript" src="/public/js/slick.min.js"></script>
-    <script type="text/javascript" src="/public/js/slick.js"></script>
-    <script type="text/javascript" src="/public/js/swipecards.js"></script>
     <script>
         $(document).ready(function() {
             if (window.location.href.match(/(salland)/) != null) {
