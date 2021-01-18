@@ -89,3 +89,13 @@ if (isset($_POST['albums'])) {
     $naam = $_POST['naam'];
     Admin::uploadAlbum($naam);
 }
+
+if (isset($_POST['delete-album'])) {
+    $naam = $_POST['album'];
+    Admin::deleteAlbum($naam);
+}
+
+if (isset($_POST['delete-image'])) {
+    $id = $_POST['album'];
+    Admin::deleteImage($id);
+}

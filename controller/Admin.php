@@ -89,6 +89,7 @@ class Admin extends controller
             foreach ($albums as $album) {
                 try {
                     $naam = $album['naam'];
+                    $id = $album['id'];
                     $st = $pdo->prepare("SELECT * FROM images WHERE album = :album");
                     $st->bindParam(':album', $naam);
                     $st->execute();
@@ -99,6 +100,10 @@ class Admin extends controller
                         echo "<div class='album'>";
                         echo "<p>$naam</p>";
                         echo "Nog geen foto's in dit album geplaatst";
+                        echo "<form method='post'>";
+                        echo "<input type='hidden' name='album' value='$naam'>";
+                        echo "<input type='submit' name='delete-album' value='Album Verwijderen'>";
+                        echo "</form>";
                         echo "</div>";
                     } else {
                         echo "<div class='album'>";
@@ -107,6 +112,10 @@ class Admin extends controller
                         echo "<form method='post' action='/album-weergeven'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
                         echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
+                        echo "</form>";
+                        echo "<form method='post'>";
+                        echo "<input type='hidden' name='album' value='$naam'>";
+                        echo "<input type='submit' name='delete-album' value='Album Verwijderen'>";
                         echo "</form>";
                         echo "</div>";
                     }
@@ -120,17 +129,75 @@ class Admin extends controller
     public static function downloadAlbumImages($album) {
         $pdo = self::connect();
 
-        $st = $pdo->prepare("SELECT image FROM images where album = :album");
+        $st = $pdo->prepare("SELECT * FROM images where album = :album");
         $st->bindParam(":album", $album);
         $st->execute();
 
         $albums = $st->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($albums as $album) {
+            $id = $album['id'];
             echo "<div class='image'>";
             echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
+            echo "<form method='post'>";
+            echo "<input type='hidden' name='album' value='$id'>";
+            echo "<input type='submit' value='Verwijder Plaatje' name='delete-image'";
+            echo "</form";
             echo "</div>";
         }
+    }
+
+    public static function deleteAlbum($naam) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM images where album = :album");
+        $st->bindParam(":album", $naam);
+        $st->execute();
+        $selected = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($selected)) {
+            // verwijder album uit database
+            $query = $pdo->prepare("SELECT id FROM albums WHERE naam = :naam");
+            $query->bindParam(":naam", $naam);
+            $query->execute();
+
+            $id = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $st = $pdo->prepare("DELETE FROM albums WHERE naam = :naam");
+            $st->bindParam(":naam", $naam);
+            $st->execute();
+        } else {
+            foreach ($selected as $select) {
+                // verwijder image uit database
+                $id = $select['id'];
+                $st = $pdo->prepare("DELETE FROM images WHERE id = :id");
+                $st->bindParam(":id",$id);
+                $st->execute();
+
+                // verwijder album uit database
+                $query = $pdo->prepare("SELECT id FROM albums WHERE naam = :naam");
+                $query->bindParam(":naam", $naam);
+                $query->execute();
+
+                $id = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                $st = $pdo->prepare("DELETE FROM albums WHERE naam = :naam");
+                $st->bindParam(":naam", $naam);
+                $st->execute();
+            }
+        }
+
+        echo "<script> location.href='/foto-uploaden'; </script>";
+    }
+
+    public static function deleteImage($id) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("DELETE FROM images WHERE id = :id");
+        $st->bindParam(":id", $id);
+        $st->execute();
+
+        echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
     public static function uploadAlbum($naam) {
