@@ -14,6 +14,7 @@ class login extends controller {
             // zoek in de database naar de ingevulde gegevens uit de form.
             $stmt = $pdo->prepare("SELECT uid FROM users WHERE (username=:usernameEmail or email=:usernameEmail) AND password=:hash_password");
             $user = $pdo->prepare("SELECT username FROM users WHERE (username=:usernameEmail or email=:usernameEmail) AND password=:hash_password");
+            $userlv = $pdo->prepare("SELECT user_lv FROM users WHERE (username=:usernameEmail or email=:usernameEmail) AND password=:hash_password");
 
             // bindParam zet de ingevulde gegevens in de sql query.
             $stmt->bindParam("usernameEmail", $usernameEmail, PDO::PARAM_STR);
@@ -22,9 +23,13 @@ class login extends controller {
             $user->bindParam("usernameEmail", $usernameEmail, PDO::PARAM_STR);
             $user->bindParam("hash_password", $hash_password, PDO::PARAM_STR);
 
+            $userlv->bindParam("usernameEmail", $usernameEmail, PDO::PARAM_STR);
+            $userlv->bindParam("hash_password", $hash_password, PDO::PARAM_STR);
+
             // voer de query uit
             $stmt->execute();
             $user->execute();
+            $userlv->execute();
 
             // tel hoe veel users er zijn gevonden met de gegeven gegevens
             $count=$stmt->rowCount();
@@ -32,6 +37,7 @@ class login extends controller {
             // haal de gegevens uit de database
             $data = $stmt->fetch(PDO::FETCH_OBJ);
             $username = $user->fetch(PDO::FETCH_ASSOC);
+            $userlevel = $userlv->fetch(PDO::FETCH_OBJ);
 
             $pdo = null;
 
@@ -39,6 +45,7 @@ class login extends controller {
             if ($count) {
                 $_SESSION['uid'] = $data->uid;; // Storing user session value
                 $_SESSION['username'] = $username['username'];
+                $_SESSION['user_lv'] = $userlevel->user_lv;;
                 return $_SESSION;
             } else {
                 echo "loggin failed";
