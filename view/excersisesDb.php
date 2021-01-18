@@ -48,7 +48,7 @@ include_once "includes/header.php";
     }
     echo "<table>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div  class='opdrachten-text'>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
 <!-- Get all data from db for the users -->
@@ -61,23 +61,22 @@ include_once "includes/header.php";
     $count = count($row);
     $i = 0;
     echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Gebruikers</h2></div>";
-    echo "<table  style='text-align: center;'>";
-    echo "<th></th><th></th><th>Gebuikersnaam</th><th>Voornaam</th><th>Achternaam</th><th>E-mail</th>";
+    echo "<div  style='text-align: center;'>";
     
     while($count > $i){
-      echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
-      echo "<td id='id'>". $row[$i]['username'] ."</td>";
-      echo "<td>". $row[$i]['voornaam'] ."</td>";
-      echo "<td>". $row[$i]['achternaam'] ."</td>";
-      echo "<td>". $row[$i]['email'] ."</td>";
-      echo "</tr>";
+      echo "<div class='opdracht-info'>";
+      echo "<th><button style='padding: 0 15px' type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></th>";
+      echo "<th><button style='padding: 0 15px' type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></th>";
+      echo "<h5>Gebuikersnaam <span id='id'>". $row[$i]['username'] ."</span></h5>";
+      echo "<h5>Voornaam <span>". $row[$i]['voornaam'] ."</span></h5>";
+      echo "<h5>Achternaam <span>". $row[$i]['achternaam'] ."</span></h5>";
+      echo "<h5>E-mail <span>". $row[$i]['email'] ."</span></h5>";
+      echo "</div>";
       $i ++;
     }
-    echo "<table>";
+    echo "<div>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div class='opdrachten-text'>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
 
@@ -105,9 +104,9 @@ include_once "includes/header.php";
       echo "</tr>";
       $i ++;
     }
-    echo "<table>";
+    echo "<table'>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div class='opdrachten-text'>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
 <br>
@@ -213,6 +212,49 @@ tr:nth-child(even){background-color: #f8a0bd}
 th {
   background-color: #ffffff;
   color: #005a81;
+}
+
+h5{
+  display: inline-block;
+  width: 20%;
+  padding: 25px 0;
+}
+
+h5 span{
+  display: block;
+  padding: 25px 0;
+  font-size: 15px;
+  color: #ED135D;
+}
+
+.opdrachten-text{
+    margin-left: 65px;
+    margin-top: 15px;
+    text-align: left;
+  }
+
+@media screen and (min-width: 320px) and (max-width: 425px){
+
+  button{
+    width: 100%;
+    display: block;
+    padding: 25px;
+    margin: 25px 0;
+  }
+  
+  h5{
+  display: inline-block;
+  width: 50%;
+  padding: 25px 0;
+  }
+
+  h5 span{
+    display: block;
+    padding: 25px 0;
+    font-size: 15px;
+    color: #ED135D;
+  }
+
 }
 
 </style>
