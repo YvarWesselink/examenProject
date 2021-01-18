@@ -99,3 +99,8 @@ if (isset($_POST['delete-image'])) {
     $id = $_POST['album'];
     Admin::deleteImage($id);
 }
+
+if (isset($_POST['homepage'])) {
+    $id = $_POST['album'];
+    Admin::homepageImage($id);
+}

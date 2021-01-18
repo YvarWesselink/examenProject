@@ -90,6 +90,7 @@ class Admin extends controller
                 try {
                     $naam = $album['naam'];
                     $id = $album['id'];
+                    $homepage = $album['homepage'];
                     $st = $pdo->prepare("SELECT * FROM images WHERE album = :album");
                     $st->bindParam(':album', $naam);
                     $st->execute();
@@ -113,10 +114,19 @@ class Admin extends controller
                         echo "<input type='hidden' name='album' value='$naam'>";
                         echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
                         echo "</form>";
+
                         echo "<form method='post'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
                         echo "<input type='submit' name='delete-album' value='Album Verwijderen'>";
                         echo "</form>";
+
+                        if ($homepage == false) {
+                            echo "<form method='post'>";
+                            echo "<input type='hidden' name='album' value='$id'>";
+                            echo "<input type='submit' name='homepage' value='als homepage slide selecteren'>";
+                            echo "</form>";
+                        }
+
                         echo "</div>";
                     }
                 } catch (PDOException $e) {
@@ -205,6 +215,30 @@ class Admin extends controller
 
         $st = $pdo->prepare("INSERT INTO albums(naam) values('".$naam."')");
         $st->execute();
+
+        echo "<script> location.href='/foto-uploaden'; </script>";
+    }
+
+    public static function homepageImage($id) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT id FROM albums WHERE homepage = true ");
+        $st->execute();
+        $hID = $st->fetch(PDO::FETCH_ASSOC);
+
+        if (!empty($hID['id'])) {
+            $st = $pdo->prepare("UPDATE albums SET homepage = false WHERE id = :id");
+            $st->bindParam(":id", $hID['id']);
+            $st->execute();
+
+            $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
+            $st->bindParam(":id", $id);
+            $st->execute();
+        } else {
+            $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
+            $st->bindParam(":id", $id);
+            $st->execute();
+        }
 
         echo "<script> location.href='/foto-uploaden'; </script>";
     }

@@ -9,7 +9,11 @@ include_once "includes/header.php"
 <!-- ---------------------------- -->
 <!-- Start Banner Section -->
 <section class="banner">
-    <div class="banner-img"></div>
+    <div class="banner-img">
+        <img src="/public/img/banner.png">
+        <img src="/public/img/foto1.png">
+        <img src="/public/img/foto2.png">
+    </div>
     <div class="banner-svg">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#fff" fill-opacity="1"
