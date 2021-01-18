@@ -6,7 +6,6 @@ session_start();
 if (empty($_SESSION['username'])) {
     header('Location: index.php');
 }
-echo $_SESSION['user_lv'];
 //-------------< user level check functie  >-----------------|
 //haalt user level op uit admin                            //|
 // < 5 alleen admins kunnen op deze pagina                 //|
