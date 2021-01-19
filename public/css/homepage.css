@@ -1075,6 +1075,74 @@ footer {
 
 }
 
+@media screen and (min-width: 426px) and (max-width: 768px) {
+
+  .logo, .overlay, .border-bottom{
+    display: none;
+  }
+
+  .banner .banner-svg {
+    height: 120px;
+    margin-top: -100px;
+  }
+
+  nav .back-red ul {
+    width: 100%;
+    float: left;
+    height: 28px;
+  }
+
+  nav .back-red ul li a {
+    padding: 8px 60px;
+  }
+
+  nav > ul {
+    width: 100%;
+    float: left;
+  }
+
+  nav > ul li a {
+    padding: 13px 32px;
+  }
+
+  .container{
+    width: auto;
+  }
+
+  .info .container > div{
+    width: 75%;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+  .info .container > div:first-of-type,
+  .info .container > div:last-of-type {
+    margin: 0 auto 6%;
+    float: none;
+  }
+
+  .region .region-info,
+  .info-container,
+  .info-container .sport-container {
+    width: 100%;
+  }
+
+  .admin-container {
+    top: 12vh;
+    position: relative;
+    width: 100%;
+  }
+
+  .admin-button{
+    width: 50%;
+  }
+
+  .button-top {
+    padding: 60px 115px 60px 115px;
+  }
+
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
 
   .logo, .overlay, .border-bottom{
