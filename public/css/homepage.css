@@ -21,6 +21,12 @@
   text-decoration: none;
 }
 
+.image-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 nav ul li a {
   text-decoration: none;
 }

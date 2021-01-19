@@ -117,6 +117,7 @@
     color: white;
     border: none;
     border-radius: 5px;
+    margin-bottom: 5vh;
 }
 
 .royalties {
@@ -211,6 +212,15 @@
 
 .opdracht {
     top: 5vh;
+}
+
+.sendExcersiseBtn {
+    padding: 10px;
+    background-color: #ED135D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5vh;
 }
 
 /* end opdracht formulier aanpassen */
