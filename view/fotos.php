@@ -18,9 +18,11 @@ $school = $_SESSION['school'];
                 <p>Albums</p>
             </div>
 
-            <?php
-            Admin::downloadFotosSchool($school)
-            ?>
+            <div class="albums-load">
+                <?php
+                Admin::downloadFotosSchool($school)
+                ?>
+            </div>
         </div>
     </div>
 </body>

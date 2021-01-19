@@ -40,6 +40,10 @@ include_once "includes/header.php";;
 <?php
 $school = $_SESSION['school'];
 $images = Admin::downloadFotosHome($school);
+
+if (count($images) < 2) {
+    $images = null;
+}
 ?>
 
 <section class="nieuws">
@@ -57,8 +61,12 @@ $images = Admin::downloadFotosHome($school);
             <div class="image">
                 <a href="/fotos">
                 <?php
-                $image = $images[0]['image'];
-                echo "<img src='$image' alt=''>";
+                if ($images == null) {
+                    echo "<p>Nog geen foto's</p>";
+                } else {
+                    $image = $images[0]['image'];
+                    echo "<img src='$image' alt=''>";
+                }
                 ?>
                 </a>
             </div>
@@ -74,10 +82,14 @@ $images = Admin::downloadFotosHome($school);
             </div>
             <div class="image img-left">
                 <a href="/fotos">
-                <?php
-                $image = $images[1]['image'];
-                echo "<img src='$image' alt=''>";
-                ?>
+                    <?php
+                    if ($images == null) {
+                        echo "<p>Nog geen foto's</p>";
+                    } else {
+                        $image = $images[1]['image'];
+                        echo "<img src='$image' alt=''>";
+                    }
+                    ?>
                 </a>
             </div>
         </div>
@@ -92,10 +104,14 @@ $images = Admin::downloadFotosHome($school);
             </div>
             <div class="image">
                 <a href="/fotos">
-                <?php
-                $image = $images[2]['image'];
-                echo "<img src='$image' alt=''>";
-                ?>
+                    <?php
+                    if ($images == null) {
+                        echo "<p>Nog geen foto's</p>";
+                    } else {
+                        $image = $images[2]['image'];
+                        echo "<img src='$image' alt=''>";
+                    }
+                    ?>
                 </a>
             </div>
         </div>

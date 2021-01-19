@@ -173,11 +173,10 @@ class Admin extends controller
                         echo "</div>";
                     } else {
                         echo "<div class='album'>";
-                        echo "<p>$naam</p>";
-                        echo "<img style='height: 100px; width: auto' src='".$foto[0]['image']."'>";
+                        echo "<img src='".$foto[0]['image']."'>";
                         echo "<form method='post' action='/album-weergeven-school'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
-                        echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
+                        echo "<input type='submit' class='album-but' name='album-weergeven' value='".$naam." Weergeven'>";
                         echo "</form>";
                         echo "</div>";
                     }
@@ -199,11 +198,7 @@ class Admin extends controller
 
         $albums = $st->fetchAll(PDO::FETCH_ASSOC);
 
-        if (empty($albums)) {
-            echo "<p>Er zijn nog geen foto's beschikbaar</p>";
-        } else {
-            return $albums;
-        }
+        return $albums;
     }
 
     public static function downloadAlbumImages($album) {
@@ -218,7 +213,7 @@ class Admin extends controller
         foreach ($albums as $album) {
             $id = $album['id'];
             echo "<div class='image-album'>";
-            echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
+            echo "<img src='".$album['image']."'>";
             echo "<form method='post'>";
             echo "<input type='hidden' name='album' value='$id'>";
             echo "<input type='submit' value='Verwijder Plaatje' name='delete-image'";
@@ -239,7 +234,7 @@ class Admin extends controller
         foreach ($albums as $album) {
             $id = $album['id'];
             echo "<div class='image-album'>";
-            echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
+            echo "<img src='".$album['image']."'>";
             echo "</div>";
         }
     }
