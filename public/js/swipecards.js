@@ -1,8 +1,6 @@
 $(document).ready(function(){
-    $('.banner-img').slick({
-        infinite: true,
-        speed: 300,
+    $('.image-slide').slick({
         slidesToShow: 1,
-        adaptiveHeight: true
+
     })
 });

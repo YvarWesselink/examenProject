@@ -104,3 +104,8 @@ if (isset($_POST['homepage'])) {
     $id = $_POST['album'];
     Admin::homepageImage($id);
 }
+
+if (isset($_POST['news'])) {
+//    zet hier je functie in om het naar de db te uploaden
+    nieuws::UploadNews();
+}

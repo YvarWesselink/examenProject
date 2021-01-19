@@ -197,6 +197,18 @@ if($_SESSION['user_lv'] < 0){                              //|
         </div>
     </div>
 </a>
+
+         <a href='/nieuws' class='admin-button'>
+            <div>
+                <div class='button-top'>
+                    <img src='/public/img/editopdracht.png'>
+                </div>
+                <div class='button-bot'>
+                    <p>Nieuws Uploaden</p>
+                </div>
+            </div>
+        </a>
+        
         <a href='/txthome' class='admin-button'>
             <div>
                 <div class='button-top'>

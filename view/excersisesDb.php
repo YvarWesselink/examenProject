@@ -120,6 +120,11 @@ include_once "includes/header.php";
   include_once "includes/footer.php";
 ?>
 
+<form method="post">
+    <input type="hidden" value="$id">
+    <input type="submit" value="edit">
+</form>
+
 <!-- Delete function for the excersise table -->
 <script>
   $('.deleteTableRow').click(function () {
