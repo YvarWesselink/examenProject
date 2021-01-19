@@ -7,6 +7,17 @@ if (empty($_SESSION['username'])) {
     header('Location: index.php');
 }
 include_once "view/includes/header.php";
+//-------------< user level check functie  >-----------------|
+//haalt user level op uit admin                            //|
+// < 5 alleen admins kunnen op deze pagina                 //|
+// < 4 betekend dat docenten en admins op pagina kunnen    //|
+// < 3 studenten en meer kunnen op deze pagina             //|
+// < 2 gasten kunnen de pagina bekijken                    //|
+// < 1 alleen een geldig acount kan deze pagina zien       //|
+if($_SESSION['user_lv'] < 1){                              //|
+    header('Location: index.php');                         //|
+}                                                          //|
+//-----------------------------------------------------------|
 ?>
 
 <body>
