@@ -22,6 +22,12 @@ class Admin extends controller
         try {
             $pdo = self::connect();
 
+            // get school info
+            $st = $pdo->prepare("SELECT school FROM albums WHERE naam = :naam");
+            $st->bindParam(":naam", $album);
+            $st->execute();
+            $school = $st->fetch(PDO::FETCH_ASSOC);
+
             $name = $_FILES['file']['name'];
             $target_dir = "public/uploads/";
             $target_file = $target_dir . basename($_FILES["file"]["name"]);
@@ -42,9 +48,10 @@ class Admin extends controller
                 $data = [
                     'image' => $image,
                     'album' => $album,
+                    'school' => $school['school'],
                 ];
 
-                $stmt = $pdo->prepare("insert into images(image, album) values(:image, :album)");
+                $stmt = $pdo->prepare("insert into images(image, album, school) values(:image, :album, :school)");
                 $stmt->execute($data);
 
                 // Upload file
@@ -136,6 +143,69 @@ class Admin extends controller
         }
     }
 
+    public static function downloadFotosSchool($school) {
+        $pdo = self::connect();
+
+        $school = $school[0];
+
+        $st = $pdo->prepare("SELECT * FROM albums WHERE school = :school");
+        $st->bindParam(":school", $school);
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($albums)) {
+            echo "<p>Er zijn nog geen albums</p>";
+        } else {
+            foreach ($albums as $album) {
+                try {
+                    $naam = $album['naam'];
+                    $st = $pdo->prepare("SELECT * FROM images WHERE album = :album");
+                    $st->bindParam(':album', $naam);
+                    $st->execute();
+
+                    $foto = $st->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (empty($foto)) {
+                        echo "<div class='album'>";
+                        echo "<p>$naam</p>";
+                        echo "Nog geen foto's in dit album geplaatst";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='album'>";
+                        echo "<p>$naam</p>";
+                        echo "<img style='height: 100px; width: auto' src='".$foto[0]['image']."'>";
+                        echo "<form method='post' action='/album-weergeven-school'>";
+                        echo "<input type='hidden' name='album' value='$naam'>";
+                        echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
+                        echo "</form>";
+                        echo "</div>";
+                    }
+                } catch (PDOException $e) {
+                    echo '{"error":{"text":'. $e->getMessage() .'}}';
+                }
+            }
+        }
+    }
+
+    public static function downloadFotosHome($school) {
+        $pdo = self::connect();
+
+        $school = $school[0];
+
+        $st = $pdo->prepare("SELECT * FROM images WHERE school = :school ORDER BY id DESC");
+        $st->bindParam(":school", $school);
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($albums)) {
+            echo "<p>Er zijn nog geen foto's beschikbaar</p>";
+        } else {
+            return $albums;
+        }
+    }
+
     public static function downloadAlbumImages($album) {
         $pdo = self::connect();
 
@@ -147,12 +217,29 @@ class Admin extends controller
 
         foreach ($albums as $album) {
             $id = $album['id'];
-            echo "<div class='image'>";
+            echo "<div class='image-album'>";
             echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
             echo "<form method='post'>";
             echo "<input type='hidden' name='album' value='$id'>";
             echo "<input type='submit' value='Verwijder Plaatje' name='delete-image'";
             echo "</form";
+            echo "</div>";
+        }
+    }
+
+    public static function downloadAlbumImagesSchool($album) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM images where album = :album");
+        $st->bindParam(":album", $album);
+        $st->execute();
+
+        $albums = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($albums as $album) {
+            $id = $album['id'];
+            echo "<div class='image-album'>";
+            echo "<img style='height: 100px; width: auto' src='".$album['image']."'>";
             echo "</div>";
         }
     }
@@ -210,10 +297,14 @@ class Admin extends controller
         echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
-    public static function uploadAlbum($naam) {
+    public static function uploadAlbum($naam, $school) {
         $pdo = self::connect();
 
-        $st = $pdo->prepare("INSERT INTO albums(naam) values('".$naam."')");
+        $naamAlbum = $naam."-".$school;
+
+        $st = $pdo->prepare("INSERT INTO albums(naam, school) values(:naam, :school)");
+        $st->bindParam(":naam", $naamAlbum);
+        $st->bindParam(":school", $school);
         $st->execute();
 
         echo "<script> location.href='/foto-uploaden'; </script>";
@@ -299,19 +390,43 @@ class Admin extends controller
     public static function uploadElementOp($titel, $inputType, $type) {
         $pdo = self::connect();
 
+        // upload elements voor salland
+        $table = $type."s";
+
         switch ($inputType) {
             case "date":
-                $st = $pdo->prepare("ALTER TABLE $type ADD $titel date");
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel date");
                 break;
             case "time":
-                $st = $pdo->prepare("ALTER TABLE $type ADD $titel time");
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel time");
                 break;
             case "txt":
-                $st = $pdo->prepare("ALTER TABLE $type ADD $titel varchar(255)");
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel varchar(255)");
                 break;
             case "valuta":
             case "int":
-                $st = $pdo->prepare("ALTER TABLE $type ADD $titel int(255)");
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel int(255)");
+                break;
+        }
+
+        $st->execute();
+
+        // upload elements voor zwolle
+        $table = $type."z";
+
+        switch ($inputType) {
+            case "date":
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel date");
+                break;
+            case "time":
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel time");
+                break;
+            case "txt":
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel varchar(255)");
+                break;
+            case "valuta":
+            case "int":
+                $st = $pdo->prepare("ALTER TABLE $table ADD $titel int(255)");
                 break;
         }
 
@@ -322,7 +437,7 @@ class Admin extends controller
 
     public static function getElementsForm() {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
+        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -337,7 +452,7 @@ class Admin extends controller
 
     public static function getElementsFormCont() {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
+        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -352,19 +467,28 @@ class Admin extends controller
 
     public static function deleteElementOp($column) {
         $pdo = self::connect();
-        $st = $pdo->prepare("ALTER TABLE projectenopdrachten DROP COLUMN $column");
+        $st = $pdo->prepare("ALTER TABLE projectenopdrachtens DROP COLUMN $column");
+        $st->execute();
+
+        $st = $pdo->prepare("ALTER TABLE projectenopdrachtenz DROP COLUMN $column");
         $st->execute();
     }
 
     public static function deleteElementCo($column) {
         $pdo = self::connect();
-        $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevens DROP COLUMN $column");
+        $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevenss DROP COLUMN $column");
+        $st->execute();
+
+        $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevensz DROP COLUMN $column");
         $st->execute();
     }
 
     public static function deleteElementExc($id) {
         $pdo = self::connect();
-        $st = $pdo->prepare("DELETE FROM projectenopdrachten WHERE project_id = $id");
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE project_id = $id");
+        $st->execute();
+
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE project_id = $id");
         $st->execute();
     }
 

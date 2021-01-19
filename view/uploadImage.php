@@ -45,7 +45,14 @@ if (empty($_SESSION['username'])) {
         </div>
 
         <form method="post">
-            <input type="text" name="naam" placeholder="naam van het album">
+            <input type="text" name="naam" placeholder="naam van het album"><br>
+            <label>
+                Kies School
+                <select name="school">
+                    <option value="s">Salland</option>
+                    <option value="z">Zwolle</option>
+                </select>
+            </label><br>
             <input type="submit" value="upload" name="albums">
         </form>
     </div>

@@ -131,3 +131,12 @@ Route::set('nieuws', function () {
 Route::set('album-weergeven', function () {
     Index::CreateView('albumWeergeven');
 });
+
+
+Route::set('fotos', function () {
+    Index::CreateView('fotos');
+});
+
+Route::set('album-weergeven-school', function () {
+    Index::CreateView('albums');
+});

@@ -65,6 +65,7 @@ if (isset($_POST['edit-user'])) {
 }
 
 if (isset($_POST['update'])) {
+    // opdracht forumulier aanpassen
     $titel = $_POST['titel'];
     $inputType = $_POST['input-type'];
     $type = $_POST['type'];
@@ -87,7 +88,8 @@ if (isset($_POST['but_upload'])){
 
 if (isset($_POST['albums'])) {
     $naam = $_POST['naam'];
-    Admin::uploadAlbum($naam);
+    $school = $_POST['school'];
+    Admin::uploadAlbum($naam, $school);
 }
 
 if (isset($_POST['delete-album'])) {

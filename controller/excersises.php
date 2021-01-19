@@ -10,8 +10,13 @@ class excersises extends Database {
 
     public static function showFields($errormsg) {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
+            $st->execute();
+        }
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
         $count = count($tables);
@@ -54,8 +59,13 @@ class excersises extends Database {
 
         echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
 
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
+            $st->execute();
+        }
 
         $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
         $countt = count($tabless);
@@ -135,8 +145,13 @@ class excersises extends Database {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
+            $st->execute();
+        }
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
         $count = count($tables);
@@ -164,12 +179,23 @@ class excersises extends Database {
         $table = implode(", ", $tableAr);
         $waarde = implode(", ", $waardeAr);
 
-        $st = $pdo->prepare("INSERT INTO projectenopdrachten($table) VALUES ($waarde)");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("INSERT INTO projectenopdrachtenz($table) VALUES ($waarde)");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("INSERT INTO projectenopdrachtens($table) VALUES ($waarde)");
+            $st->execute();
+        }
+
 
         // get columns from 'contactbedrijfgegevens'
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
+            $st->execute();
+        }
 
         $tablesCO = $st->fetchAll(PDO::FETCH_ASSOC);
         $countCO = count($tablesCO);
@@ -194,8 +220,13 @@ class excersises extends Database {
         $table = implode(", ", $tableCoAr);
         $waarde = implode(", ", $waardeCoAr);
 
-        $st = $pdo->prepare("INSERT INTO contactbedrijfgegevens ($table) VALUES ($waarde)");
-        $st->execute();
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("INSERT INTO contactbedrijfgegevensz ($table) VALUES ($waarde)");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("INSERT INTO contactbedrijfgegevenss ($table) VALUES ($waarde)");
+            $st->execute();
+        }
 
         header("Location: /opdrachten");
     }

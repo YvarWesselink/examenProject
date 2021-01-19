@@ -56,6 +56,10 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="aboutus">Over ons</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/opdrachten">Opdracht</a></li>
+        <?php
+        if (!empty($_SESSION['school'])) {
+            echo '<li><a href="/opdrachten">Opdracht</a></li>';
+        }
+        ?>
     </ul>
 </nav>

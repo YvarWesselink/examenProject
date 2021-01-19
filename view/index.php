@@ -2,7 +2,9 @@
 <html lang="en">
 
 <?php
-include_once "includes/header.php"
+session_start();
+unset($_SESSION['school']);
+include_once "includes/header.php";
 ?>
 
  End Navbar

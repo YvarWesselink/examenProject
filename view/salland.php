@@ -2,7 +2,9 @@
 <html lang="en">
 
 <?php
-include_once "includes/header.php"
+session_start();
+$_SESSION['school'] = "salland";
+include_once "includes/header.php";;
 ?>
 
 <!-- End Navbar -->
@@ -34,6 +36,12 @@ include_once "includes/header.php"
 <!-- End Region Section -->
 <!-- ---------------------------- -->
 <!-- Start Nieuws Section -->
+
+<?php
+$school = $_SESSION['school'];
+$images = Admin::downloadFotosHome($school);
+?>
+
 <section class="nieuws">
     <h2>Nieuws</h2>
     <div class="timeline">
@@ -47,7 +55,12 @@ include_once "includes/header.php"
                 </div>
             </div>
             <div class="image">
-                <img src="../public/img/foto1.png" alt="">
+                <a href="/fotos">
+                <?php
+                $image = $images[0]['image'];
+                echo "<img src='$image' alt=''>";
+                ?>
+                </a>
             </div>
         </div>
         <div class="all-content">
@@ -60,7 +73,12 @@ include_once "includes/header.php"
                 </div>
             </div>
             <div class="image img-left">
-                <img src="../public/img/foto2.png" alt="">
+                <a href="/fotos">
+                <?php
+                $image = $images[1]['image'];
+                echo "<img src='$image' alt=''>";
+                ?>
+                </a>
             </div>
         </div>
         <div class="all-content">
@@ -73,7 +91,12 @@ include_once "includes/header.php"
                 </div>
             </div>
             <div class="image">
-                <img src="../public/img/foto3.png" alt="">
+                <a href="/fotos">
+                <?php
+                $image = $images[2]['image'];
+                echo "<img src='$image' alt=''>";
+                ?>
+                </a>
             </div>
         </div>
     </div>
