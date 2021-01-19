@@ -30,8 +30,9 @@ include_once "includes/header.php";
     $i = 0;
     echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Status</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
-    
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+    // <th>Status</th>
+
     while($count > $i){
       $project_id = $row[$i]['project_id'];
       echo "<tr>";
@@ -39,18 +40,20 @@ include_once "includes/header.php";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
-      echo "<td>". $row[$i]['FormStatus'] ."</td>";
+      // echo "<td>". $row[$i]['FormStatus'] ."</td>";
       echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
       echo "<td>". $row[$i]['AantalStudenten'] ."</td>";
       echo "<td>". $row[$i]['UitvoeringsDagEnDatum'] ."</td>";
       echo "</tr>";
       $i ++;
     }
-    echo "<table>";
+    echo "<table><br><br>";
     } else {
     echo "<div>* Er zijn nog geen opdrachten.</div>";
   }
 ?>
+<a href="/oude-opdrachten" class="oldExcBtn">Oude opdrachten</a><br>
+
 <!-- Get all data from db for the users -->
 <?php 
   $conn = self::connect();
@@ -116,6 +119,11 @@ include_once "includes/header.php";
 <?php
   include_once "includes/footer.php";
 ?>
+
+<form method="post">
+    <input type="hidden" value="$id">
+    <input type="submit" value="edit">
+</form>
 
 <!-- Delete function for the excersise table -->
 <script>
@@ -215,4 +223,13 @@ th {
   color: #005a81;
 }
 
+.oldExcBtn {
+  margin-left: 5vw;
+  background-color: #ed135d;
+  padding: 1vh;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px darkgrey;
+  text-decoration: none;
+  color: white;
+}
 </style>

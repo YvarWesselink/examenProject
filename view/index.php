@@ -2,14 +2,18 @@
 <html lang="en">
 
 <?php
-include_once "includes/header.php"
+session_start();
+unset($_SESSION['school']);
+include_once "includes/header.php";
 ?>
 
-<!-- End Navbar -->
-<!-- ---------------------------- -->
-<!-- Start Banner Section -->
+ End Navbar
+ ----------------------------
+ Start Banner Section
 <section class="banner">
-    <div class="banner-img"></div>
+    <div class="banner-img">
+        <img src="/public/img/banner.png">
+    </div>
     <div class="banner-svg">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#fff" fill-opacity="1"

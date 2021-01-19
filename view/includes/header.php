@@ -5,10 +5,10 @@
 
     <!-- Style CSS Links -->
     <link rel="stylesheet" href="/public/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="/public/css/homepage.css">
     <link rel="stylesheet" href="/public/css/aboutus.css">
     <link rel="stylesheet"  href="/public/css/registration.css"/>
     <link rel="stylesheet" href="/public/css/adminpanel.css"/>
+    <link rel="stylesheet" href="/public/css/homepage.css">
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
@@ -56,6 +56,10 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="aboutus">Over ons</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/opdrachten">Opdracht</a></li>
+        <?php
+        if (!empty($_SESSION['school'])) {
+            echo '<li><a href="/opdrachten">Opdracht</a></li>';
+        }
+        ?>
     </ul>
 </nav>
