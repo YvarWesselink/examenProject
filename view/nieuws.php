@@ -27,7 +27,7 @@ include_once "includes/header.php"
         <input type="text" name="Company" autocomplete="off" />
         <label>Bericht</label>
         <input type="text" name="Comments" autocomplete="off"/>
-        <input type="submit" class="button" name="signupSubmit" value="Versturen">
+        <input type="submit" class="button" name="news" value="Versturen">
     </form>
 </div>
     
