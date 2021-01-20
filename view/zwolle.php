@@ -46,7 +46,6 @@ include_once "includes/header.php";
     }
 ?>
 
-
 <section class="nieuws">
     <h2>Nieuws</h2>
     <div class="timeline">
