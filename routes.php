@@ -48,6 +48,14 @@ Route::set('oude-opdrachten', function () {
     oudeOpdrachten::CreateView('oudeOpdrachten');
 });
 
+Route::set('update-opdracht', function () {
+    
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['project_id'] = $_POST['project_id'];
+    }
+    updateExcersise::CreateView('updateExcersise');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
 });

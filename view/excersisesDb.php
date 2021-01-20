@@ -36,7 +36,7 @@ include_once "includes/header.php";
     while($count > $i){
       $project_id = $row[$i]['project_id'];
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['project_id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
@@ -49,7 +49,7 @@ include_once "includes/header.php";
     }
     echo "<table><br><br>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
   }
 ?>
 <a href="/oude-opdrachten" class="oldExcBtn">Oude opdrachten</a><br>
@@ -69,7 +69,7 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn editUser' id=". $row[$i]['uid'] ."></button></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['username'] ."</td>";
       echo "<td>". $row[$i]['voornaam'] ."</td>";
@@ -80,7 +80,7 @@ include_once "includes/header.php";
     }
     echo "<table>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div>* Er zijn nog geen gebruikers.</div>";
   }
 ?>
 
@@ -99,7 +99,7 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
+      echo "<td><button type='submit' class='fa fa-edit editBtn editNews' id=". $row[$i]['userID'] ."></button></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['Name'] ."</td>";
       echo "<td>". $row[$i]['Email'] ."</td>";
@@ -110,7 +110,7 @@ include_once "includes/header.php";
     }
     echo "<table>";
     } else {
-    echo "<div>* Er zijn nog geen opdrachten.</div>";
+    echo "<div>* Er is nog geen nieuws.</div><br>";
   }
 ?>
 <br>
@@ -145,6 +145,24 @@ include_once "includes/header.php";
   })
 </script>
 
+<!-- Edit function for the excersise table -->
+<!-- <script>
+  $('.editExcersise').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens wilt aanpassen?")) {
+          var id = $(this).attr('id');
+          console.log(id);
+          $.ajax({
+              url: '/editExcersise',
+              data: {'id' : id},
+              type: 'GET'
+          })
+          window.location.replace("/update-opdracht");
+      } else {
+          console.log("niet aanpassen");
+      }
+  })
+</script> -->
+
 <!-- Delete function for the users table -->
 <script>
   $('.deleteTableRowUser').click(function () {
@@ -166,6 +184,27 @@ include_once "includes/header.php";
   })
 </script>
 
+<!-- Edit function for the users table -->
+<script>
+  $('.editUser').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).attr('id');
+          console.log(id);
+      //     $.ajax({
+      //         url: '/deleteRowUser',
+      //         data: {'id' : id},
+      //         type: 'GET'
+      //     })
+      //     $(document).delegate('button', 'click', function () {
+      //       $(this).parent('div').remove();
+      //     })
+      //     location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
 <!-- Delete function for the news table -->
 <script>
   $('.deleteTableRowNews').click(function () {
@@ -181,6 +220,28 @@ include_once "includes/header.php";
             $(this).parent('div').remove();
           })
           location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
+
+<!-- Edit function for the news table -->
+<script>
+  $('.editNews').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).attr('id');
+          console.log(id);
+          // $.ajax({
+          //     url: '/deleteRowNews',
+          //     data: {'id' : id},
+          //     type: 'GET'
+          // })
+          // $(document).delegate('button', 'click', function () {
+          //   $(this).parent('div').remove();
+          // })
+          // location.reload();
       } else {
           console.log("niet verwijderd");
       }
