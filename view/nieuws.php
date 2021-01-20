@@ -17,7 +17,7 @@ include_once "includes/header.php"
         </div>
     </div>
 
-
+    <div id="signup">
     <form method="post" action="" name="nieuws">
         <label>Naam:</label>
         <input type="text" name="Name" autocomplete="off" />
@@ -29,7 +29,7 @@ include_once "includes/header.php"
         <input type="password" name="Comments" autocomplete="off"/>
         <input type="submit" class="button" name="signupSubmit" value="Versturen">
     </form>
-
+</div>
     
 
 <!--    in index.php staat op regel 108 de functie die er voor zorgt dat de data naar de database wordt gestuurd (die is nu nog leeg dus moet je zelf even invullen.)-->
