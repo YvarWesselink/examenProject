@@ -16,6 +16,19 @@ include_once "includes/header.php"
         </div>
     </div>
 
+
+    <form method="post" action="" name="nieuws">
+        <label>Naam:</label>
+        <input type="text" name="Name" autocomplete="off" />
+        <label>Email:</label>
+        <input type="text" name="Email" autocomplete="off" />
+        <label>Bedrijf</label>
+        <input type="text" name="Company" autocomplete="off" />
+        <label>Bericht</label>
+        <input type="password" name="Comments" autocomplete="off"/>
+        <input type="submit" class="button" name="signupSubmit" value="Aanmelden">
+    </form>
+
     <form method="post">
         <label>
             Email

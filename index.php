@@ -108,6 +108,9 @@ if (isset($_POST['homepage'])) {
 }
 
 if (isset($_POST['news'])) {
-//    zet hier je functie in om het naar de db te uploaden
+    $name = $_POST['Name'];
+    $email = $_POST['Email'];
+    $company = $_POST['Company'];
+    $comments = $_POST['Comments'];
     nieuws::UploadNews();
 }
