@@ -8,8 +8,8 @@ class nieuws extends controller
   $name = $email = $company = $comments = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {​​​​​​​​
-  Database::connect();
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $conn = database::connect();
+  
 
   $stmt = $conn->prepare("INSERTINTO feedback (Name,Email,Company,Comments) VALUES (:name, :email, :company, :comments)");
   $stmt->bindParam(':name', $name);
