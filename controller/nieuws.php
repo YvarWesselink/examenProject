@@ -21,10 +21,10 @@ class nieuws extends controller
 //  $stmt->bindParam(':company', $company);
 //  $stmt->bindParam(':comments', $comments);
 //
-  $name = clean($_POST["name"]);
-  $email = clean($_POST["email"]);
-  $company = clean($_POST["company"]);
- $comments = clean($_POST["comments"]);
+  $name = ($_POST["name"]);
+  $email = ($_POST["email"]);
+  $company = ($_POST["company"]);
+ $comments = ($_POST["comments"]);
  $stmt->execute();
 //
 //  echo"<div style='color:navy;'><h2>We hebben het volgende bericht van u ontvangen::</h2>";
