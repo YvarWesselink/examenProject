@@ -27,16 +27,10 @@ include_once "includes/header.php"
         <input type="text" name="Company" autocomplete="off" />
         <label>Bericht</label>
         <input type="password" name="Comments" autocomplete="off"/>
-        <input type="submit" class="button" name="signupSubmit" value="Aanmelden">
+        <input type="submit" class="button" name="signupSubmit" value="Versturen">
     </form>
 
-    <form method="post">
-        <label>
-            Email
-            <input type="text">
-        </label><br>
-        <input type="submit" name="news">
-    </form>
+    
 
 <!--    in index.php staat op regel 108 de functie die er voor zorgt dat de data naar de database wordt gestuurd (die is nu nog leeg dus moet je zelf even invullen.)-->
 
