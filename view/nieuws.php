@@ -3,11 +3,7 @@
 
 <?php
 include_once "includes/header.php"
-$name = ($_POST["name"]);
-  $email = ($_POST["email"]);
-  $company = ($_POST["company"]);
- $comments = ($_POST["comments"]);
- $stmt->execute();
+
 ?>
 
 <div class="txthome-container">
