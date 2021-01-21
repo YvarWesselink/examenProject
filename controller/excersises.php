@@ -53,7 +53,9 @@ class excersises extends Database {
                 $backLog = "";
             }
 
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
             $i ++;
         }
 
@@ -103,7 +105,9 @@ class excersises extends Database {
                 $backLog = "";
             }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+            $table = str_replace('_', ' ',$tabless[$x]['Field']);
+
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
             $x ++;
             $e ++;
         }
@@ -259,6 +263,15 @@ class excersises extends Database {
             $st->execute();
         } elseif ($_SESSION['school'] == "salland") {
             $st = $pdo->prepare("INSERT INTO contactbedrijfgegevenss ($table) VALUES ($waarde)");
+            $st->execute();
+        }
+
+        // verborgen waarden uploaden (leeg)
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("INSERT INTO verborgenwaardenz (id) VALUES ($id)");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("INSERT INTO verborgenwaardens (id) VALUES ($id)");
             $st->execute();
         }
 

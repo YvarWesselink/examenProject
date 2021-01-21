@@ -385,6 +385,9 @@ class Admin extends controller
     public static function uploadElementOp($titel, $inputType, $type) {
         $pdo = self::connect();
 
+        // check if there are any spaces
+        $titel = str_replace(' ', '_', $titel);
+
         // upload elements voor salland
         $table = $type."s";
 
@@ -427,9 +430,10 @@ class Admin extends controller
 
         $st->execute();
 
-        header('Location: /formulier');
+        echo "<script> location.href='formulier'; </script>";
     }
 
+    // get elements from opdrachten
     public static function getElementsForm() {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
@@ -440,11 +444,13 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRow'>-</button></div>"."<br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table." <form class='move-element' method='post'><input type='submit' value='🠕' name='up'><input type='submit' value='🠗' name='down'><input type='hidden' value=''> <button type='button' class='deleteRow'>-</button></div>"."<br>";
             $i ++;
         }
     }
 
+    // get elements from contact bedrijfgegevens
     public static function getElementsFormCont() {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
@@ -455,13 +461,32 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            $i ++;
+        }
+    }
+
+    // get elements from verborgenwaarden
+    public static function getElementsFormVerb() {
+        $pdo = self::connect();
+        $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardens");
+        $st->execute();
+
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tables);
+
+        $i = 1;
+        while ($count > $i) {
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table."<button type='button' class='deleteRowV'>-</button></div>"."<br>";
             $i ++;
         }
     }
 
     public static function deleteElementOp($column) {
         $pdo = self::connect();
+        $column = str_replace(' ', '_',$column);
         $st = $pdo->prepare("ALTER TABLE projectenopdrachtens DROP COLUMN $column");
         $st->execute();
 
@@ -471,10 +496,21 @@ class Admin extends controller
 
     public static function deleteElementCo($column) {
         $pdo = self::connect();
+        $column = str_replace(' ', '_',$column);
         $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevenss DROP COLUMN $column");
         $st->execute();
 
         $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevensz DROP COLUMN $column");
+        $st->execute();
+    }
+
+    public static function deleteElementVe($column) {
+        $pdo = self::connect();
+        $column = str_replace(' ', '_',$column);
+        $st = $pdo->prepare("ALTER TABLE verborgenwaardens DROP COLUMN $column");
+        $st->execute();
+
+        $st = $pdo->prepare("ALTER TABLE verborgenwaardenz DROP COLUMN $column");
         $st->execute();
     }
 

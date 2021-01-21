@@ -115,5 +115,7 @@ if (isset($_POST['news'])) {
     nieuws::UploadNews($name, $email, $company, $comments);
 }
 
-
-    
+if (isset($_POST['up'])) {
+    $id = $_POST['id'];
+    Admin::moveUp($id);
+}

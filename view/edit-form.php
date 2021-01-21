@@ -54,6 +54,20 @@ if($_SESSION['user_lv'] < 5){                              //|
             <input class="submit-form-2" type="submit" name="update">
             <input type="hidden" name="type" value="contactbedrijfgegevens">
         </form>
+
+        <!-- Verborgen waarden toevoegen -->
+        <div class="txthome-sub">
+            <p>Verborgen Waarden</p>
+            <div class="add-form-4">+</div>
+        </div>
+
+        <form method="post" class="form-3">
+            <?php
+            echo Admin::getElementsFormVerb();
+            ?>
+            <input class="submit-form-3" type="submit" name="update">
+            <input type="hidden" name="type" value="verborgenwaarden">
+        </form>
     </div>
 </div>
 </body>

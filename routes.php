@@ -112,6 +112,10 @@ Route::set('deleteRowCo', function() {
     Admin::deleteElementCo($_GET['id']);
 });
 
+Route::set('deleteRowVe', function () {
+    Admin::deleteElementVe($_GET['id']);
+});
+
 Route::set('deleteRowExc', function() {
     Admin::deleteElementExc($_GET['id']);
 });
