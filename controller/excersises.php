@@ -124,7 +124,7 @@ class excersises extends Database {
             if (empty($waarde)) {
                 $error = "Voer een waarde in.";
                 array_push($errorVal, $error);
-            } elseif (!preg_match('/^[a-zA-Z0-9^@"\'\/. -]*$/', $waarde)) {
+            } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $waarde)) {
                 $error = "Gebruik geen rare karakters.";
                 array_push($errorVal, $error);
             } elseif ($waarde) {
@@ -162,6 +162,30 @@ class excersises extends Database {
         // define arrays
         $tableAr = array();
         $waardeAr = array();
+
+        if ($_SESSION['school'] == "zwolle") {
+            // Get id from projectenopdracht
+            $st = $pdo->prepare("SELECT * FROM projectenopdrachtenz");
+            $st->execute();
+            $countId = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            $id = count($countId);
+            $id += 1;
+
+            array_push($tableAr, "id");
+            array_push($waardeAr, $id);
+        } elseif ($_SESSION['school'] == "salland") {
+            // Get id from projectenopdracht
+            $st = $pdo->prepare("SELECT * FROM projectenopdrachtens");
+            $st->execute();
+            $countId = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            $id = count($countId);
+            $id += 1;
+
+            array_push($tableAr, "id");
+            array_push($waardeAr, $id);
+        }
 
         // push data from 'projectenopdrachten' to array.
         while ($count > $rij) {
@@ -206,6 +230,16 @@ class excersises extends Database {
         //define arrays
         $tableCoAr = array();
         $waardeCoAr = array();
+
+        if ($_SESSION['school'] == "zwolle") {
+            // Get id from projectenopdracht
+            array_push($tableCoAr, "id");
+            array_push($waardeCoAr, $id);
+        } elseif ($_SESSION['school'] == "salland") {
+            // Get id from projectenopdracht
+            array_push($tableCoAr, "id");
+            array_push($waardeCoAr, $id);
+        }
 
         while ($countCO > $rijCO) {
             array_push($tableCoAr, $tablesCO[$rijCO]['Field']);

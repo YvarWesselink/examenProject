@@ -23,7 +23,7 @@ include_once "includes/header.php";
 <?php 
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $result = $conn->query("SELECT * FROM projectenopdrachten");
+  $result = $conn->query("SELECT * FROM projectenopdrachtens");
   if ($result->rowCount() > 0){
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
     $count = count($row);

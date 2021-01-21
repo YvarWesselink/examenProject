@@ -13,7 +13,7 @@ class updateExcersise extends Database {
 
         $conn = self::connect();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $result = $conn->query("SELECT * FROM projectenopdrachten");
+        $result = $conn->query("SELECT * FROM projectenopdrachtens");
         if ($result->rowCount() > 0){
           $row = $result->fetchAll(PDO::FETCH_ASSOC);
           $count = count($row);
@@ -29,7 +29,7 @@ class updateExcersise extends Database {
           array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
         }
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
+        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -73,7 +73,7 @@ class updateExcersise extends Database {
 
         echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
 
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
+        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
         $st->execute();
 
         $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -154,7 +154,7 @@ class updateExcersise extends Database {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachten");
+        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -184,11 +184,11 @@ class updateExcersise extends Database {
         $waarde = implode(", ", $waardeAr);
 
         $id = $_SESSION['project_id'];
-        $st = $pdo->prepare("UPDATE projectenopdrachten ($table) SET ($waarde) WHERE project_id=$id");
+        $st = $pdo->prepare("UPDATE projectenopdrachtens ($table) SET ($waarde) WHERE project_id=$id");
         $st->execute();
 
         // get columns from 'contactbedrijfgegevens'
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevens");
+        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
         $st->execute();
 
         $tablesCO = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -214,7 +214,7 @@ class updateExcersise extends Database {
         $table = implode(", ", $tableCoAr);
         $waarde = implode(", ", $waardeCoAr);
 
-        $st = $pdo->prepare("INSERT INTO contactbedrijfgegevens ($table) VALUES ($waarde)");
+        $st = $pdo->prepare("INSERT INTO contactbedrijfgegevenss ($table) VALUES ($waarde)");
         $st->execute();
 
         header("Location: /opdrachten");
