@@ -8,9 +8,7 @@ class updateExcersise extends Database {
         require_once("./view/$viewName.php");
     }
 
-    public static function showFields($errormsg) {
-        $id = $_SESSION['project_id'];
-
+<<<<<<< Updated upstream
         $conn = self::connect();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $result = $conn->query("SELECT * FROM projectenopdrachtens");
@@ -28,14 +26,40 @@ class updateExcersise extends Database {
           $oudeWaardes = array();
           array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
         }
+=======
+    public static function showFields($errormsg) {
+        // $conn = self::connect();
+        // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $result = $conn->query("SELECT * FROM projectenopdrachtens");
+        // if ($result->rowCount() > 0){
+        //   $row = $result->fetchAll(PDO::FETCH_ASSOC);
+        //   $count = count($row);
+        //   $ind = 0;
+        //   while($count > $ind){
+        //     $Opdracht = $row[$ind]['Opdracht'];
+        //     $Opmerkingen = $row[$ind]['Opmerkingen'];
+        //     $AantalStudenten = $row[$ind]['AantalStudenten'];
+        //     $UitvoeringsDagEnDatum = $row[$ind]['UitvoeringsDagEnDatum'];
+        //     $ind ++;
+        //   }
+        //   $oudeWaardes = array();
+        //   array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
+        // }
+>>>>>>> Stashed changes
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
         $count = count($tables);
-        $index = 0;
         $i = 1;
+
+        $id = $_SESSION['project_id'];
+        $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtens WHERE project_id = $id");
+        $stmt->execute();
+        $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $variableCount = count($values);
+        $index = 0;
         while ($count > $i) {
             switch ($tables[$i]['Type']) {
                 case "varchar(255)":
@@ -57,18 +81,22 @@ class updateExcersise extends Database {
             } else {
                 $error = $errormsg[$tables[$i]['Field']];
             }
-
             if (isset($_POST['uploadExcersise'])) {
                 $value = $_POST;
                 $key = $tables[$i]['Field'];
-
                 $backLog = $value[$key];
             } else {
-                // $backLog = "";
+                while($variableCount > $index){
+                    $value = $values;
+                    $variables = array_values($value[$index]);
+                    $index ++;
+                }
             }
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$oudeWaardes[$index]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+            $ind = 0;
+            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
             $i ++;
             $index ++;
+            $ind++;
         }
 
         echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
@@ -182,7 +210,7 @@ class updateExcersise extends Database {
 
         $table = implode(", ", $tableAr);
         $waarde = implode(", ", $waardeAr);
-
+        print_r($waarde);
         $id = $_SESSION['project_id'];
         $st = $pdo->prepare("UPDATE projectenopdrachtens ($table) SET ($waarde) WHERE project_id=$id");
         $st->execute();
