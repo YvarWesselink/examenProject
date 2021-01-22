@@ -9,23 +9,6 @@ class updateExcersise extends Database {
     }
 
     public static function showFields($errormsg) {
-        // $conn = self::connect();
-        // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $result = $conn->query("SELECT * FROM projectenopdrachtens");
-        // if ($result->rowCount() > 0){
-        //   $row = $result->fetchAll(PDO::FETCH_ASSOC);
-        //   $count = count($row);
-        //   $ind = 0;
-        //   while($count > $ind){
-        //     $Opdracht = $row[$ind]['Opdracht'];
-        //     $Opmerkingen = $row[$ind]['Opmerkingen'];
-        //     $AantalStudenten = $row[$ind]['AantalStudenten'];
-        //     $UitvoeringsDagEnDatum = $row[$ind]['UitvoeringsDagEnDatum'];
-        //     $ind ++;
-        //   }
-        //   $oudeWaardes = array();
-        //   array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
-        // }
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
@@ -35,7 +18,7 @@ class updateExcersise extends Database {
         $i = 1;
 
         $id = $_SESSION['project_id'];
-        $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtens WHERE project_id = $id");
+        $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtens WHERE id = $id");
         $stmt->execute();
         $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $variableCount = count($values);
@@ -89,6 +72,11 @@ class updateExcersise extends Database {
 
         $e = 0;
         $x = 1;
+        $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevenss WHERE id = $id");
+        $stm->execute();
+        $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $variableContactCount = count($contactValues);
+        $ind = 0;
         while ($countt > $x) {
             switch ($tabless[$x]['Type']) {
                 case "varchar(255)":
@@ -117,12 +105,17 @@ class updateExcersise extends Database {
 
                 $backLog = $value[$key];
             } else {
-                $backLog = "";
+                while($variableContactCount > $ind){
+                    $value = $contactValues;
+                    $variables = array_values($value[$ind]);
+                    $ind ++;
+                }
             }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
             $x ++;
             $e ++;
+            $ind ++;
         }
     }
 
@@ -192,7 +185,7 @@ class updateExcersise extends Database {
         $waarde = implode(", ", $waardeAr);
         print_r($waarde);
         $id = $_SESSION['project_id'];
-        $st = $pdo->prepare("UPDATE projectenopdrachtens ($table) SET ($waarde) WHERE project_id=$id");
+        $st = $pdo->prepare("UPDATE projectenopdrachtens SET ($waarde) WHERE id=$id");
         $st->execute();
 
         // get columns from 'contactbedrijfgegevens'

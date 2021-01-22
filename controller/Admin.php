@@ -516,10 +516,10 @@ class Admin extends controller
 
     public static function deleteElementExc($id) {
         $pdo = self::connect();
-        $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE project_id = $id");
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE id = $id");
         $st->execute();
 
-        $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE project_id = $id");
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE id = $id");
         $st->execute();
     }
 

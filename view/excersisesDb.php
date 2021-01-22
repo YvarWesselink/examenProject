@@ -34,11 +34,10 @@ include_once "includes/header.php";
     // <th>Status</th>
 
     while($count > $i){
-      $project_id = $row[$i]['project_id'];
       echo "<tr>";
-      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['project_id'] ." /> </form></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['project_id'] ."></button></td>";
-      echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
+      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
       // echo "<td>". $row[$i]['FormStatus'] ."</td>";
       echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
