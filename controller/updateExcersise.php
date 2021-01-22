@@ -8,25 +8,6 @@ class updateExcersise extends Database {
         require_once("./view/$viewName.php");
     }
 
-<<<<<<< Updated upstream
-        $conn = self::connect();
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $result = $conn->query("SELECT * FROM projectenopdrachtens");
-        if ($result->rowCount() > 0){
-          $row = $result->fetchAll(PDO::FETCH_ASSOC);
-          $count = count($row);
-          $ind = 0;
-          while($count > $ind){
-            $Opdracht = $row[$ind]['Opdracht'];
-            $Opmerkingen = $row[$ind]['Opmerkingen'];
-            $AantalStudenten = $row[$ind]['AantalStudenten'];
-            $UitvoeringsDagEnDatum = $row[$ind]['UitvoeringsDagEnDatum'];
-            $ind ++;
-          }
-          $oudeWaardes = array();
-          array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
-        }
-=======
     public static function showFields($errormsg) {
         // $conn = self::connect();
         // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -45,7 +26,6 @@ class updateExcersise extends Database {
         //   $oudeWaardes = array();
         //   array_push($oudeWaardes, $Opdracht, $AantalStudenten, $Opmerkingen, $UitvoeringsDagEnDatum);
         // }
->>>>>>> Stashed changes
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
         $st->execute();
