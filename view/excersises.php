@@ -50,11 +50,11 @@ include_once "includes/header.php"
 
             <input type="submit" class="sendExcersiseBtn" name="sendExcersise" button onclick="myFunction()" value="Opdracht aanmaken">
 
-            <script>
-            function myFunction() {
-              alert("Uw opdracht is ingedient, wij vragen u om de algemene voorwaarden nog even door te lezen.");
-            }
-            </script>
+
+            <form action="checkbox-form.php" method="post">
+              Hierbij gaat u akkoord met de algemene voorwaarden.
+              <input type="checkbox" name="checket" id="checket" onclick="location.href='voorwaarden'" value="Yes"/>
+              </form>
 
     </form>
 </div>
