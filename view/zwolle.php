@@ -27,9 +27,13 @@ include_once "includes/header.php";
 <!-- Start Region Section -->
 <section class="region">
     <div class="region-info">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga. Libero numquam laborum eligendi impedit at obcaecati dolore, alias corrupti rerum ab ratione perspiciatis maxime eaque fuga repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga. Libero numquam laborum eligendi impedit at obcaecati dolore, alias corrupti rerum ab ratione perspiciatis maxime eaque fuga repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, eum. Perspiciatis, fuga.
+    <?php
+    $zwolle = Admin::zwolleTXT();
+
+    echo "<h2>".$zwolle['titelz']."</h2>"."<h3>".$zwolle['tussenz']."</h3>"."<p>".$zwolle['zwolletxt']."</p>";
+    ?>
     <br>
-        <span style="color: red; font-size: 14px;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        <span style="color: red; font-size: 14px;"></span>
     </div>
 </section>
 <div class="clearfix"></div>

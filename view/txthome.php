@@ -26,7 +26,17 @@ if($_SESSION['user_lv'] < 5){                              //|
         $home = Admin::downloadTXT();
         $titel = $home['titel'];
         $tussenkopje = $home['tussenkopje'];
-        $hometxt = $home['home']
+        $hometxt = $home['home'];
+
+        $salland = Admin::sallandTXT();
+        $titels = $salland['titels'];
+        $tussens = $salland['tussens'];
+        $sallandtxt = $salland['sallandtxt'];
+
+        $zwolle = Admin::zwolleTXT();
+        $titelz = $zwolle['titelz'];
+        $tussenz = $zwolle['tussenz'];
+        $zwolletxt = $zwolle['zwolletxt'];
         ?>
 
         <div>
@@ -61,6 +71,53 @@ if($_SESSION['user_lv'] < 5){                              //|
 
             <input class="submit" type="submit" name="upload" value="send">
         </form>
+
+        <form method="post">
+            <label>
+                Titel Zwolle<br>
+                <?php
+                echo "<input class='titel' type='text' name='titelz' value='$titelz'>"
+                ?>
+            </label><br>
+            <label>
+                Tussenkopje (optioneel) <br>
+                <?php
+                echo "<textarea class='tussenkopje' name='tussenz'>$tussenz</textarea>"
+                ?>
+            </label><br>
+            <label>
+                home tekst <br>
+                <?php
+                echo "<textarea class='hometxt' name='zwolletxt'>$zwolletxt</textarea>"
+                ?>
+            </label><br>
+
+            <input class="submit" type="submit" name="uploadzwolle" value="send">
+        </form>
+
+        <form method="post">
+            <label>
+                Titel Salland<br>
+                <?php
+                echo "<input class='titel' type='text' name='titels' value='$titels'>"
+                ?>
+            </label><br>
+            <label>
+                Tussenkopje (optioneel) <br>
+                <?php
+                echo "<textarea class='tussenkopje' name='tussens'>$tussens</textarea>"
+                ?>
+            </label><br>
+            <label>
+                home tekst <br>
+                <?php
+                echo "<textarea class='hometxt' name='sallandtxt'>$sallandtxt</textarea>"
+                ?>
+            </label><br>
+
+            <input class="submit" type="submit" name="uploadsalland" value="send">
+        </form>
+
     </div>
 </body>
 

@@ -128,3 +128,19 @@ if (isset($_POST['upload_contact'])) {
 
     Admin::uploadcontactTXT($straat, $penp, $email, $telnmr);
 }
+
+if (isset($_POST['uploadzwolle'])) {
+    $titelz = $_POST['titelz'];
+    $tussenz = $_POST['tussenz'];
+    $zwolletxt = $_POST['zwolletxt'];
+
+    Admin::uploadzwolleTXT($titelz, $tussenz, $zwolletxt);
+}
+
+if (isset($_POST['uploadsalland'])) {
+    $titels = $_POST['titels'];
+    $tussens = $_POST['tussens'];
+    $sallandtxt = $_POST['sallandtxt'];
+
+    Admin::uploadsallandTXT($titels, $tussens, $sallandtxt);
+}

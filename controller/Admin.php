@@ -15,7 +15,7 @@ class Admin extends controller
         $st->bindParam(":txthome", $txthome,PDO::PARAM_STR);
         $st->execute();
 
-        header("Location: /txthome");
+        echo "<script> location.href='formulier'; </script>";
     }
 
     public static function uploadImage($album) {
@@ -587,5 +587,57 @@ class Admin extends controller
     
             header("Location: /txtcontact");
         }
+        
+        public static function zwolleTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM zwolletxt WHERE id = 1");
+            $st->execute();
+    
+            $zwolle = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $zwolle;
+        }
+    
+        public static function uploadzwolleTXT($titelz, $tussenz, $zwolletxt)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE zwolletxt SET titelz=:titelz, tussenz=:tussenz, zwolletxt=:zwolletxt WHERE id = 1");
+    
+            $st->bindParam(":titelz", $titelz,PDO::PARAM_STR);
+            $st->bindParam(":tussenz", $tussenz,PDO::PARAM_STR);
+            $st->bindParam(":zwolletxt", $zwolletxt,PDO::PARAM_STR);
+            $st->execute();
+    
+            echo "<script> location.href='txthome'; </script>";
+        }
+
+        public static function sallandTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM sallandtxt WHERE id = 1");
+            $st->execute();
+    
+            $salland = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $salland;
+        }
+    
+        public static function uploadsallandTXT($titels, $tussens, $sallandtxt)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE sallandtxt SET titels=:titels, tussens=:tussens, sallandtxt=:sallandtxt WHERE id = 1");
+    
+            $st->bindParam(":titels", $titels,PDO::PARAM_STR);
+            $st->bindParam(":tussens", $tussens,PDO::PARAM_STR);
+            $st->bindParam(":sallandtxt", $sallandtxt,PDO::PARAM_STR);
+            $st->execute();
+    
+            echo "<script> location.href='txthome'; </script>";
+        }
+
+
 
 }
