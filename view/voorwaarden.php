@@ -118,9 +118,11 @@ include_once "includes/header.php"
     </div>
 </section>
 
+<button><a href="opdrachten">Opdracht indienen.</a></button>
+
+
 <?php
 include_once "includes/footer.php";
 ?>
 
 </html>
-
