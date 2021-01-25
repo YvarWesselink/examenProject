@@ -562,4 +562,30 @@ class Admin extends controller
         header("Location: /adminpanel");
         }
 
+        public static function contactTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM contact WHERE id = 1");
+            $st->execute();
+    
+            $contact = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $contact;
+        }
+    
+        public static function uploadcontactTXT($straat, $penp, $email, $telnmr)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE contact SET straat=:straat, penp=:penp, email=:email , telnmr=:telnmr WHERE id = 1");
+    
+            $st->bindParam(":straat", $straat,PDO::PARAM_STR);
+            $st->bindParam(":penp", $penp,PDO::PARAM_STR);
+            $st->bindParam(":email", $email,PDO::PARAM_STR);
+            $st->bindParam(":telnmr", $telnmr,PDO::PARAM_STR);
+            $st->execute();
+    
+            header("Location: /txtcontact");
+        }
+
 }

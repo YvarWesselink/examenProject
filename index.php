@@ -119,3 +119,12 @@ if (isset($_POST['up'])) {
     $id = $_POST['id'];
     Admin::moveUp($id);
 }
+
+if (isset($_POST['upload_contact'])) {
+    $straat = $_POST['straat'];
+    $penp = $_POST['penp'];
+    $email = $_POST['email'];
+    $telnmr = $_POST['telnmr'];
+
+    Admin::uploadcontactTXT($straat, $penp, $email, $telnmr);
+}

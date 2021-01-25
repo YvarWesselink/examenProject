@@ -152,3 +152,7 @@ Route::set('fotos', function () {
 Route::set('album-weergeven-school', function () {
     Index::CreateView('albums');
 });
+
+Route::set('txtcontact', function () {
+    Contact::CreateView('txtcontact');
+});
