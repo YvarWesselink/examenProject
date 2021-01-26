@@ -24,54 +24,63 @@ include_once "view/includes/header.php";
 
 <body>
 <div class="txthome-container">
+<div class="txthome-main">
+    <h1>Gebruikers level veranderen</h1>
+<h3>
+Het level van een gebruiker kan veranderd worden door op de drop down te drukken.<br/>
+Het nummer van het level geeft aan welk gebruikerslevel de gebruiker op het moment heeft.
+</h3>
+</div>
     <?php
     $user= Admin::downloadEditUserLV();
-    
     foreach($user as $x){
         echo '
         <div class="userblokje">
-            <label>
-            Gebruikers nummer:'.htmlentities($x["uid"]).'
-            </label>     
+        <div class="usrinhoud">
             <br>   
             <label>
-                Username<br>
+                <h3>Username</h3>
                '.htmlentities( $x["username"]).'
             </label><br>
             <label>
-                Voornaam<br>
+            <h3>Voornaam</h3>
                  '.htmlentities( $x["voornaam"]).'
             </label><br>
             <label>
-                Achternaam <br>
+            <h3>Achternaam</h3> 
                 '.htmlentities( $x["achternaam"]). '
             </label><br>
             <label>
-                 E-mail <br>
+            <h3>E-mail</h3>
                 ' .htmlentities( $x["email"]). '
             </label><br>
-        </div>
-        <br/>
-        <br/>
+            <label>
+            <h3>Gebruikers nummer:</h3>'.htmlentities($x["uid"]).'
+            </label>     
         <form method="post">
         <input type="hidden" value='.$x['uid'].' name="useridea">
             <label>
-                    User level <br>
+            <h3>User level</h3>
                     '.htmlentities( $x['user_lv']).'
                     <select class="usrlvs" name="usrlvs">
-                        <option value="0">standaard</option>
-                        <option value="1">Gast</option>
-                        <option value="2">Student</option>
-                        <option value="3">Leraar</option>
-                        <option value="4">Beheerder</option>
+                        <option value="0">standaard - 0 </option>
+                        <option value="1">Gast      - 1 </option>
+                        <option value="2">Student   - 2 </option>
+                        <option value="3">Leraar    - 3 </option>
+                        <option value="4">Beheerder - 4 </option>
+                        <option value="5">Administrator - 5 </option>
                     </select>
                 </label>
+                <br/>
+                <br/>
         <input class="submit" type="submit" name="edit-userlevel" value="Wijzig">
     </form>
+    </div>
     </div>
         ';      
     };
     ?>
+     </div> 
 </body>
 
 </html>

@@ -41,11 +41,11 @@ if($_SESSION['user_lv'] < 5){                              //|
 
         <div>
             <div class="txthome-main">
-                <h1>Tekst Home Aanpassen</h1>
-                <h3>Hier kunt u de gegevens wijzigen van de home pagina.</h3>
+                <h1>Tekst Op De Homepagina's Aanpassen</h1>
+                <h3>Hier kunt u de gegevens wijzigen van de home pagina's </h3>
             </div>
             <div class="txthome-sub">
-                <p>Homepage</p>
+                <p>Voorpagina</p>
             </div>
         </div>
 
@@ -63,7 +63,7 @@ if($_SESSION['user_lv'] < 5){                              //|
                 ?>
             </label><br>
             <label>
-                home tekst <br>
+                Inhoud tekst </br>
                 <?php
                 echo "<textarea class='hometxt' name='hometxt'>$hometxt</textarea>"
                 ?>
@@ -71,6 +71,10 @@ if($_SESSION['user_lv'] < 5){                              //|
 
             <input class="submit" type="submit" name="upload" value="send">
         </form>
+
+        <div class="txthome-sub">
+            <p>Zwolle Homepagina</p>
+        </div>
 
         <form method="post">
             <label>
@@ -86,7 +90,7 @@ if($_SESSION['user_lv'] < 5){                              //|
                 ?>
             </label><br>
             <label>
-                home tekst <br>
+                Inhoud tekst <br>
                 <?php
                 echo "<textarea class='hometxt' name='zwolletxt'>$zwolletxt</textarea>"
                 ?>
@@ -94,6 +98,10 @@ if($_SESSION['user_lv'] < 5){                              //|
 
             <input class="submit" type="submit" name="uploadzwolle" value="send">
         </form>
+
+        <div class="txthome-sub">
+            <p>Salland Homepagina</p>
+        </div>
 
         <form method="post">
             <label>
@@ -109,7 +117,7 @@ if($_SESSION['user_lv'] < 5){                              //|
                 ?>
             </label><br>
             <label>
-                home tekst <br>
+                Inhoud tekst <br>
                 <?php
                 echo "<textarea class='hometxt' name='sallandtxt'>$sallandtxt</textarea>"
                 ?>
