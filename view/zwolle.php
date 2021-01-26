@@ -7,6 +7,32 @@ $_SESSION['school'] = "zwolle";
 include_once "includes/header.php";
 ?>
 
+<style>
+    .kijk_meer{
+        display: block;
+        margin: 50px auto 0;
+        background: transparent;
+        color: #005a81;
+        text-align: center;
+        padding: 15px 25px;
+        border: 1px solid #005a81;
+        border-radius: 3px;
+        cursor: pointer;
+        }
+
+        .kijk_meer i{
+            color: #005a81;
+            -webkit-transition: padding .3s ease-in-out;
+            -moz-transition: padding .3s ease-in-out;
+            -o-transition: padding .3s ease-in-out;
+            transition: padding .3s ease-in-out;
+        }
+
+        .kijk_meer:hover i{
+            padding-left: 10px;
+        }
+</style>
+
 <!-- End Navbar -->
 <!-- ---------------------------- -->
 <!-- Start Banner Section -->
@@ -45,8 +71,14 @@ include_once "includes/header.php";
     $school = $_SESSION['school'];
     $images = Admin::downloadFotosHome($school);
 
-    if (count($images) < 2) {
+    if (count($images) == 0) {
         $images = null;
+    }
+
+    $nieuwsContent = Admin::downloadNieuwsHome($school);
+
+    if (count($nieuwsContent) == 0) {
+        $nieuwsContent = null;
     }
 ?>
 
@@ -58,19 +90,36 @@ include_once "includes/header.php";
                 <span class="icon"></span>
                 <span class="date">07 NOVEMBER 2017</span>
                 <div class="content">
-                    <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[0]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[0]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }else {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                    
+                    ?>
                 </div>
             </div>
             <div class="image">
                 <a href="/fotos">
                     <?php
-                    if ($images == null) {
-                        echo "<p>Nog geen foto's</p>";
-                    } else {
-                        $image = $images[0]['image'];
-                        echo "<img src='$image' alt=''>";
-                    }
+
+                        if (isset($images[0]['image'])) {
+
+                            $image = $images[0]['image'];
+                            echo "<img src='$image' alt=''>";
+                        
+                        }else {
+                            
+                            echo "<p>Nog geen foto!</p>";
+                        }
+
                     ?>
                 </a>
             </div>
@@ -80,19 +129,36 @@ include_once "includes/header.php";
                 <span class="icon"></span>
                 <span class="date">27 JUNE 2017</span>
                 <div class="content">
-                    <h2>Kidsspeelmiddag op 28 juni</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[1]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[1]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }else {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                    
+                    ?>
                 </div>
             </div>
             <div class="image img-left">
                 <a href="/fotos">
                     <?php
-                    if ($images == null) {
-                        echo "<p>Nog geen foto's</p>";
-                    } else {
-                        $image = $images[1]['image'];
-                        echo "<img src='$image' alt=''>";
-                    }
+                    
+                        if (isset($images[1]['image'])) {
+
+                            $image = $images[1]['image'];
+                            echo "<img src='$image' alt=''>";
+                        
+                        }else {
+                            
+                            echo "<p>Nog geen foto!</p>";
+                        }
+                    
                     ?>
                 </a>
             </div>
@@ -102,24 +168,42 @@ include_once "includes/header.php";
                 <span class="icon"></span>
                 <span class="date data-2">14 JUNE 2017</span>
                 <div class="content">
-                    <h2>Groot nieuws</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[2]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[2]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }else {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                
+                    ?>
                 </div>
             </div>
             <div class="image">
                 <a href="/fotos">
                     <?php
-                    if ($images == null) {
-                        echo "<p>Nog geen foto's</p>";
-                    } else {
-                        $image = $images[1]['image'];
-                        echo "<img src='$image' alt=''>";
-                    }
+
+                        if (isset($images[2]['image'])) {
+
+                            $image = $images[2]['image'];
+                            echo "<img src='$image' alt=''>";
+                        
+                        }else {
+
+                            echo "<p>Nog geen foto!</p>";
+                        }
+                        
                     ?>
                 </a>
             </div>
         </div>
     </div>
+    <button class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button>
 </section>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f9f9f9" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,122.7C960,117,1200,139,1320,149.3L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
 <div class="clearfix"></div>

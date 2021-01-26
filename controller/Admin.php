@@ -222,6 +222,20 @@ class Admin extends controller
         }
     }
 
+    public static function downloadNieuwsHome($school) {
+        $pdo = self::connect();
+
+        $school = $school[0];
+
+        $st = $pdo->prepare("SELECT * FROM feedback WHERE school = :school ORDER BY userID DESC");
+        $st->bindParam(":school", $school);
+        $st->execute();
+
+        $nieuws = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        return $nieuws;
+    }
+
     public static function downloadAlbumImagesSchool($album) {
         $pdo = self::connect();
 
