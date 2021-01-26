@@ -72,6 +72,8 @@ $(document).ready(function () {
             $(document).delegate('button', 'click', function () {
                 $(this).parent('div').remove();
             })
+
+            location.reload();
         } else {
             console.log("niet verwijderd");
         }
@@ -90,6 +92,8 @@ $(document).ready(function () {
             $(document).delegate('button', 'click', function () {
                 $(this).parent('div').remove();
             })
+
+            location.reload();
 
         } else {
             console.log("niet verwijderd")
@@ -110,9 +114,33 @@ $(document).ready(function () {
                 $(this).parent('div').remove();
             })
 
+            location.reload();
+
         } else {
             console.log("niet verwijderd")
         }
     })
+
+    $('.up').click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            url: '/moveup',
+            data: {'id' : id},
+            type: 'GET',
+        })
+
+        location.reload();
+    });
+
+    $('.down').click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            url: '/movedown',
+            data: {'id' : id},
+            type: 'GET',
+        })
+
+        location.reload();
+    });
 });
 
