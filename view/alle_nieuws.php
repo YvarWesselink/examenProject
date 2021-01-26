@@ -9,7 +9,7 @@
 
 <?php
 $sql = "SELECT userID, Name, Email, Comments FROM feedback";
-$result = $pdo->query($sql);
+$result = $conn->query($sql);
 if ($result->num_rows > 0) {
 // output data of each row
 while($row = $result->fetch_assoc()) {
@@ -18,7 +18,7 @@ echo '<div class="nieuws"><td><br>' . $row["userID"]. "</td><td><br>" . $row["Na
 }
 echo "</table>";
 } else { echo "0 results"; }
-$pdo->close();
+$conn->close();
 ?>
 
 </body>
