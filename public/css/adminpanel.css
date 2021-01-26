@@ -278,3 +278,15 @@
     flex-wrap: wrap;
     width: 750px;
 }
+/* 
+
+Start user level css 
+
+*/
+
+.userblokje{
+border-bottom: solid 2px black;
+}
+.usrinhoud{
+    padding-left: 5%;
+}

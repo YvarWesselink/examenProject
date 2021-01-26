@@ -1300,7 +1300,7 @@ footer {
     overflow: hidden;
     margin: 0 auto;
   }
-  
+
   .titel{
     width: 100%;
   }
@@ -1336,7 +1336,7 @@ footer {
   .add-form-2 {
     right: -148px;
   }
-    
+
   #login, #signup{
     width: 100%
   }
@@ -1359,4 +1359,16 @@ footer {
     font-size: 14px;
   }
 
+}
+
+.test64 {
+  background-color: #ed135d;
+  border-color: #BDC7D8;
+  font-weight: bold;
+  padding: 12px 15px;
+  max-width: 100px;
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  margin-left: 80px;
 }

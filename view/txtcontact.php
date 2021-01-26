@@ -29,20 +29,20 @@ if($_SESSION['user_lv'] < 5){                              //|
         $email = $contact['email'];
         $telnmr = $contact['telnmr'];
         ?>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
         <div>
-            <div class="txtcontact-main">
+            <div class="txthome-main">
                 <h1>Tekst Contact Aanpassen</h1>
                 <h3>Hier kunt u de gegevens wijzigen van de contact pagina.</h3>
             </div>
-            <div class="txtcontact-sub">
+            <div class="txthome-sub">
                 <p>Contact pagina</p>
             </div>
         </div>
 
         <form method="post">
             <label>
-                Straat<br>
+                Straat naam<br>
                 <?php
                 echo "<input class='titel' type='text' name='straat' value='$straat'>"
                 ?>
