@@ -49,9 +49,9 @@ Route::set('oude-opdrachten', function () {
 });
 
 Route::set('update-opdracht', function () {
-    
+    session_start();
     if (isset($_POST['editBtn'])) {
-        $_SESSION['project_id'] = $_POST['project_id'];
+        $_SESSION['id'] = $_POST['project_id'];
     }
     updateExcersise::CreateView('updateExcersise');
 });

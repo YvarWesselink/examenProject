@@ -28,7 +28,7 @@ include_once "includes/header.php";
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
     $count = count($row);
     $i = 0;
-    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten</h2></div>";
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Salland</h2></div>";
     echo "<table  style='text-align: center;'>";
     echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
     // <th>Status</th>
@@ -39,10 +39,38 @@ include_once "includes/header.php";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
-      // echo "<td>". $row[$i]['FormStatus'] ."</td>";
       echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
-      echo "<td>". $row[$i]['AantalStudenten'] ."</td>";
-      echo "<td>". $row[$i]['UitvoeringsDagEnDatum'] ."</td>";
+      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
+      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table><br><br>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
+  }
+?>
+<?php 
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM projectenopdrachtenz");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Zwolle</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
+      echo "<td>". $row[$i]['Opdracht'] ."</td>";
+      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
+      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
+      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
       echo "</tr>";
       $i ++;
     }
