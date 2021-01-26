@@ -161,3 +161,11 @@ Route::set('album-weergeven-school', function () {
 Route::set('txtcontact', function () {
     Contact::CreateView('txtcontact');
 });
+
+Route::set('moveup', function () {
+    Admin::moveUp($_GET['id']);
+});
+
+Route::set('movedown', function () {
+    Admin::moveDown($_GET['id']);
+});
