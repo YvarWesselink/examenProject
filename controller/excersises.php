@@ -53,7 +53,9 @@ class excersises extends Database {
                 $backLog = "";
             }
 
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
             $i ++;
         }
 
@@ -103,7 +105,9 @@ class excersises extends Database {
                 $backLog = "";
             }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+            $table = str_replace('_', ' ',$tabless[$x]['Field']);
+
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
             $x ++;
             $e ++;
         }
@@ -124,7 +128,7 @@ class excersises extends Database {
             if (empty($waarde)) {
                 $error = "Voer een waarde in.";
                 array_push($errorVal, $error);
-            } elseif (!preg_match('/^[a-zA-Z0-9^@"\'\/. -]*$/', $waarde)) {
+            } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $waarde)) {
                 $error = "Gebruik geen rare karakters.";
                 array_push($errorVal, $error);
             } elseif ($waarde) {
@@ -162,6 +166,30 @@ class excersises extends Database {
         // define arrays
         $tableAr = array();
         $waardeAr = array();
+
+        if ($_SESSION['school'] == "zwolle") {
+            // Get id from projectenopdracht
+            $st = $pdo->prepare("SELECT * FROM projectenopdrachtenz");
+            $st->execute();
+            $countId = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            $id = count($countId);
+            $id += 1;
+
+            array_push($tableAr, "id");
+            array_push($waardeAr, $id);
+        } elseif ($_SESSION['school'] == "salland") {
+            // Get id from projectenopdracht
+            $st = $pdo->prepare("SELECT * FROM projectenopdrachtens");
+            $st->execute();
+            $countId = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            $id = count($countId);
+            $id += 1;
+
+            array_push($tableAr, "id");
+            array_push($waardeAr, $id);
+        }
 
         // push data from 'projectenopdrachten' to array.
         while ($count > $rij) {
@@ -207,6 +235,16 @@ class excersises extends Database {
         $tableCoAr = array();
         $waardeCoAr = array();
 
+        if ($_SESSION['school'] == "zwolle") {
+            // Get id from projectenopdracht
+            array_push($tableCoAr, "id");
+            array_push($waardeCoAr, $id);
+        } elseif ($_SESSION['school'] == "salland") {
+            // Get id from projectenopdracht
+            array_push($tableCoAr, "id");
+            array_push($waardeCoAr, $id);
+        }
+
         while ($countCO > $rijCO) {
             array_push($tableCoAr, $tablesCO[$rijCO]['Field']);
 
@@ -225,6 +263,15 @@ class excersises extends Database {
             $st->execute();
         } elseif ($_SESSION['school'] == "salland") {
             $st = $pdo->prepare("INSERT INTO contactbedrijfgegevenss ($table) VALUES ($waarde)");
+            $st->execute();
+        }
+
+        // verborgen waarden uploaden (leeg)
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("INSERT INTO verborgenwaardenz (id) VALUES ($id)");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("INSERT INTO verborgenwaardens (id) VALUES ($id)");
             $st->execute();
         }
 

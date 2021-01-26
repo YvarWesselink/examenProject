@@ -115,5 +115,32 @@ if (isset($_POST['news'])) {
     nieuws::UploadNews($name, $email, $company, $comments);
 }
 
+if (isset($_POST['up'])) {
+    $id = $_POST['id'];
+    Admin::moveUp($id);
+}
 
-    
+if (isset($_POST['upload_contact'])) {
+    $straat = $_POST['straat'];
+    $penp = $_POST['penp'];
+    $email = $_POST['email'];
+    $telnmr = $_POST['telnmr'];
+
+    Admin::uploadcontactTXT($straat, $penp, $email, $telnmr);
+}
+
+if (isset($_POST['uploadzwolle'])) {
+    $titelz = $_POST['titelz'];
+    $tussenz = $_POST['tussenz'];
+    $zwolletxt = $_POST['zwolletxt'];
+
+    Admin::uploadzwolleTXT($titelz, $tussenz, $zwolletxt);
+}
+
+if (isset($_POST['uploadsalland'])) {
+    $titels = $_POST['titels'];
+    $tussens = $_POST['tussens'];
+    $sallandtxt = $_POST['sallandtxt'];
+
+    Admin::uploadsallandTXT($titels, $tussens, $sallandtxt);
+}

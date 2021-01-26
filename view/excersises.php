@@ -48,7 +48,14 @@ include_once "includes/header.php"
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
 
-            <input type="submit" class="sendExcersiseBtn" name="sendExcersise" value="Opdracht aanmaken">
+            <input type="submit" class="sendExcersiseBtn" name="sendExcersise" button onclick="myFunction()" value="Opdracht aanmaken">
+
+
+            <form action="checkbox-form.php" method="post">
+              Hierbij gaat u akkoord met de algemene voorwaarden.
+              <input type="checkbox" name="checket" id="checket" onclick="location.href='voorwaarden'" value="Yes"/>
+              </form>
+
     </form>
 </div>
 </html>

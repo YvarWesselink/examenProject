@@ -129,7 +129,7 @@
 
 /* start opdracht formulier aanpassen */
 
-.add-form-1, .add-form-2 {
+.add-form-1, .add-form-2, .add-form-4 {
     right: 8px;
     background-color: #17D23C;
     color: white;
@@ -154,6 +154,12 @@
     right: -500px;
 }
 
+.add-form-4 {
+    top: 5px;
+    position: relative;
+    right: -537px;
+}
+
 .add-form-3 {
     padding: 7px 0 7px 5px;
     border: 1px #333333 solid;
@@ -161,7 +167,7 @@
     margin: 15px 0 -30px 0;
 }
 
-.deleteRow, .deleteRowC {
+.deleteRow, .deleteRowC, .deleteRowV {
     position: absolute;
     right: 8px;
     background-color: #D21717;
@@ -177,7 +183,7 @@
     margin-top: -2px;
 }
 
-.submit-form-1, .submit-form-2 {
+.submit-form-1, .submit-form-2, .submit-form-3 {
     border: none;
     color: white;
     background-color: #ED135D;

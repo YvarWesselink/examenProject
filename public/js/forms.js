@@ -36,6 +36,24 @@ $(document).ready(function () {
         }
     );
 
+    // voeg een form toe aan de pagina.
+    $(".add-form-4").click( function() {
+            $('.submit-form-3').remove();
+            $('.form-3').append('<div class="add-forms">' +
+                '<input type="text" name="titel">' +
+                '<select name="input-type">' +
+                '<option value="txt">Tekstvlak</option>' +
+                '<option value="int">Nummeriek</option>' +
+                '<option value="date">Datum</option>' +
+                '<option value="time">Tijd</option>' +
+                '<option value="valuta">Valuta</option>' +
+                '</select>' +
+                '<button type="button" class="delete-form">-</button>' +
+                '</div>')
+            $('.form-3').append('<input class="submit-form-3" type="submit" name="update">');
+        }
+    );
+
     $(document).delegate('.delete-form', 'click', function () {
         $(this).parent('div').remove();
         $(this).parent('.br').remove();
@@ -65,6 +83,25 @@ $(document).ready(function () {
 
             $.ajax({
                 url: '/deleteRowCo',
+                data: {'id' : id},
+                type: 'GET'
+            })
+
+            $(document).delegate('button', 'click', function () {
+                $(this).parent('div').remove();
+            })
+
+        } else {
+            console.log("niet verwijderd")
+        }
+    })
+
+    $('.deleteRowV').click(function () {
+        if (confirm("Weet je zeker dat je deze rij wilt verwijderen, dit verwijdert ook alle data in de rij!")) {
+            var id = $(this).parent('div').text().slice(0,-1);
+
+            $.ajax({
+                url: '/deleteRowVe',
                 data: {'id' : id},
                 type: 'GET'
             })

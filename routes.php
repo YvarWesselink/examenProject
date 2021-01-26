@@ -112,6 +112,10 @@ Route::set('deleteRowCo', function() {
     Admin::deleteElementCo($_GET['id']);
 });
 
+Route::set('deleteRowVe', function () {
+    Admin::deleteElementVe($_GET['id']);
+});
+
 Route::set('deleteRowExc', function() {
     Admin::deleteElementExc($_GET['id']);
 });
@@ -147,4 +151,8 @@ Route::set('fotos', function () {
 
 Route::set('album-weergeven-school', function () {
     Index::CreateView('albums');
+});
+
+Route::set('txtcontact', function () {
+    Contact::CreateView('txtcontact');
 });

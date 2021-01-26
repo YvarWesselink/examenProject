@@ -15,7 +15,7 @@ class Admin extends controller
         $st->bindParam(":txthome", $txthome,PDO::PARAM_STR);
         $st->execute();
 
-        header("Location: /txthome");
+        echo "<script> location.href='formulier'; </script>";
     }
 
     public static function uploadImage($album) {
@@ -385,6 +385,9 @@ class Admin extends controller
     public static function uploadElementOp($titel, $inputType, $type) {
         $pdo = self::connect();
 
+        // check if there are any spaces
+        $titel = str_replace(' ', '_', $titel);
+
         // upload elements voor salland
         $table = $type."s";
 
@@ -427,9 +430,10 @@ class Admin extends controller
 
         $st->execute();
 
-        header('Location: /formulier');
+        echo "<script> location.href='formulier'; </script>";
     }
 
+    // get elements from opdrachten
     public static function getElementsForm() {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
@@ -440,11 +444,13 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRow'>-</button></div>"."<br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table." <form class='move-element' method='post'><input type='submit' value='🠕' name='up'><input type='submit' value='🠗' name='down'><input type='hidden' value=''> <button type='button' class='deleteRow'>-</button></div>"."<br>";
             $i ++;
         }
     }
 
+    // get elements from contact bedrijfgegevens
     public static function getElementsFormCont() {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
@@ -455,13 +461,32 @@ class Admin extends controller
 
         $i = 1;
         while ($count > $i) {
-            echo "<div class='add-form-3'>".$tables[$i]['Field']."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table."<button type='button' class='deleteRowC'>-</button></div>"."<br>";
+            $i ++;
+        }
+    }
+
+    // get elements from verborgenwaarden
+    public static function getElementsFormVerb() {
+        $pdo = self::connect();
+        $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardens");
+        $st->execute();
+
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tables);
+
+        $i = 1;
+        while ($count > $i) {
+            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            echo "<div class='add-form-3'>".$table."<button type='button' class='deleteRowV'>-</button></div>"."<br>";
             $i ++;
         }
     }
 
     public static function deleteElementOp($column) {
         $pdo = self::connect();
+        $column = str_replace(' ', '_',$column);
         $st = $pdo->prepare("ALTER TABLE projectenopdrachtens DROP COLUMN $column");
         $st->execute();
 
@@ -471,6 +496,7 @@ class Admin extends controller
 
     public static function deleteElementCo($column) {
         $pdo = self::connect();
+        $column = str_replace(' ', '_',$column);
         $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevenss DROP COLUMN $column");
         $st->execute();
 
@@ -478,12 +504,22 @@ class Admin extends controller
         $st->execute();
     }
 
-    public static function deleteElementExc($id) {
+    public static function deleteElementVe($column) {
         $pdo = self::connect();
-        $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE project_id = $id");
+        $column = str_replace(' ', '_',$column);
+        $st = $pdo->prepare("ALTER TABLE verborgenwaardens DROP COLUMN $column");
         $st->execute();
 
-        $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE project_id = $id");
+        $st = $pdo->prepare("ALTER TABLE verborgenwaardenz DROP COLUMN $column");
+        $st->execute();
+    }
+
+    public static function deleteElementExc($id) {
+        $pdo = self::connect();
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE id = $id");
+        $st->execute();
+
+        $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE id = $id");
         $st->execute();
     }
 
@@ -525,5 +561,83 @@ class Admin extends controller
         $st->execute();
         header("Location: /adminpanel");
         }
+
+        public static function contactTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM contact WHERE id = 1");
+            $st->execute();
+    
+            $contact = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $contact;
+        }
+    
+        public static function uploadcontactTXT($straat, $penp, $email, $telnmr)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE contact SET straat=:straat, penp=:penp, email=:email , telnmr=:telnmr WHERE id = 1");
+    
+            $st->bindParam(":straat", $straat,PDO::PARAM_STR);
+            $st->bindParam(":penp", $penp,PDO::PARAM_STR);
+            $st->bindParam(":email", $email,PDO::PARAM_STR);
+            $st->bindParam(":telnmr", $telnmr,PDO::PARAM_STR);
+            $st->execute();
+    
+            header("Location: /txtcontact");
+        }
+        
+        public static function zwolleTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM zwolletxt WHERE id = 1");
+            $st->execute();
+    
+            $zwolle = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $zwolle;
+        }
+    
+        public static function uploadzwolleTXT($titelz, $tussenz, $zwolletxt)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE zwolletxt SET titelz=:titelz, tussenz=:tussenz, zwolletxt=:zwolletxt WHERE id = 1");
+    
+            $st->bindParam(":titelz", $titelz,PDO::PARAM_STR);
+            $st->bindParam(":tussenz", $tussenz,PDO::PARAM_STR);
+            $st->bindParam(":zwolletxt", $zwolletxt,PDO::PARAM_STR);
+            $st->execute();
+    
+            echo "<script> location.href='txthome'; </script>";
+        }
+
+        public static function sallandTXT() {
+            $pdo = self::connect();
+    
+            $st = $pdo->prepare("SELECT * FROM sallandtxt WHERE id = 1");
+            $st->execute();
+    
+            $salland = $st->fetch(PDO::FETCH_ASSOC);
+    
+            return $salland;
+        }
+    
+        public static function uploadsallandTXT($titels, $tussens, $sallandtxt)
+        {
+            $pdo = self::connect();
+            
+            $st = $pdo->prepare("UPDATE sallandtxt SET titels=:titels, tussens=:tussens, sallandtxt=:sallandtxt WHERE id = 1");
+    
+            $st->bindParam(":titels", $titels,PDO::PARAM_STR);
+            $st->bindParam(":tussens", $tussens,PDO::PARAM_STR);
+            $st->bindParam(":sallandtxt", $sallandtxt,PDO::PARAM_STR);
+            $st->execute();
+    
+            echo "<script> location.href='txthome'; </script>";
+        }
+
+
 
 }

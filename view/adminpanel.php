@@ -215,7 +215,7 @@ if($_SESSION['user_lv'] < 0){                              //|
                     <img src='/public/img/edit.png'>
                 </div>
                 <div class='button-bot'>
-                    <p>Text Home Aanpassen</p>
+                    <p>Text Op Voor Pagina's Aanpassen</p>
                 </div>
             </div>
         </a>
@@ -241,6 +241,17 @@ if($_SESSION['user_lv'] < 0){                              //|
                 </div>
             </div>
         </a>
+
+        <a href='/txtcontact' class='admin-button'>
+            <div>
+                <div class='button-top'>
+                    <img src='/public/img/edit.png'>
+                </div>
+                <div class='button-bot'>
+                    <p>Contact info aanpassen</p>
+                </div>
+            </div>
+        </a>
     ";
  }else{
     echo"
@@ -262,5 +273,4 @@ if($_SESSION['user_lv'] < 0){                              //|
 
 </body>
 </html>
-
 
