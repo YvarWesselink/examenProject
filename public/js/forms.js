@@ -61,7 +61,7 @@ $(document).ready(function () {
 
     $('.deleteRow').click(function () {
         if (confirm("Weet je zeker dat je deze rij wilt verwijderen, dit verwijdert ook alle data in de rij!")) {
-            var id = $(this).parent('div').text().slice(0,-1);
+            var id = $(this).attr('id');
 
             $.ajax({
                 url: '/deleteRowOp',
