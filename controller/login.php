@@ -2,9 +2,18 @@
 
 class login extends controller {
     // Schrijf hier je functies
+
     public static function userLogin($usernameEmail, $password) {
-        try {
-            session_start();
+            if($usernameEmail == "" && $password == ""){
+                exit("<div class ='errorLogin'>Vul gegevens in</div>") ;
+
+            }elseif($usernameEmail == ""){
+                exit("<div class ='errorLogin'>Voer een email of gebruikersnaam in</div>");
+               
+            }elseif($password == ""){
+                exit("<div class ='errorLogin'>Voer een wachtwoord in</div>");
+            }else{        
+
             // hash het wachtwoord zo dat die matcht met het wachtwoord in de database
             $hash_password = hash('sha256', $password);
 
@@ -33,13 +42,20 @@ class login extends controller {
 
             // tel hoe veel users er zijn gevonden met de gegeven gegevens
             $count=$stmt->rowCount();
-
+            if($count == null){ 
+                exit("<div class = 'errorLogin'>Ongeldige gegevens</div>");
+            }else{
             // haal de gegevens uit de database
             $data = $stmt->fetch(PDO::FETCH_OBJ);
             $username = $user->fetch(PDO::FETCH_ASSOC);
             $userlevel = $userlv->fetch(PDO::FETCH_OBJ);
 
             $pdo = null;
+            }
+        }
+        try {
+            session_start();
+            
 
             // als er meer dan 1 gebruiker is met de juiste gegevens > sla die gegevens op in de session.
             if ($count) {

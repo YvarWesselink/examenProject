@@ -45,3 +45,14 @@
   color: #ffffff;
   text-align: center;
 }
+.errorLogin{
+  display: block;
+  border: solid 1px #ff0000;
+  background-color: #ff9f9f;
+  padding: 10px;
+  margin-left: 30%;
+  margin-right: 30%;
+  color: #880000;
+  font-size: 20px;
+  font-weight: bold;
+}
