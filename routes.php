@@ -136,9 +136,14 @@ Route::set('foto-uploaden', function () {
     Admin::CreateView('uploadImage');
 });
 
+Route::set('alle_nieuws', function () {
+    Index::CreateView('alle_nieuws');
+});
+
 Route::set('nieuws', function () {
     Index::CreateView('nieuws');
 });
+
 
 Route::set('album-weergeven', function () {
     Index::CreateView('albumWeergeven');
