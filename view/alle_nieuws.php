@@ -8,7 +8,7 @@
 <body>
 
 <?php
-$conn = database::connect();
+
 $sql = "SELECT userID, Name, Email, Comments FROM feedback";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
