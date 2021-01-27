@@ -20,28 +20,20 @@ include_once "includes/header.php";
 
 <div class="txthome-container opdracht">
     <div class="txthome-main">
-        <h1>Gebruiker updaten</h1>
-        <h3>*hier moet nog een tekstje komen.*</h3>
+        <h1>Oude opdracht</h1>
     </div>
     <!-- Dit is het form waar je de opdracht in kunt vullen. -->
     <div class="txthome-sub">
-        <p>1 Opdracht </p>
+        <p>Opdracht </p>
     </div>
     <form method="post" class="opdrachtIndienenForm" >
         <div>
             <?php
             $errormsg = "";
-            if (isset($_POST['updateOldExcersise'])) {
-                $errormsg = updateOldExcersise::checkExcersise($_POST);
-
-                if (!array_filter($errormsg)) {
-                    updateOldExcersise::UploadExersise($_POST);
-                }
-            }
-            updateOldExcersise::showFields($errormsg);
+            showOldExcersise::showFields($errormsg);
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
-            <input type="submit" class="sendExcersiseBtn" name="updateOldExcersise" value="Opdracht updaten">
+            <!-- <input type="submit" class="sendExcersiseBtn" name="updateOldExcersise" value="Opdracht updaten"> -->
     </form>
 </div>
 </html>

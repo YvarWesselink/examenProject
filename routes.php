@@ -80,12 +80,12 @@ Route::set('update-nieuws', function () {
     updateNews::CreateView('updateNews');
 });
 
-Route::set('update-oude-opdracht', function () {
+Route::set('oude-opdracht', function () {
     session_start();
     if (isset($_POST['editBtn'])) {
         $_SESSION['id'] = $_POST['project_id'];
     }    
-    updateOldExcersise::CreateView('updateOldExcersise');
+    showOldExcersise::CreateView('showOldExcersise');
 });
 
 Route::set('aboutus', function () {
