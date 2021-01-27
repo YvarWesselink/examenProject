@@ -64,7 +64,7 @@ include_once "includes/header.php";
 
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtnZ' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><form method='post' action='/update-opdracht-zwolle'><input type='submit' value='' name='editBtnZ' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowZ' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";

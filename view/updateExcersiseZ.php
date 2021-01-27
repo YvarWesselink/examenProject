@@ -32,13 +32,13 @@ include_once "includes/header.php";
             <?php
             $errormsg = "";
             if (isset($_POST['updateExcersiseZ'])) {
-                $errormsg = updateExcersiseZ::checkExcersise($_POST);
+                $errormsg = updateExcersiseZ::checkExcersiseZ($_POST);
 
                 if (!array_filter($errormsg)) {
-                    updateExcersiseZ::UploadExersise($_POST);
+                    updateExcersiseZ::UploadExersiseZ($_POST);
                 }
             }
-            updateExcersiseZ::showFields($errormsg);
+            updateExcersiseZ::showFieldsZ($errormsg);
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
             <input type="submit" class="sendExcersiseBtn" name="updateExcersiseZ" value="Opdracht updaten">

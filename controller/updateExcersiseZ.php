@@ -8,7 +8,7 @@ class updateExcersiseZ extends Database {
         require_once("./view/$viewName.php");
     }
 
-    public static function showFields($errormsg) {
+    public static function showFieldsZ($errormsg) {
         $pdo = self::connect();
         $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
         $st->execute();
@@ -175,7 +175,7 @@ class updateExcersiseZ extends Database {
         }
     }
 
-    public static function checkExcersise($waarden) {
+    public static function checkExcersiseZ($waarden) {
 
         $errormsg = array();
 
@@ -207,7 +207,7 @@ class updateExcersiseZ extends Database {
         return $errormsg;
     }
 
-    public static function UploadExersise($waarden) {
+    public static function UploadExersiseZ($waarden) {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'

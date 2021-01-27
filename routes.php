@@ -50,14 +50,18 @@ Route::set('oude-opdrachten', function () {
 
 Route::set('update-opdracht', function () {
     session_start();
-    if (isset($_POST['editBtnZ'])) {
-        $_SESSION['id'] = $_POST['project_id'];
-        updateExcersiseZ::CreateView('updateExcersiseZ');
-    }
     if (isset($_POST['editBtn'])) {
         $_SESSION['id'] = $_POST['project_id'];
-        updateExcersise::CreateView('updateExcersise');
     }    
+    updateExcersise::CreateView('updateExcersise');
+});
+
+Route::set('update-opdracht-zwolle', function () {
+    session_start();
+    if (isset($_POST['editBtnZ'])) {
+        $_SESSION['id'] = $_POST['project_id'];
+    }
+    updateExcersiseZ::CreateView('updateExcersiseZ');
 });
 
 Route::set('aboutus', function () {
