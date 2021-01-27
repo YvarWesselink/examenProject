@@ -756,6 +756,15 @@ div .image img:hover{
   transform: scale(1.1);
 }
 
+
+.image p{
+  padding-left: 10px;
+}
+
+.img-left p{
+  padding-right: 10px;
+}
+
 @media (max-width: 767.98px) {
   .timeline::after {
     left: 90px;
