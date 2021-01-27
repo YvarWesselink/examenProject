@@ -31,17 +31,17 @@ include_once "includes/header.php";
         <div>
             <?php
             $errormsg = "";
-            if (isset($_POST['updateExcersise'])) {
-                $errormsg = updateExcersise::checkExcersise($_POST);
+            if (isset($_POST['updateUsers'])) {
+                $errormsg = updateUsers::checkExcersise($_POST);
 
                 if (!array_filter($errormsg)) {
-                    updateExcersise::UploadExersise($_POST);
+                    updateUsers::UploadExersise($_POST);
                 }
             }
-            updateExcersise::showFields($errormsg);
+            updateUsers::showFields($errormsg);
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
-            <input type="submit" class="sendExcersiseBtn" name="updateExcersise" value="Opdracht updaten">
+            <input type="submit" class="sendExcersiseBtn" name="updateUsers" value="Opdracht updaten">
     </form>
 </div>
 </html>
