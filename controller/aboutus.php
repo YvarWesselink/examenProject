@@ -16,7 +16,7 @@ class aboutus extends controller {
 $sql = "SELECT userID, Name, Email, Comments FROM feedback";
 $prepare=$conn->prepare($sql);
 $prepare->execute();
-$result = $conn->fetchAll(PDO::FETCH_ASSOC);
+$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 print_r($result);
 
 if ($result->num_rows > 0) {
