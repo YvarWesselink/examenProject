@@ -19,7 +19,7 @@ $prepare->execute();
 $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 print_r($result);
 
-if ($result->num_rows > 0) {
+if (count($result) > 0) {
 // output data of each row
 while($row = $result->fetch_assoc()) {
 echo '<div class="nieuws"><td><br>' . $row["userID"]. "</td><td><br>" . $row["Name"] . "</td><td><br>"
