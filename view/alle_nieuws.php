@@ -1,7 +1,8 @@
+
+<head>
 <?PHP
 include_once "includes/header.php"
 ?>
-<head>
 <title>Alle nieuws artikelen</title>
 <link rel="stylesheet" href="nieuws.css">
 
@@ -13,4 +14,8 @@ aboutus::downloadnieuws();
 ?>
 
 </body>
+
+<?PHP
+include_once "includes/footer.php"
+?>
 </html>
