@@ -50,10 +50,14 @@ Route::set('oude-opdrachten', function () {
 
 Route::set('update-opdracht', function () {
     session_start();
+    if (isset($_POST['editBtnZ'])) {
+        $_SESSION['id'] = $_POST['project_id'];
+        updateExcersiseZ::CreateView('updateExcersiseZ');
+    }
     if (isset($_POST['editBtn'])) {
         $_SESSION['id'] = $_POST['project_id'];
-    }
-    updateExcersise::CreateView('updateExcersise');
+        updateExcersise::CreateView('updateExcersise');
+    }    
 });
 
 Route::set('aboutus', function () {
@@ -118,6 +122,10 @@ Route::set('deleteRowVe', function () {
 
 Route::set('deleteRowExc', function() {
     Admin::deleteElementExc($_GET['id']);
+});
+
+Route::set('deleteRowExcZ', function() {
+    Admin::deleteElementExcZ($_GET['id']);
 });
 
 Route::set('deleteRowUser', function() {

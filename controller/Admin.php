@@ -665,13 +665,31 @@ class Admin extends controller
     }
 
     // delete elements end
-
+    // Delete function for the salland excersise
     public static function deleteElementExc($id) {
         $pdo = self::connect();
+        //  Delete the excersise 
         $st = $pdo->prepare("DELETE FROM projectenopdrachtens WHERE id = $id");
+        $st->execute();        
+        //  Delete the contact from the excersise 
+        $st = $pdo->prepare("DELETE FROM contactbedrijfgegevenss WHERE id = $id");
+        $st->execute();        
+        //  Delete the hidden fields from the excersise 
+        $st = $pdo->prepare("DELETE FROM verborgenwaardens WHERE id = $id");
         $st->execute();
+    }
 
+    // Delete function for the zwolle excersise
+    public static function deleteElementExcZ($id) {
+        $pdo = self::connect();
+        // Delete the excersise
         $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE id = $id");
+        // $st->execute();    
+        //  Delete the contact from the excersise 
+        $st = $pdo->prepare("DELETE FROM contactbedrijfgegevensz WHERE id = $id");
+        // $st->execute();        
+        //  Delete the hidden fields from the excersise 
+        $st = $pdo->prepare("DELETE FROM verborgenwaardenz WHERE id = $id");
         $st->execute();
     }
 

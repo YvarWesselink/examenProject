@@ -64,8 +64,8 @@ include_once "includes/header.php";
 
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
-      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtnZ' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowZ' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
       echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
@@ -152,13 +152,33 @@ include_once "includes/header.php";
     <input type="submit" value="edit">
 </form>
 
-<!-- Delete function for the excersise table -->
+<!-- Delete function for the excersise table salland-->
 <script>
   $('.deleteTableRow').click(function () {
       if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
           var id = $(this).attr('id');
           $.ajax({
               url: '/deleteRowExc',
+              data: {'id' : id},
+              type: 'GET'
+          })
+          $(document).delegate('button', 'click', function () {
+            $(this).parent('div').remove();
+          })
+          location.reload();
+      } else {
+          console.log("niet verwijderd");
+      }
+  })
+</script>
+
+<!-- Delete function for the excersise table zwolle-->
+<script>
+  $('.deleteTableRowZ').click(function () {
+      if (confirm("Weet je zeker dat je deze gegevens uit de database wilt verwijderen? Dit kan je niet ongedaan maken!")) {
+          var id = $(this).attr('id');
+          $.ajax({
+              url: '/deleteRowExcZ',
               data: {'id' : id},
               type: 'GET'
           })
