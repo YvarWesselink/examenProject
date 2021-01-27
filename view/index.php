@@ -7,6 +7,7 @@ unset($_SESSION['school']);
 include_once "includes/header.php";
 ?>
 
+
  End Navbar
  ----------------------------
  Start Banner Section
@@ -15,6 +16,45 @@ include_once "includes/header.php";
         <img src="/public/img/banner.png">
     </div>
     <div class="banner-svg">
+    <div class="slider">
+    <?php
+    $homepage= "1";
+    Admin::downloadAlbumImagesSlideshow($homepage);
+
+    $albumb = $albumhome;
+    Admin::downloadImagesSlideshow($albumb);
+    if($slides != ""){
+        foreach ($slides as $slide) {
+            echo "<div>";
+            echo "<img src='".$slide['image']."'>";
+            echo "</div>";
+        }
+
+    }else{
+    echo"
+    <div>TEST1</div>
+    <div>TEST2</div>
+    <div>TEST3</div>
+    ";
+    }
+
+    ?>
+</div>
+<script>
+$(document).ready(function(){
+  $('.your-class').slick({
+    setting-name: setting-value
+  });
+});
+
+$('.fade').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear'
+});
+</script>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#fff" fill-opacity="1"
                   d="M0,96L80,112C160,128,320,160,480,154.7C640,149,800,107,960,90.7C1120,75,1280,85,1360,90.7L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">

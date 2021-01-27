@@ -104,7 +104,8 @@ if (isset($_POST['delete-image'])) {
 
 if (isset($_POST['homepage'])) {
     $id = $_POST['album'];
-    Admin::homepageImage($id);
+    $naam = $_POST['naam'];
+    Admin::homepageImage($id, $naam);
 }
 
 if (isset($_POST['news'])) {
