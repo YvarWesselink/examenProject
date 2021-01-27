@@ -129,6 +129,7 @@ class Admin extends controller
 
                         if ($homepage == false) {
                             echo "<form method='post'>";
+                            echo "<input type='hidden' name='naam' value='$naam'>";
                             echo "<input type='hidden' name='album' value='$id'>";
                             echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren'>";
                             echo "</form>";
@@ -319,10 +320,10 @@ class Admin extends controller
         echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
-    public static function homepageImage($id) {
+    public static function homepageImage($id, $naam) {
         $pdo = self::connect();
 
-        $st = $pdo->prepare("SELECT id FROM albums WHERE homepage = true ");
+        $st = $pdo->prepare("SELECT id, naam FROM albums WHERE homepage = true ");
         $st->execute();
         $hID = $st->fetch(PDO::FETCH_ASSOC);
 
@@ -334,10 +335,23 @@ class Admin extends controller
             $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
             $st->bindParam(":id", $id);
             $st->execute();
+
+            $sts = $pdo->prepare("UPDATE images SET homepage = false WHERE album = :naam");
+            $sts->bindParam(":naam", $hID['naam']);
+            $sts->execute();
+
+            $sts = $pdo->prepare("UPDATE images SET homepage = true WHERE album = :naam");
+            $sts->bindParam(":naam", $naam);
+            $sts->execute();
+
         } else {
             $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
             $st->bindParam(":id", $id);
             $st->execute();
+
+            $sts = $pdo->prepare("UPDATE images SET homepage = true WHERE album = :naam");
+            $sts->bindParam(":naam", $naam);
+            $sts->execute();
         }
 
         echo "<script> location.href='/foto-uploaden'; </script>";
