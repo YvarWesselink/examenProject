@@ -1,16 +1,17 @@
 <?php
 
 class nieuws extends controller {
-    public static function UploadNews($name, $email, $company, $comments) {
+    public static function UploadNews($name, $email, $company, $comments, $school) {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn = database::connect();
 
-            $stmt = $conn->prepare("INSERT INTO feedback (Name,Email,Company,Comments) VALUES (:name, :email, :company, :comments)");
+            $stmt = $conn->prepare("INSERT INTO feedback (Name,Email,Company,Comments,school) VALUES (:name, :email, :company, :comments, :school)");
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':company', $company);
             $stmt->bindParam(':comments', $comments);
+            $stmt->bindParam(':school', $school);
 
             $stmt->execute();
 
@@ -22,6 +23,8 @@ class nieuws extends controller {
             echo"Uw bedrijf: ".$company;
             echo"<br>";
             echo"Uw bericht: ".$comments;
+            echo"<br>";
+            echo"Uw school: ".$school;
             echo"<br>";
             echo"<h2>We zullen er zo snel mogelijk naar kijken!</h2></div>";
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include_once "includes/header.php"
+include_once "includes/header.php";
 
 ?>
 
@@ -27,6 +27,26 @@ include_once "includes/header.php"
         <input type="text" name="Company" autocomplete="off" />
         <label>Bericht</label>
         <input type="text" name="Comments" autocomplete="off"/>
+<<<<<<< Updated upstream
+=======
+        <!-- <form method="post" action="" enctype='multipart/form-data' class="upload-image"> -->
+>>>>>>> Stashed changes
+        <label>Nieuws foto</label>
+        <div class="images">
+            <?php Admin::downloadAlbumImages($album); ?>
+        </div>
+        <label>
+            Kies School
+            <select name="school">
+                <option value="z">Zwolle</option>
+                <option value="s">Salland</option>
+            </select>
+        </label>
+<<<<<<< Updated upstream
+=======
+        <!-- <input type='submit' value='Upload Plaatje' name='but_upload'> -->
+    <!-- </form> -->
+>>>>>>> Stashed changes
         <input type="submit" class="button" name="news" value="Versturen">
     </form>
 </div>

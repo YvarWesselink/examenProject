@@ -122,7 +122,7 @@ include_once "includes/header.php";
     $i = 0;
     echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Nieuws</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th></th><th>Naam</th><th>E-mail</th><th>Bedrijf</th><th>Opmerkingen</th>";
+    echo "<th></th><th></th><th>Naam</th><th>E-mail</th><th>Bedrijf</th><th>Opmerkingen</th><th>Foto's</th><th>School</th>";
     
     while($count > $i){
       echo "<tr>";
@@ -132,6 +132,8 @@ include_once "includes/header.php";
       echo "<td>". $row[$i]['Email'] ."</td>";
       echo "<td>". $row[$i]['Company'] ."</td>";
       echo "<td>". $row[$i]['Comments'] ."</td>";
+      echo "<td><img src='". $row[$i]['foto'] ."' style='width: 50px; height: 50px; position: relative; overflow: hidden; border-radius: 3px;'</td>";
+      echo "<td>". $row[$i]['school'] ."</td>";
       echo "</tr>";
       $i ++;
     }
