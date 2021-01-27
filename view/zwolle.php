@@ -69,17 +69,12 @@ include_once "includes/header.php";
 
 <?php
     $school = $_SESSION['school'];
-    $images = Admin::downloadFotosHome($school);
-
-    if (count($images) == 0) {
-        $images = null;
-    }
-
     $nieuwsContent = Admin::downloadNieuwsHome($school);
 
     if (count($nieuwsContent) == 0) {
         $nieuwsContent = null;
     }
+    
 ?>
 
 <section class="nieuws">
@@ -107,21 +102,25 @@ include_once "includes/header.php";
                 </div>
             </div>
             <div class="image">
-                <a href="/fotos">
-                    <?php
+                <?php
 
-                        if (isset($images[0]['image'])) {
+                    if(isset($nieuwsContent[0]['foto'])){
 
-                            $image = $images[0]['image'];
-                            echo "<img src='$image' alt=''>";
+                        $nieuwsFoto = $nieuwsContent[0]['foto'];
                         
-                        }else {
-                            
-                            echo "<p>Nog geen foto!</p>";
-                        }
+                    }
 
-                    ?>
-                </a>
+                    if (isset($nieuwsContent[0]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[0]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+                    
+                    }else {
+                        
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+
+                ?>
             </div>
         </div>
         <div class="all-content">
@@ -146,21 +145,27 @@ include_once "includes/header.php";
                 </div>
             </div>
             <div class="image img-left">
-                <a href="/fotos">
-                    <?php
-                    
-                        if (isset($images[1]['image'])) {
+                <?php
 
-                            $image = $images[1]['image'];
-                            echo "<img src='$image' alt=''>";
+                    if(isset($nieuwsContent[1]['foto'])){
+
+                        $nieuwsFoto = $nieuwsContent[1]['foto'];
                         
-                        }else {
-                            
-                            echo "<p>Nog geen foto!</p>";
-                        }
+                    }
                     
-                    ?>
-                </a>
+                    if (isset($nieuwsContent[1]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[1]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+                    
+                        $nieuwsFoto = $nieuwsContent[1]['foto'];
+                    
+                    }else {
+                        
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+                
+                ?>
             </div>
         </div>
         <div class="all-content">
@@ -185,27 +190,33 @@ include_once "includes/header.php";
                 </div>
             </div>
             <div class="image">
-                <a href="/fotos">
-                    <?php
+                <?php
 
-                        if (isset($images[2]['image'])) {
+                    if(isset($nieuwsContent[2]['foto'])){
 
-                            $image = $images[2]['image'];
-                            echo "<img src='$image' alt=''>";
+                        $nieuwsFoto = $nieuwsContent[2]['foto'];
+
+                    }
+                                            
+                    if (isset($nieuwsContent[2]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[2]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+                    
+                        $nieuwsFoto = $nieuwsContent[2]['foto'];
+                    
+                    }else {
                         
-                        }else {
-
-                            echo "<p>Nog geen foto!</p>";
-                        }
-                        
-                    ?>
-                </a>
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+                    
+                ?>
             </div>
         </div>
     </div>
     <?php
 
-        if(count($images) > 3){
+        if(count($nieuwsContent) > 3){
             
             echo '<button class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button>';
         

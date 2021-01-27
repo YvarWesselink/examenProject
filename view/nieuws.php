@@ -4,6 +4,10 @@
 <?php
 include_once "includes/header.php";
 
+$conn = self::connect();
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$result = $conn->query("SELECT * FROM images");
+
 ?>
 
 <div class="txthome-container">
@@ -29,10 +33,47 @@ include_once "includes/header.php";
         <input type="text" name="Comments" autocomplete="off"/>
         <!-- <form method="post" action="" enctype='multipart/form-data' class="upload-image"> -->
         <label>Nieuws foto</label>
-        <div class="images">
-            <?php Admin::downloadAlbumImages($album); ?>
+        <div class="images" style="text-align: left; display: block;">
+            <?php
+
+                if ($result->rowCount() > 0){
+                    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+                    $count = count($row);
+                    $i = 0;
+                    $d = 0;
+                    
+                    while($count > $i){
+                        echo "<div style='width: 85px; height: auto; position: relative; overflow: hidden; margin: 0 5px 15px; display: inline-block;'><img src='". $row[$i]['image'] ."' style='width: 100%; height: 85px;border-radius: 3px;'/><span style='display: block; text-align: center;'>" . $row[$i]['id'] . "</span></div>";
+                        $i++;
+                        }
+
+                        ?>
+
+            <label>Kies foto
+                <select name="foto">
+                    <option value="0">Geen foto</option>
+                    <?php
+
+                        while($count > $d){
+
+                            echo '<option value="' . $row[$d]['image'] . '">foto id ' . $row[$d]['id'] . '</option>';
+                            $d++;
+                            
+                        }
+
+                            echo "<table>";
+                        
+                        } else {
+
+                            echo "<select name='foto'>Er zijn geen foto's om te kiezen!</select><br>";
+                        
+                        }
+
+                    ?>
+                </select>
+            </label>
         </div>
-        <label>
+        <label style="display: block;">
             Kies School
             <select name="school">
                 <option value="z">Zwolle</option>

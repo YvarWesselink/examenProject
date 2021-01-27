@@ -9,8 +9,7 @@ class aboutus extends controller {
     // output data of each row
     while($row = $result->fetch_assoc()) {
     echo '<div class="nieuws"><td><br>' . $row["userID"]. "</td><td><br>" . $row["Name"] . "</td><td><br>"
-    . $row["Email"]. "</td><td><br>" . $row["Comments"]. "</td><br>" . $row["foto"]. "</td><br>" . $row["school"]. "</td><br><br></div>";
-    . $row["Email"]. "</td><td><br>" . $row["Comments"]. "</td><br><td><br>" . $row["school"] . "</td><br></div>";
+    . $row["Email"]. "</td><td><br>" . $row["Comments"]. "</td><td><br>" . $row["foto"]. "</td><td><br>" . $row["school"]. "</td><br><br></div>";
     }
     echo "</table>";
     } else { echo "0 results"; }

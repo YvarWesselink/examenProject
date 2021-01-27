@@ -71,20 +71,11 @@ echo "<h2>".$salland['titels']."</h2>"."<h3>".$salland['tussens']."</h3>"."<p>".
 
 <?php
 $school = $_SESSION['school'];
-$images = Admin::downloadFotosHome($school);
+$nieuwsContent = Admin::downloadNieuwsHome($school);
 
-    $school = $_SESSION['school'];
-    $images = Admin::downloadFotosHome($school);
-
-    if (count($images) == 0) {
-        $images = null;
-    }
-
-    $nieuwsContent = Admin::downloadNieuwsHome($school);
-
-    if (count($nieuwsContent) == 0) {
-        $nieuwsContent = null;
-    }
+if (count($nieuwsContent) == 0) {
+    $nieuwsContent = null;
+}
 ?>
 
 <section class="nieuws">
@@ -103,7 +94,7 @@ $images = Admin::downloadFotosHome($school);
                             echo '<h2>' . $nieuwsCon . '</h2>';
                             echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
                         
-                        }else {
+                        }elseif(isset($nieuwsContent[0]['foto']) == 'Geen' || empty($nieuwsContent[0]['foto'])) {
                             
                             echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
                         }
@@ -112,19 +103,27 @@ $images = Admin::downloadFotosHome($school);
                 </div>
             </div>
             <div class="image">
+                
                 <?php
 
-                    if (isset($images[0]['image'])) {
+                    if(isset($nieuwsContent[0]['foto'])){
 
-                        $image = $images[0]['image'];
-                        echo "<a href='/fotos'><img src='$image' alt=''></a>";
-                    
+                        $nieuwsFoto = $nieuwsContent[0]['foto'];
+                        
+                    }
+
+                    if (isset($nieuwsContent[0]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[0]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+
                     }else {
                         
-                        echo "<p>Nog geen foto!</p>";
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
                     }
 
                 ?>
+
             </div>
         </div>
         <div class="all-content">
@@ -140,7 +139,7 @@ $images = Admin::downloadFotosHome($school);
                             echo '<h2>' . $nieuwsCon . '</h2>';
                             echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
                         
-                        }else {
+                        }elseif(isset($nieuwsContent[1]['foto']) == 'Geen' || empty($nieuwsContent[1]['foto'])) {
                             
                             echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
                         }
@@ -149,19 +148,27 @@ $images = Admin::downloadFotosHome($school);
                 </div>
             </div>
             <div class="image img-left">
+                
                 <?php
 
-                    if (isset($images[1]['image'])) {
+                    if(isset($nieuwsContent[1]['foto'])){
 
-                        $image = $images[1]['image'];
-                        echo "<a href='/fotos'><img src='$image' alt=''></a>";
+                        $nieuwsFoto = $nieuwsContent[1]['foto'];
+                        
+                    }
+
+                    if (isset($nieuwsContent[1]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[1]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
 
                     }else {
                         
-                        echo "<p>Nog geen foto!</p>";
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
                     }
 
                 ?>
+
             </div>
         </div>
         <div class="all-content">
@@ -177,7 +184,7 @@ $images = Admin::downloadFotosHome($school);
                             echo '<h2>' . $nieuwsCon . '</h2>';
                             echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
                         
-                        }else {
+                        }elseif(isset($nieuwsContent[2]['foto']) == 'Geen' || empty($nieuwsContent[2]['foto'])) {
                             
                             echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
                         }
@@ -186,25 +193,33 @@ $images = Admin::downloadFotosHome($school);
                 </div>
             </div>
             <div class="image">
+                
                 <?php
 
-                    if (isset($images[2]['image'])) {
+                    if(isset($nieuwsContent[2]['foto'])){
 
-                        $image = $images[2]['image'];
-                        echo "<a href='/fotos'><img src='$image' alt=''></a>";
+                        $nieuwsFoto = $nieuwsContent[2]['foto'];
+                        
+                    }
+
+                    if (isset($nieuwsContent[2]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[2]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
 
                     }else {
                         
-                        echo "<p>Nog geen foto!</p>";
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
                     }
 
                 ?>
+
             </div>
         </div>
     </div>
     <?php
 
-        if(count($images) > 3){
+        if(count($nieuwsContent) > 3){
             
             echo '<button class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button>';
         

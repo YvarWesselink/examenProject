@@ -112,8 +112,9 @@ if (isset($_POST['news'])) {
     $email = $_POST['Email'];
     $company = $_POST['Company'];
     $comments = $_POST['Comments'];
+    $foto = $_POST['foto'];
     $school = $_POST['school'];
-    nieuws::UploadNews($name, $email, $company, $comments, $school);
+    nieuws::UploadNews($name, $email, $company, $comments, $foto, $school);
 }
 
 if (isset($_POST['upload_contact'])) {

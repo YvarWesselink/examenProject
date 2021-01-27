@@ -227,7 +227,7 @@ class Admin extends controller
 
         $school = $school[0];
 
-        $st = $pdo->prepare("SELECT * FROM feedback WHERE school = :school ORDER BY userID DESC");
+        $st = $pdo->prepare("SELECT * FROM feedback WHERE school = :school ORDER BY userID");
         $st->bindParam(":school", $school);
         $st->execute();
 
