@@ -64,6 +64,14 @@ Route::set('update-opdracht-zwolle', function () {
     updateExcersiseZ::CreateView('updateExcersiseZ');
 });
 
+Route::set('update-gebruiker', function () {
+    session_start();
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['id'] = $_POST['project_id'];
+    }
+    updateUsers::CreateView('updateUsers');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
 });
