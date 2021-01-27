@@ -20,14 +20,12 @@ $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 print_r($result);
 
 if (count($result) > 0) {
-// output data of each row
-while($row = $result->fetch_assoc()) {
-echo '<div class="nieuws"><td><br>' . $row["userID"]. "</td><td><br>" . $row["Name"] . "</td><td><br>"
-. $row["Email"]. "</td><td><br>" . $row["Comments"]. "</td><br><br></div>";
+$i=0;
+while(count($result) > $i) {
+echo '<div class="nieuws"><td><br>' . $result[$i]["userID"]. "</td><td><br>" . $result[$i]["Name"] . "</td><td><br>"
+. $result[$i]["Email"]. "</td><td><br>" . $result[$i]["Comments"]. "</td><br><br></div>";
+$i++;
 }
-echo "</table>";
-} else { echo "0 results"; }
-$conn->close();
 
     }
 }
