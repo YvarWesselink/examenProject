@@ -14,7 +14,11 @@ class aboutus extends controller {
     public static function downloadnieuws() {
         $conn = self::connect();
 $sql = "SELECT userID, Name, Email, Comments FROM feedback";
-$result = $conn->query($sql);
+$conn->prepare($sql);
+$conn->execute();
+$result = $conn->fetchAll(PDO::FETCH_ASSOC);
+print_r($result);
+
 if ($result->num_rows > 0) {
 // output data of each row
 while($row = $result->fetch_assoc()) {
