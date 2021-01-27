@@ -14,8 +14,8 @@ class aboutus extends controller {
     public static function downloadnieuws() {
         $conn = self::connect();
 $sql = "SELECT userID, Name, Email, Comments FROM feedback";
-$conn->prepare($sql);
-$conn->execute();
+$prepare=$conn->prepare($sql);
+$prepare->execute();
 $result = $conn->fetchAll(PDO::FETCH_ASSOC);
 print_r($result);
 
