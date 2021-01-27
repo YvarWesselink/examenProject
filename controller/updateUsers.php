@@ -1,5 +1,5 @@
 <?php
-class updateExcersise extends Database {
+class updateUsers extends Database {
 
     // deze functie laad de view van de pagina die in de url staat.
     // $viewName is dus de variabel die uit de url wordt gehaald.
@@ -10,7 +10,7 @@ class updateExcersise extends Database {
 
     public static function showFields($errormsg) {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
+        $st = $pdo->prepare("SHOW COLUMNS FROM users");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,8 @@ class updateExcersise extends Database {
         $i = 1;
 
         $id = $_SESSION['id'];
-        $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtens WHERE id = $id");
+        echo $id;
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE uid = $id");
         $stmt->execute();
         $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $variableCount = count($values);
@@ -56,122 +57,10 @@ class updateExcersise extends Database {
                 }
             }
             $ind = 0;
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
             $i ++;
             $index ++;
             $ind++;
-        }
-
-        echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
-
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
-        $st->execute();
-
-        $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countt = count($tabless);
-
-        $e = 0;
-        $x = 1;
-        $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevenss WHERE id = $id");
-        $stm->execute();
-        $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
-        $variableContactCount = count($contactValues);
-        $ind = 0;
-        while ($countt > $x) {
-            switch ($tabless[$x]['Type']) {
-                case "varchar(255)":
-                    $typee = "text";
-                    break;
-                case "date":
-                    $typee = "date";
-                    break;
-                case "time":
-                    $typee = "time";
-                    break;
-                case "int(255)":
-                    $typee = "number";
-                    break;
-            }
-
-            if (empty($errormsg)) {
-                $error = "";
-            } else {
-                $error = $errormsg[$tabless[$x]['Field']];
-            }
-
-            if (isset($_POST['uploadExcersise'])) {
-                $value = $_POST;
-                $key = $tabless[$x]['Field'];
-
-                $backLog = $value[$key];
-            } else {
-                while($variableContactCount > $ind){
-                    $value = $contactValues;
-                    $variables = array_values($value[$ind]);
-                    $ind ++;
-                }
-            }
-
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
-            $x ++;
-            $e ++;
-            $ind ++;
-        }
-
-        echo '<div class="txthome-sub"><p>3 Verborgen waardes</p></div>';
-
-        $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardens");
-        $st->execute();
-
-        $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countt = count($tabless);
-
-        $e = 0;
-        $x = 1;
-        $stm = $pdo->prepare("SELECT * FROM verborgenwaardens WHERE id = $id");
-        $stm->execute();
-        $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
-        $variableContactCount = count($contactValues);
-        $ind = 0;
-        while ($countt > $x) {
-            switch ($tabless[$x]['Type']) {
-                case "varchar(255)":
-                    $typee = "text";
-                    break;
-                case "date":
-                    $typee = "date";
-                    break;
-                case "time":
-                    $typee = "time";
-                    break;
-                case "int(255)":
-                    $typee = "number";
-                    break;
-            }
-
-            if (empty($errormsg)) {
-                $error = "";
-            } else {
-                $error = $errormsg[$tabless[$x]['Field']];
-            }
-
-            if (isset($_POST['uploadExcersise'])) {
-                $value = $_POST;
-                $key = $tabless[$x]['Field'];
-
-                $backLog = $value[$key];
-            } else {
-                while($variableContactCount > $ind){
-                    $value = $contactValues;
-                    $variables = array_values($value[$ind]);
-                    $ind ++;
-                }
-            }
-
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
-            $x ++;
-            $e ++;
-            $ind ++;
         }
     }
 
@@ -211,7 +100,7 @@ class updateExcersise extends Database {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtens");
+        $st = $pdo->prepare("SHOW COLUMNS FROM users");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -240,71 +129,8 @@ class updateExcersise extends Database {
         $i = 0;
         foreach ($waardeAr as $waard) {
             echo $waard;
-            $st = $pdo->prepare("UPDATE projectenopdrachtens SET $tableAr[$i]=:waarde WHERE id = $id");
+            $st = $pdo->prepare("UPDATE users SET $tableAr[$i]=:waarde WHERE uid = $id");
             $st->bindParam(":waarde", $waardeAr[$i], PDO::PARAM_STR);
-            $st->execute();
-            $i++;
-        }
-        // get columns from 'contactbedrijfgegevens'
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
-        $st->execute();
-
-        $tablesCO = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countCO = count($tablesCO);
-
-        // inex of the contactbedrijfgegevens (minus 1 (id))
-        $rijCO = 1;
-
-        //define arrays
-        $tableCoAr = array();
-        $waardeCoAr = array();
-
-        while ($countCO > $rijCO) {
-            array_push($tableCoAr, $tablesCO[$rijCO]['Field']);
-
-            $oIndex = $tablesCO[$rijCO]['Field'];
-            array_push($waardeCoAr, $waarden[$oIndex]);
-
-            $count ++;
-            $rijCO ++;
-        }
-        $i = 0;
-        foreach ($waardeCoAr as $waard) {
-            echo $waard;
-            $st = $pdo->prepare("UPDATE contactbedrijfgegevenss SET $tableCoAr[$i]=:waarde WHERE id = $id");
-            $st->bindParam(":waarde", $waardeCoAr[$i], PDO::PARAM_STR);
-            $st->execute();
-            $i++;
-        }        
-        
-        // get columns from 'verborgenwaardens'
-        $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardens");
-        $st->execute();
-
-        $tablesVa = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countVa = count($tablesVa);
-
-        // inex of the verborgenwaardens (minus 1 (id))
-        $rijVa = 1;
-
-        //define arrays
-        $tableVaAr = array();
-        $waardeVaAr = array();
-
-        while ($countVa > $rijVa) {
-            array_push($tableVaAr, $tablesVa[$rijVa]['Field']);
-
-            $vaIndex = $tablesVa[$rijVa]['Field'];
-            array_push($waardeVaAr, $waarden[$vaIndex]);
-
-            $count ++;
-            $rijVa ++;
-        }
-        $i = 0;
-        foreach ($waardeVaAr as $waard) {
-            echo $waard;
-            $st = $pdo->prepare("UPDATE verborgenwaardens  SET $tableVaAr[$i]=:waarde WHERE id = $id");
-            $st->bindParam(":waarde", $waardeVaAr[$i], PDO::PARAM_STR);
             $st->execute();
             $i++;
         }
