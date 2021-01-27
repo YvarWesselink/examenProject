@@ -126,7 +126,7 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn editNews' id=". $row[$i]['userID'] ."></button></td>";
+      echo "<td><form method='post' action='/update-nieuws'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='userID' value=". $row[$i]['userID'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['Name'] ."</td>";
       echo "<td>". $row[$i]['Email'] ."</td>";

@@ -72,6 +72,14 @@ Route::set('update-gebruiker', function () {
     updateUsers::CreateView('updateUsers');
 });
 
+Route::set('update-nieuws', function () {
+    session_start();
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['id'] = $_POST['userID'];
+    }
+    updateNews::CreateView('updateNews');
+});
+
 Route::set('aboutus', function () {
     aboutus::CreateView('aboutus');
 });

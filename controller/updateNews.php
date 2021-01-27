@@ -1,5 +1,5 @@
 <?php
-class updateUsers extends Database {
+class updateNews extends Database {
 
     // deze functie laad de view van de pagina die in de url staat.
     // $viewName is dus de variabel die uit de url wordt gehaald.
@@ -10,7 +10,7 @@ class updateUsers extends Database {
 
     public static function showFields($errormsg) {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM users");
+        $st = $pdo->prepare("SHOW COLUMNS FROM feedback");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@ class updateUsers extends Database {
         $i = 1;
 
         $id = $_SESSION['id'];
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE uid = $id");
+        $stmt = $pdo->prepare("SELECT * FROM feedback WHERE userID = $id");
         $stmt->execute();
         $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $variableCount = count($values);
@@ -99,7 +99,7 @@ class updateUsers extends Database {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'
-        $st = $pdo->prepare("SHOW COLUMNS FROM users");
+        $st = $pdo->prepare("SHOW COLUMNS FROM feedback");
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
@@ -128,7 +128,7 @@ class updateUsers extends Database {
         $i = 0;
         foreach ($waardeAr as $waard) {
             echo $waard;
-            $st = $pdo->prepare("UPDATE users SET $tableAr[$i]=:waarde WHERE uid = $id");
+            $st = $pdo->prepare("UPDATE feedback SET $tableAr[$i]=:waarde WHERE userID = $id");
             $st->bindParam(":waarde", $waardeAr[$i], PDO::PARAM_STR);
             $st->execute();
             $i++;
