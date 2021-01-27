@@ -17,7 +17,7 @@ class aboutus extends controller {
         $prepare=$conn->prepare($sql);
         $prepare->execute();
         $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-        print_r($result);
+        
 
         if (count($result) > 0) {
         $i=0;
