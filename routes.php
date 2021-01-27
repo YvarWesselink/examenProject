@@ -59,7 +59,7 @@ Route::set('update-opdracht', function () {
 Route::set('update-opdracht-zwolle', function () {
     session_start();
     if (isset($_POST['editBtnZ'])) {
-        $_SESSION['id'] = $_POST['uid'];
+        $_SESSION['id'] = $_POST['project_id'];
     }
     updateExcersiseZ::CreateView('updateExcersiseZ');
 });
@@ -78,6 +78,14 @@ Route::set('update-nieuws', function () {
         $_SESSION['id'] = $_POST['userID'];
     }
     updateNews::CreateView('updateNews');
+});
+
+Route::set('update-oude-opdracht', function () {
+    session_start();
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['id'] = $_POST['project_id'];
+    }    
+    updateOldExcersise::CreateView('updateOldExcersise');
 });
 
 Route::set('aboutus', function () {

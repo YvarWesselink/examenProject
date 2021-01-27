@@ -34,7 +34,7 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn deleteTableRowOldExc' id=". $row[$i]['project_id'] ."></button></td>";
+      echo "<td><form method='post' action='/update-oude-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['project_id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowOldExc' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
