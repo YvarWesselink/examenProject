@@ -13,19 +13,20 @@ class aboutus extends controller {
     }
     public static function downloadnieuws() {
         $conn = self::connect();
-$sql = "SELECT userID, Name, Email, Comments FROM feedback";
-$prepare=$conn->prepare($sql);
-$prepare->execute();
-$result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-print_r($result);
+        $sql = "SELECT userID, Name, Email, Comments FROM feedback";
+        $prepare=$conn->prepare($sql);
+        $prepare->execute();
+        $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+        print_r($result);
 
-if (count($result) > 0) {
-$i=0;
-while(count($result) > $i) {
-echo '<div class="nieuws"><td><br>' . $result[$i]["userID"]. "</td><td><br>" . $result[$i]["Name"] . "</td><td><br>"
-. $result[$i]["Email"]. "</td><td><br>" . $result[$i]["Comments"]. "</td><br><br></div>";
-$i++;
-}
+        if (count($result) > 0) {
+        $i=0;
+            while(count($result) > $i) {
+            echo '<div class="nieuws"><td><br>' . $result[$i]["userID"]. "</td><td><br>" . $result[$i]["Name"] . "</td><td><br>"
+            . $result[$i]["Email"]. "</td><td><br>" . $result[$i]["Comments"]. "</td><br><br></div>";
+            $i++;
+            }
 
-    }
-}
+                 }
+                    }
+                }
