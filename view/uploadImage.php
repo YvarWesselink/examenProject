@@ -36,10 +36,11 @@ if (empty($_SESSION['username'])) {
                 ?>
             </select>
         </label><br>
-        <input type='submit' value='Upload Plaatje' name='but_upload'>
+        <input class="uploadfotobut" type='submit' value='Upload Plaatje' name='but_upload'>
     </form>
 
     <div>
+    </br>
         <div class="txthome-sub">
             <p>Album Uploaden</p>
         </div>
@@ -53,8 +54,9 @@ if (empty($_SESSION['username'])) {
                     <option value="z">Zwolle</option>
                 </select>
             </label><br>
-            <input type="submit" value="upload" name="albums">
+            <input class="uploadfotobut" type="submit" value="upload" name="albums">
         </form>
+        <br />
     </div>
 
     <div class="albums">

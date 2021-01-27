@@ -110,7 +110,7 @@ class Admin extends controller
                         echo "Nog geen foto's in dit album geplaatst";
                         echo "<form method='post'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
-                        echo "<input type='submit' name='delete-album' value='Album Verwijderen'>";
+                        echo "<input class='uploadfotobut' type='submit' name='delete-album' value='Album Verwijderen'>";
                         echo "</form>";
                         echo "</div>";
                     } else {
@@ -119,18 +119,18 @@ class Admin extends controller
                         echo "<img style='height: 100px; width: auto' src='".$foto[0]['image']."'>";
                         echo "<form method='post' action='/album-weergeven'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
-                        echo "<input type='submit' name='album-weergeven' value='Album Weergeven'>";
+                        echo "<input class='uploadfotobut' type='submit' name='album-weergeven' value='Album Weergeven'>";
                         echo "</form>";
 
                         echo "<form method='post'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
-                        echo "<input type='submit' name='delete-album' value='Album Verwijderen'>";
+                        echo "<input type='submit' class='uploadfotobut' name='delete-album' value='Album Verwijderen'>";
                         echo "</form>";
 
                         if ($homepage == false) {
                             echo "<form method='post'>";
                             echo "<input type='hidden' name='album' value='$id'>";
-                            echo "<input type='submit' name='homepage' value='als homepage slide selecteren'>";
+                            echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren'>";
                             echo "</form>";
                         }
 
@@ -176,7 +176,7 @@ class Admin extends controller
                         echo "<img src='".$foto[0]['image']."'>";
                         echo "<form method='post' action='/album-weergeven-school'>";
                         echo "<input type='hidden' name='album' value='$naam'>";
-                        echo "<input type='submit' class='album-but' name='album-weergeven' value='".$naam." Weergeven'>";
+                        echo "<input type='submit' class='uploadfotobut' class='album-but' name='album-weergeven' value='".$naam." Weergeven'>";
                         echo "</form>";
                         echo "</div>";
                     }
@@ -216,7 +216,7 @@ class Admin extends controller
             echo "<img src='".$album['image']."'>";
             echo "<form method='post'>";
             echo "<input type='hidden' name='album' value='$id'>";
-            echo "<input type='submit' value='Verwijder Plaatje' name='delete-image'";
+            echo "<input type='submit' class='uploadfotobut' value='Verwijder Plaatje' name='delete-image'";
             echo "</form";
             echo "</div>";
         }
