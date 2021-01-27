@@ -19,12 +19,22 @@ class excersises extends Database {
         }
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
-        $count = count($tables);
 
-        $i = 1;
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SELECT * FROM volgordeopdracht ORDER BY nummer");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SELECT * FROM volgordeopdracht ORDER BY nummer");
+            $st->execute();
+        }
+
+        $tableNames = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tableNames);
+
+        $i = 0;
         while ($count > $i) {
-            switch ($tables[$i]['Type']) {
-                case "varchar(255)":
+            switch ($tableNames[$i]['input']) {
+                case "txt":
                     $type = "text";
                     break;
                 case "date":
@@ -33,7 +43,8 @@ class excersises extends Database {
                 case "time":
                     $type = "time";
                     break;
-                case "int(255)":
+                case "int":
+                case "valuta":
                     $type = "number";
                     break;
             }
@@ -41,21 +52,21 @@ class excersises extends Database {
             if (empty($errormsg)) {
                 $error = "";
             } else {
-                $error = $errormsg[$tables[$i]['Field']];
+                $error = $errormsg[$tableNames[$i]['colomn']];
             }
 
             if (isset($_POST['sendExcersise'])) {
                 $value = $_POST;
-                $key = $tables[$i]['Field'];
+                $key = $tableNames[$i]['colomn'];
 
                 $backLog = $value[$key];
             } else {
                 $backLog = "";
             }
 
-            $table = str_replace('_', ' ',$tables[$i]['Field']);
+            $table = $tableNames[$i]['colomn'];
 
-            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tableNames[$i]['colomn']."'><p style='color: red'>$error</p><br>";
             $i ++;
         }
 
@@ -69,47 +80,56 @@ class excersises extends Database {
             $st->execute();
         }
 
-        $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countt = count($tabless);
+        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
 
-        $e = 0;
-        $x = 1;
-        while ($countt > $x) {
-            switch ($tabless[$x]['Type']) {
-                case "varchar(255)":
-                    $typee = "text";
+        if ($_SESSION['school'] == "zwolle") {
+            $st = $pdo->prepare("SELECT * FROM volgordecontact ORDER BY nummer");
+            $st->execute();
+        } elseif ($_SESSION['school'] == "salland") {
+            $st = $pdo->prepare("SELECT * FROM volgordecontact ORDER BY nummer");
+            $st->execute();
+        }
+
+        $tableNames = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($tableNames);
+
+        $i = 0;
+        while ($count > $i) {
+            switch ($tableNames[$i]['input']) {
+                case "txt":
+                    $type = "text";
                     break;
                 case "date":
-                    $typee = "date";
+                    $type = "date";
                     break;
                 case "time":
-                    $typee = "time";
+                    $type = "time";
                     break;
-                case "int(255)":
-                    $typee = "number";
+                case "int":
+                case "valuta":
+                    $type = "number";
                     break;
             }
 
             if (empty($errormsg)) {
                 $error = "";
             } else {
-                $error = $errormsg[$tabless[$x]['Field']];
+                $error = $errormsg[$tableNames[$i]['colomn']];
             }
 
             if (isset($_POST['sendExcersise'])) {
                 $value = $_POST;
-                $key = $tabless[$x]['Field'];
+                $key = $tableNames[$i]['colomn'];
 
                 $backLog = $value[$key];
             } else {
                 $backLog = "";
             }
 
-            $table = str_replace('_', ' ',$tabless[$x]['Field']);
+            $table = $tableNames[$i]['colomn'];
 
-            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
-            $x ++;
-            $e ++;
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tableNames[$i]['colomn']."'><p style='color: red'>$error</p><br>";
+            $i++;
         }
     }
 
@@ -215,6 +235,11 @@ class excersises extends Database {
             $st->execute();
         }
 
+        // --
+        // --
+        // ** contact gegevens gedeelte **
+        // --
+        // --
 
         // get columns from 'contactbedrijfgegevens'
         if ($_SESSION['school'] == "zwolle") {

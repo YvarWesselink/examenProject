@@ -202,6 +202,14 @@ Route::set('moveup', function () {
     Admin::moveUp($_GET['id']);
 });
 
+Route::set('moveupCon', function () {
+    Admin::moveUpContact($_GET['id']);
+});
+
 Route::set('movedown', function () {
     Admin::moveDown($_GET['id']);
+});
+
+Route::set('movedownCon', function () {
+    Admin::moveDownContact($_GET['id']);
 });
