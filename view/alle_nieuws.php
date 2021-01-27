@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+<?PHP
+include_once "includes/header.php"
+?>
 <head>
 <title>Alle nieuws artikelen</title>
 <link rel="stylesheet" href="nieuws.css">
