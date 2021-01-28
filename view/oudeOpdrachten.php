@@ -28,13 +28,13 @@ include_once "includes/header.php";
     $row = $result->fetchAll(PDO::FETCH_ASSOC);
     $count = count($row);
     $i = 0;
-    echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Gebruikers</h2></div>";
+    echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Oude opdrachten</h2></div>";
     echo "<table  style='text-align: center;'>";
     echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal studenten</th><th>Uitvoerings dag en datum</th>";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/oude-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['project_id'] ."/> </form></td>";
+      echo "<td><form method='post' action='/oude-opdracht'><input style='text-decoration: underline;' type='submit' value='Bekijk' name='editBtn' class='editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['project_id'] ."/> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowOldExc' id=". $row[$i]['project_id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['project_id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
