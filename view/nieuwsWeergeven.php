@@ -27,6 +27,26 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
     .left:first-of-type{
         margin-top: 1%;
     }
+
+    .content div{
+        position: relative;
+        overflow: hidden;
+    }
+
+    .content span{
+        font-weight:
+        bold; margin:15px;
+        color: #ED138D;
+        width: 12%;
+        float: left;
+    }
+
+    .content p{
+        margin: 15px;
+        width: 70%;
+        float: left;
+    }
+
 </style>
 <!-- End Navbar -->
 <!-- ---------------------------- -->
@@ -77,17 +97,19 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
         
         echo '<div class="all-content">
                 <div class="nieuws-container left" style="margin: 1% 0;">
-                    <span class="icon"></span>
-                    <span class="date">07 NOVEMBER 2017</span>
-                    <div class="content">';
+                <span class="icon"></span>
+                    <div class="content">
+                        <div><span>Naam:</span><p>' . $row[$i]['Name'] . '</p></div>
+                        <div><span>Email:</span><p>' . $row[$i]['Email'] . '</p></div>
+                        <div><span>Bedrijf:</span><p>' . $row[$i]['Company'] . '</p></div>
+                    ';
                     ?>
                         <?php
                         
                             if (isset($row[$i]['Comments'])) {
 
                                 $nieuwsCon = $row[$i]['Comments'];
-                                echo '<h2>' . $nieuwsCon . '</h2>';
-                                echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                                echo '<div><span>Bericht:</span><p style="margin: 15px 15px 42px;">' . $nieuwsCon . '</p></div>';
                             
                             }else {
                                 
@@ -98,7 +120,7 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                     <?php echo '</div>
                 </div>';
 
-                echo '<div class="image" style="margin: 2% 0;">';
+                echo '<div class="image" style="margin: 2.1% 0; width: 35%; height: 250px; right: 9%;">';
                 ?>
                         <?php
 
