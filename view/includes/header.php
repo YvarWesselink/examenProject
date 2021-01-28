@@ -39,7 +39,7 @@
 <nav>
     <div class="back-red">
         <ul>
-            <li><a href="#">Sites</a></li>
+            <li><a href="https://www.landstedembo.nl/raalte" target="_blank">Sites</a></li>
             <li><a href="/voorwaarden">Voorwaarden</a></li>
             <?php
             if (empty($_SESSION)) {

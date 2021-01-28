@@ -21,7 +21,7 @@ include_once "includes/header.php";
 <div class="txthome-container opdracht">
     <div class="txthome-main">
         <h1>Nieuws updaten</h1>
-        <h3>*hier moet nog een tekstje komen.*</h3>
+        <h3>Update hier het geselecteerde nieuws artikel.</h3>
     </div>
     <!-- Dit is het form waar je de opdracht in kunt vullen. -->
     <div class="txthome-sub">

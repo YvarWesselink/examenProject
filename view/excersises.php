@@ -25,7 +25,7 @@ include_once "includes/header.php"
 <div class="txthome-container opdracht">
     <div class="txthome-main">
         <h1>Opdrachten Indienen</h1>
-        <h3>*hier moet nog een tekstje komen.*</h3>
+        <h3>Voer hier uw gegevens in voor de opdracht die u wilt inleveren.</h3>
     </div>
     <!-- Dit is het form waar je de opdracht in kunt vullen. -->
     <div class="txthome-sub">
