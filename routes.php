@@ -186,6 +186,11 @@ Route::set('album-weergeven', function () {
 });
 
 
+Route::set('nieuws-weergeven', function () {
+    Index::CreateView('nieuwsWeergeven');
+});
+
+
 Route::set('fotos', function () {
     Index::CreateView('fotos');
 });

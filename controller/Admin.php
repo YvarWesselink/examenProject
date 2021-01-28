@@ -253,7 +253,7 @@ class Admin extends controller
 
         $school = $school[0];
 
-        $st = $pdo->prepare("SELECT * FROM feedback WHERE school = :school ORDER BY userID");
+        $st = $pdo->prepare("SELECT * FROM feedback WHERE school = :school ORDER BY userID DESC");
         $st->bindParam(":school", $school);
         $st->execute();
 
@@ -275,6 +275,23 @@ class Admin extends controller
             $id = $album['id'];
             echo "<div class='image-album'>";
             echo "<img src='".$album['image']."'>";
+            echo "</div>";
+        }
+    }
+
+    public static function downloadNieuwsSchool($nieuws) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM feedback where school = :nieuws");
+        $st->bindParam(":school", $nieuws);
+        $st->execute();
+
+        $nieuws = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($nieuws as $artikel) {
+            $id = $artikel['id'];
+            echo "<div class='image-album'>";
+            echo "<img src='".$artikel['foto']."'>";
             echo "</div>";
         }
     }
