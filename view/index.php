@@ -13,47 +13,26 @@ include_once "includes/header.php";
  Start Banner Section
 <section class="banner">
     <div class="banner-img">
-        <img src="/public/img/banner.png">
-    </div>
     <div class="banner-svg">
     <div class="slider">
     <?php
-    $homepage= "1";
-    Admin::downloadAlbumImagesSlideshow($homepage);
-
-    $albumb = $albumhome;
-    Admin::downloadImagesSlideshow($albumb);
-    if($slides != ""){
-        foreach ($slides as $slide) {
-            echo "<div>";
-            echo "<img src='".$slide['image']."'>";
-            echo "</div>";
-        }
-
-    }else{
-    echo"
-    <div>TEST1</div>
-    <div>TEST2</div>
-    <div>TEST3</div>
-    ";
-    }
-
+    Admin::downloadFotosSlide();
     ?>
+</div>
+</div>
 </div>
 <script>
 $(document).ready(function(){
-  $('.your-class').slick({
-    setting-name: setting-value
-  });
-});
-
-$('.fade').slick({
-  dots: true,
+  $('.slider').slick({
+    dots: true,
   infinite: true,
   speed: 500,
   fade: true,
-  cssEase: 'linear'
+  autoplay: true,
+  autoplaySpeed: 1700,
+  });
 });
+
 </script>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#fff" fill-opacity="1"

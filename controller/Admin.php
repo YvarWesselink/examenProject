@@ -202,6 +202,31 @@ class Admin extends controller
         return $albums;
     }
 
+    public static function downloadFotosSlide() {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM images WHERE homepage = true ");
+        $st->execute();
+
+        $slides = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if($slides != ""){
+            foreach ($slides as $slide) {
+                echo "<div>";
+                echo "<img src='".$slide['image']."'>";
+                echo "</div>";
+            }
+    
+        }else{
+        echo"
+        <div>TEST1</div>
+        <div>TEST2</div>
+        <div>TEST3</div>
+        ";
+        }
+        //return $slides;
+    }
+
     public static function downloadAlbumImages($album) {
         $pdo = self::connect();
 
@@ -353,7 +378,11 @@ class Admin extends controller
             $sts->bindParam(":naam", $naam);
             $sts->execute();
         }
+        /*
+        DEZE SHIT TOE VOEGEN AAN DE UPLOAD
 
+
+        */
         echo "<script> location.href='/foto-uploaden'; </script>";
     }
 

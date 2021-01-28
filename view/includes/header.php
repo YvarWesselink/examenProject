@@ -9,8 +9,10 @@
     <link rel="stylesheet"  href="/public/css/registration.css"/>
     <link rel="stylesheet" href="/public/css/adminpanel.css"/>
     <link rel="stylesheet" href="/public/css/homepage.css">
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="public/js/slick-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="public/js/slick-1.8.1/slick/slick-theme.css"/>
+
+    
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->
@@ -18,7 +20,7 @@
     <script src="/public/js/forms.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script type="text/javascript" src="public/js/slick-1.8.1/slick/slick.min.js"></script>
     <script>
         $(document).ready(function() {
             if (window.location.href.match(/(salland)/) != null) {
