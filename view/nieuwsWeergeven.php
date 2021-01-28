@@ -35,14 +35,14 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
 
     .content span{
         font-weight:
-        bold; margin:15px;
+        bold; margin: 10px 15px;
         color: #ED138D;
         width: 12%;
         float: left;
     }
 
     .content p{
-        margin: 15px;
+        margin: 10px 15px;
         width: 70%;
         float: left;
     }
@@ -137,7 +137,7 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                             
                             }else {
                                 
-                                echo "<p style='text-decoration: underline; padding-left: 0; margin: 0 auto; text-align: center; margin-top: 12%;'>Nog geen foto!</p>";
+                                echo "<p style='text-decoration: underline; padding-left: 0; margin: 0 auto; text-align: center; margin-top: 12%; font-size: 18px;'>Nog geen foto!</p>";
                             }
 
                         ?>
