@@ -162,5 +162,13 @@ $(document).ready(function () {
 
         location.reload();
     });
+
+    $('.sendExcersiseBtn').click(function () {
+        if (!this.form.checkbox.checked)
+        {
+            alert('Je moet eerst de algemene voorwaarden accepteren.');
+            return false;
+        }
+    })
 });
 
