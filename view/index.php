@@ -164,6 +164,11 @@ $(document).ready(function(){
 <div class="clearfix"></div>
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->
+<?PHP
+$datetime = DateTime::createFromFormat('YmdHi', '201308131830');
+echo $datetime->format('D');
+?>
+
 <!-- Start Footer -->
 <?php
 include_once "includes/footer.php";
