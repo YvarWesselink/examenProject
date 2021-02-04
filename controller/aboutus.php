@@ -13,7 +13,7 @@ class aboutus extends controller {
     }
     public static function downloadnieuws() {
         $conn = self::connect();
-        $sql = "SELECT userID, Name, Email, Comments FROM feedback";
+        $sql = "SELECT * FROM feedback";
         $prepare=$conn->prepare($sql);
         $prepare->execute();
         $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
@@ -23,7 +23,7 @@ class aboutus extends controller {
         $i=0;
             while(count($result) > $i) {
             echo '<div class="nieuws"><td><br>' . $result[$i]["userID"]. "</td><td><br>" . $result[$i]["Name"] . "</td><td><br>"
-            . $result[$i]["Email"]. "</td><td><br>" . $result[$i]["Comments"]. "</td><br><br></div>";
+            . $result[$i]["Email"]. "</td><td><br>" . $result[$i]["Comments"]. "</td><br><td><br>" . $result[$i]["foto"]. "</td><br><td><br>" . $result[$i]["school"]. "</td><br><br></div>";
             $i++;
             }
 

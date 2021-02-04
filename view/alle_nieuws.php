@@ -14,8 +14,8 @@ aboutus::downloadnieuws();
 ?>
 
 </body>
-
-<?PHP
-include_once "includes/footer.php"
-?>
 </html>
+
+<?php
+include_once "includes/footer.php"
+ ?>

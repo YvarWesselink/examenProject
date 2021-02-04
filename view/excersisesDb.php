@@ -31,11 +31,10 @@ include_once "includes/header.php";
     echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Salland</h2></div>";
     echo "<table  style='text-align: center;'>";
     echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
-    // <th>Status</th>
 
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/update-opdracht'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><form method='post' action='/update-opdracht'><button type='submit' value='' name='editBtn' class='fa fa-edit editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
       echo "<td>". $row[$i]['Opdracht'] ."</td>";
@@ -50,7 +49,7 @@ include_once "includes/header.php";
     echo "<div>* Er zijn nog geen opdrachten.</div><br>";
   }
 ?>
-<?php 
+<?php
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM projectenopdrachtenz");
@@ -64,13 +63,13 @@ include_once "includes/header.php";
 
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/update-opdracht-zwolle'><input type='submit' value='' name='editBtnZ' class='fa fa-edit'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><form method='post' action='/update-opdracht-zwolle'><button type='submit' value='' name='editBtnZ' class='fa fa-edit editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowZ' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
-      echo "<td>". $row[$i]['Opdracht'] ."</td>";
-      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
-      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
-      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
+        if (isset($row[$i]['Opdracht'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Opmerkingen'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Aantal_studenten'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Uitvoerings_dag_en_datum'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
       echo "</tr>";
       $i ++;
     }
@@ -96,7 +95,7 @@ include_once "includes/header.php";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><form method='post' action='/update-gebruiker'><input type='submit' value='' name='editBtn' class='fa fa-edit'/><input type='hidden' name='uid' value=". $row[$i]['uid'] ." /> </form></td>";
+      echo "<td><form method='post' action='/update-gebruiker'><button type='submit' value='' name='editBtn' class='fa fa-edit editBtn'/><input type='hidden' name='uid' value=". $row[$i]['uid'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowUser' id=". $row[$i]['uid'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['username'] ."</td>";
       echo "<td>". $row[$i]['voornaam'] ."</td>";
@@ -122,16 +121,18 @@ include_once "includes/header.php";
     $i = 0;
     echo "<br><br><div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Nieuws</h2></div>";
     echo "<table  style='text-align: center;'>";
-    echo "<th></th><th></th><th>Naam</th><th>E-mail</th><th>Bedrijf</th><th>Opmerkingen</th>";
+    echo "<th></th><th></th><th>Naam</th><th>E-mail</th><th>Bedrijf</th><th>Opmerkingen</th><th>Foto</th><th>School</th>";
     
     while($count > $i){
       echo "<tr>";
-      echo "<td><button type='submit' class='fa fa-edit editBtn editNews' id=". $row[$i]['userID'] ."></button></td>";
+      echo "<td><form method='post' action='/update-nieuws'><button type='submit' value='' name='editBtn' class='fa fa-edit editBtn'/><input type='hidden' name='userID' value=". $row[$i]['userID'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowNews' id=". $row[$i]['userID'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['Name'] ."</td>";
       echo "<td>". $row[$i]['Email'] ."</td>";
       echo "<td>". $row[$i]['Company'] ."</td>";
       echo "<td>". $row[$i]['Comments'] ."</td>";
+      if($row[$i]['foto'] !== '0'){echo "<td><img src='". $row[$i]['foto'] ."' style='width: 50px; height: 50px; position: relative; overflow: hidden; border-radius: 3px;' alt='Geen foto'/></td>";}else{echo '<td>Geen foto</td>';}
+      echo "<td>". $row[$i]['school'] ."</td>";
       echo "</tr>";
       $i ++;
     }

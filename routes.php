@@ -59,7 +59,7 @@ Route::set('update-opdracht', function () {
 Route::set('update-opdracht-zwolle', function () {
     session_start();
     if (isset($_POST['editBtnZ'])) {
-        $_SESSION['id'] = $_POST['uid'];
+        $_SESSION['id'] = $_POST['project_id'];
     }
     updateExcersiseZ::CreateView('updateExcersiseZ');
 });
@@ -70,6 +70,22 @@ Route::set('update-gebruiker', function () {
         $_SESSION['id'] = $_POST['uid'];
     }
     updateUsers::CreateView('updateUsers');
+});
+
+Route::set('update-nieuws', function () {
+    session_start();
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['id'] = $_POST['userID'];
+    }
+    updateNews::CreateView('updateNews');
+});
+
+Route::set('oude-opdracht', function () {
+    session_start();
+    if (isset($_POST['editBtn'])) {
+        $_SESSION['id'] = $_POST['project_id'];
+    }    
+    showOldExcersise::CreateView('showOldExcersise');
 });
 
 Route::set('aboutus', function () {
@@ -170,6 +186,11 @@ Route::set('album-weergeven', function () {
 });
 
 
+Route::set('nieuws-weergeven', function () {
+    Index::CreateView('nieuwsWeergeven');
+});
+
+
 Route::set('fotos', function () {
     Index::CreateView('fotos');
 });
@@ -186,6 +207,14 @@ Route::set('moveup', function () {
     Admin::moveUp($_GET['id']);
 });
 
+Route::set('moveupCon', function () {
+    Admin::moveUpContact($_GET['id']);
+});
+
 Route::set('movedown', function () {
     Admin::moveDown($_GET['id']);
+});
+
+Route::set('movedownCon', function () {
+    Admin::moveDownContact($_GET['id']);
 });

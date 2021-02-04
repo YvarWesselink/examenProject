@@ -129,6 +129,7 @@ class Admin extends controller
 
                         if ($homepage == false) {
                             echo "<form method='post'>";
+                            echo "<input type='hidden' name='naam' value='$naam'>";
                             echo "<input type='hidden' name='album' value='$id'>";
                             echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren'>";
                             echo "</form>";
@@ -201,6 +202,31 @@ class Admin extends controller
         return $albums;
     }
 
+    public static function downloadFotosSlide() {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM images WHERE homepage = true ");
+        $st->execute();
+
+        $slides = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        if($slides != ""){
+            foreach ($slides as $slide) {
+                echo "<div>";
+                echo "<img src='".$slide['image']."'>";
+                echo "</div>";
+            }
+    
+        }else{
+        echo"
+        <div>TEST1</div>
+        <div>TEST2</div>
+        <div>TEST3</div>
+        ";
+        }
+        //return $slides;
+    }
+
     public static function downloadAlbumImages($album) {
         $pdo = self::connect();
 
@@ -249,6 +275,23 @@ class Admin extends controller
             $id = $album['id'];
             echo "<div class='image-album'>";
             echo "<img src='".$album['image']."'>";
+            echo "</div>";
+        }
+    }
+
+    public static function downloadNieuwsSchool($nieuws) {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM feedback where school = :nieuws");
+        $st->bindParam(":school", $nieuws);
+        $st->execute();
+
+        $nieuws = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($nieuws as $artikel) {
+            $id = $artikel['id'];
+            echo "<div class='image-album'>";
+            echo "<img src='".$artikel['foto']."'>";
             echo "</div>";
         }
     }
@@ -319,10 +362,10 @@ class Admin extends controller
         echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
-    public static function homepageImage($id) {
+    public static function homepageImage($id, $naam) {
         $pdo = self::connect();
 
-        $st = $pdo->prepare("SELECT id FROM albums WHERE homepage = true ");
+        $st = $pdo->prepare("SELECT id, naam FROM albums WHERE homepage = true ");
         $st->execute();
         $hID = $st->fetch(PDO::FETCH_ASSOC);
 
@@ -334,12 +377,29 @@ class Admin extends controller
             $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
             $st->bindParam(":id", $id);
             $st->execute();
+
+            $sts = $pdo->prepare("UPDATE images SET homepage = false WHERE album = :naam");
+            $sts->bindParam(":naam", $hID['naam']);
+            $sts->execute();
+
+            $sts = $pdo->prepare("UPDATE images SET homepage = true WHERE album = :naam");
+            $sts->bindParam(":naam", $naam);
+            $sts->execute();
+
         } else {
             $st = $pdo->prepare("UPDATE albums SET homepage = true WHERE id = :id");
             $st->bindParam(":id", $id);
             $st->execute();
-        }
 
+            $sts = $pdo->prepare("UPDATE images SET homepage = true WHERE album = :naam");
+            $sts->bindParam(":naam", $naam);
+            $sts->execute();
+        }
+        /*
+        DEZE SHIT TOE VOEGEN AAN DE UPLOAD
+
+
+        */
         echo "<script> location.href='/foto-uploaden'; </script>";
     }
 
@@ -436,6 +496,94 @@ class Admin extends controller
         }
     }
 
+    public static function moveUpContact($field) {
+        $pdo = self::connect();
+
+        // selecteer het id en nummer van het geklikte element
+        $st = $pdo->prepare("SELECT id, nummer FROM volgordecontact WHERE colomn = :field");
+        $st->bindParam(":field", $field);
+        $st->execute();
+        $result = $st->fetch(PDO::FETCH_ASSOC);
+        $id = $result['id'];
+
+        $nummer = $result['nummer'];
+
+        if ($nummer == 1) {
+            echo "<script> location.href='/formulier'; </script>";
+        } else {
+            $nummer -= 1;
+
+            // selecteer het id van het bovenstaande element
+            $st = $pdo->prepare("SELECT id FROM volgordecontact WHERE nummer = :nummer");
+            $st->bindParam(":nummer", $nummer);
+            $st->execute();
+            $bov = $st->fetch(PDO::FETCH_ASSOC);
+
+            // 1++ voor het geselecteerde element
+            $st = $pdo->prepare("UPDATE volgordecontact SET nummer=:nummer where id=:id");
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":id", $id);
+            $st->execute();
+
+            $nummer += 1;
+            $id = $bov['id'];
+
+            // 1-- voor het element er boven
+            $st = $pdo->prepare("UPDATE volgordecontact SET nummer=:nummer WHERE id=:id");
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":id", $id);
+            $st->execute();
+        }
+    }
+
+    public static function moveDownContact($field) {
+        $pdo = self::connect();
+
+        $pdo = self::connect();
+
+        // selecteer alle velden om te zien hoe veel er zijn
+        $st = $pdo->prepare("SELECT * FROM volgordecontact");
+        $st->execute();
+        $count = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($count);
+
+        // selecteer het id en nummer van het geklikte element
+        $st = $pdo->prepare("SELECT id, nummer FROM volgordecontact WHERE colomn = :field");
+        $st->bindParam(":field", $field);
+        $st->execute();
+        $result = $st->fetch(PDO::FETCH_ASSOC);
+        $id = $result['id'];
+
+        $nummer = $result['nummer'];
+
+        if ($count == $nummer) {
+            echo "maximum bereikt";
+        } else {
+            $nummer += 1;
+
+            // selecteer het id van het onderstaande element
+            $st = $pdo->prepare("SELECT id FROM volgordecontact WHERE nummer = :nummer");
+            $st->bindParam(":nummer", $nummer);
+            $st->execute();
+            $bov = $st->fetch(PDO::FETCH_ASSOC);
+
+            // 1++ voor het geselecteerde element
+            $st = $pdo->prepare("UPDATE volgordecontact SET nummer=:nummer where id=:id");
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":id", $id);
+            $st->execute();
+
+            $nummer -= 1;
+            $id = $bov['id'];
+
+            // 1-- voor het element er boven
+            $st = $pdo->prepare("UPDATE volgordecontact SET nummer=:nummer WHERE id=:id");
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":id", $id);
+            $st->execute();
+        }
+    }
+
     public static function moveDown($field) {
         $pdo = self::connect();
 
@@ -485,17 +633,33 @@ class Admin extends controller
     public static function uploadElementOp($titel, $inputType, $type) {
         $pdo = self::connect();
 
-        // upload element to volgodeContact table in db
-        $st = $pdo->prepare("SELECT * FROM volgordeopdracht");
-        $st->execute();
-        $nummer = $st->fetchAll(PDO::FETCH_ASSOC);
-        $nummer = count($nummer);
-        $nummer+= 1;
+        if ($type == "contactbedrijfgegevens") {
+            // upload element to volgodeContact table in db
+            $st = $pdo->prepare("SELECT * FROM volgordecontact");
+            $st->execute();
+            $nummer = $st->fetchAll(PDO::FETCH_ASSOC);
+            $nummer = count($nummer);
+            $nummer+= 1;
 
-        $st = $pdo->prepare("INSERT INTO volgordeopdracht (colomn, nummer) value (:titel, :nummer)");
-        $st->bindParam(":titel", $titel);
-        $st->bindParam(":nummer", $nummer);
-        $st->execute();
+            $st = $pdo->prepare("INSERT INTO volgordecontact (colomn, nummer, input) value (:titel, :nummer, :input)");
+            $st->bindParam(":titel", $titel);
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":input", $inputType);
+            $st->execute();
+        } else {
+            // upload element to volgodeContact table in db
+            $st = $pdo->prepare("SELECT * FROM volgordeopdracht");
+            $st->execute();
+            $nummer = $st->fetchAll(PDO::FETCH_ASSOC);
+            $nummer = count($nummer);
+            $nummer+= 1;
+
+            $st = $pdo->prepare("INSERT INTO volgordeopdracht (colomn, nummer, input) value (:titel, :nummer, :input)");
+            $st->bindParam(":titel", $titel);
+            $st->bindParam(":nummer", $nummer);
+            $st->bindParam(":input", $inputType);
+            $st->execute();
+        }
 
         // check if there are any spaces
         $titel = str_replace(' ', '_', $titel);
@@ -565,16 +729,16 @@ class Admin extends controller
     // get elements from contact bedrijfgegevens
     public static function getElementsFormCont() {
         $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevenss");
-        $st->execute();
 
+        $st = $pdo->prepare("SELECT * FROM volgordecontact ORDER BY nummer");
+        $st->execute();
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
         $count = count($tables);
 
-        $i = 1;
+        $i = 0;
         while ($count > $i) {
-            $table = str_replace('_', ' ',$tables[$i]['Field']);
-            echo "<div class='add-form-3'>".$table."<button class='deleteRowC'>-</button></div>"."<br>";
+            $table = str_replace('_', ' ',$tables[$i]['colomn']);
+            echo "<div class='add-form-3'>".$table."<button class='upCon' id='$table'>🠕</button><button class='downCon' id='$table'>🠗</button><button type='button' id='$table' class='deleteRowC'>-</button></div>"."<br>";
             $i ++;
         }
     }
@@ -652,6 +816,43 @@ class Admin extends controller
 
         $st = $pdo->prepare("ALTER TABLE contactbedrijfgegevensz DROP COLUMN $column");
         $st->execute();
+
+        // verwijder element in volgordecontact
+        $st = $pdo->prepare("SELECT * FROM volgordecontact WHERE colomn = :column");
+        $st->bindParam(":column", $column);
+        $st->execute();
+        $result = $st->fetch(PDO::FETCH_ASSOC);
+
+        // verwijder het element waar op is geklikt
+        $id = $result['id'];
+        $st = $pdo->prepare("DELETE FROM volgordecontact WHERE id = $id");
+        $st->execute();
+
+        // pas de volgorde aan van de onderstaande elementen
+        $st = $pdo->prepare("SELECT * FROM volgordecontact");
+        $st->execute();
+        // tel hoe veel elementen er in de db zitten
+        $count = $st->fetchAll(PDO::FETCH_ASSOC);
+        $count = count($count);
+        $count += 1;
+        // het index nummer van het verwijderde element
+        $nummer = $result['nummer'];
+        $nummer += 1;
+
+        // tel een waarde op bij het index nummer van het verwijderde element tot dat het aantal is bereikt
+        while ($nummer <= $count) {
+            $st = $pdo->prepare("SELECT id FROM volgordecontact WHERE nummer=:nummer");
+            $st->bindParam(":nummer", $nummer);
+            $st->execute();
+            $id = $st->fetch(PDO::FETCH_ASSOC);
+            $id = $id['id'];
+
+            $nummerGoed = $nummer - 1;
+
+            $st = $pdo->prepare("UPDATE volgordecontact SET nummer=$nummerGoed WHERE id=$id");
+            $st->execute();
+            $nummer ++;
+        }
     }
 
     public static function deleteElementVe($column) {

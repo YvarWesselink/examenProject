@@ -7,19 +7,60 @@ $_SESSION['school'] = "salland";
 include_once "includes/header.php";;
 ?>
 
+<style>
+    .kijk_meer{
+        display: block;
+        margin: 50px auto 0;
+        background: transparent;
+        color: #005a81;
+        text-align: center;
+        padding: 15px 25px;
+        border: 1px solid #005a81;
+        border-radius: 3px;
+        cursor: pointer;
+        }
+
+        .kijk_meer i{
+            color: #005a81;
+            -webkit-transition: padding .3s ease-in-out;
+            -moz-transition: padding .3s ease-in-out;
+            -o-transition: padding .3s ease-in-out;
+            transition: padding .3s ease-in-out;
+        }
+
+        .kijk_meer:hover i{
+            padding-left: 10px;
+        }
+</style>
+
 <!-- End Navbar -->
 <!-- ---------------------------- -->
 <!-- Start Banner Section -->
 <section class="banner">
-    <div class="banner-img"></div>
-    <div class="banner-svg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#fff" fill-opacity="1"
-                  d="M0,96L80,112C160,128,320,160,480,154.7C640,149,800,107,960,90.7C1120,75,1280,85,1360,90.7L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-            </path>
-        </svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,128L120,112C240,96,480,64,720,64C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg> -->
-    </div>
+    <section class="banner">
+        <div class="banner-img">
+            <div class="banner-svg">
+                <div class="slider">
+                    <?php
+                    Admin::downloadFotosSlide();
+                    ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('.slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    autoplay: true,
+                    autoplaySpeed: 1700,
+                });
+            });
+
+        </script>
+    </section>
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
@@ -45,10 +86,10 @@ echo "<h2>".$salland['titels']."</h2>"."<h3>".$salland['tussens']."</h3>"."<p>".
 
 <?php
 $school = $_SESSION['school'];
-$images = Admin::downloadFotosHome($school);
+$nieuwsContent = Admin::downloadNieuwsHome($school);
 
-if (count($images) < 2) {
-    $images = null;
+if (count($nieuwsContent) == 0) {
+    $nieuwsContent = null;
 }
 ?>
 
@@ -60,21 +101,44 @@ if (count($images) < 2) {
                 <span class="icon"></span>
                 <span class="date">07 NOVEMBER 2017</span>
                 <div class="content">
-                    <h2>Hongerige zombies, sexy vampiers en angstaanjagende weerwolven komen uit de schaduw gekropen</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[0]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[0]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }elseif(isset($nieuwsContent[0]['foto']) == 'Geen' || empty($nieuwsContent[0]['foto'])) {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                    
+                    ?>
                 </div>
             </div>
             <div class="image">
-                <a href="/fotos">
+                
                 <?php
-                if ($images == null) {
-                    echo "<p>Nog geen foto's</p>";
-                } else {
-                    $image = $images[0]['image'];
-                    echo "<img src='$image' alt=''>";
-                }
+
+                    if(isset($nieuwsContent[0]['foto'])){
+
+                        $nieuwsFoto = $nieuwsContent[0]['foto'];
+                        
+                    }
+
+                    if (isset($nieuwsContent[0]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[0]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+
+                    }else {
+                        
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+
                 ?>
-                </a>
+
             </div>
         </div>
         <div class="all-content">
@@ -82,21 +146,44 @@ if (count($images) < 2) {
                 <span class="icon"></span>
                 <span class="date">27 JUNE 2017</span>
                 <div class="content">
-                    <h2>Kidsspeelmiddag op 28 juni</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[1]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[1]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }elseif(isset($nieuwsContent[1]['foto']) == 'Geen' || empty($nieuwsContent[1]['foto'])) {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                    
+                    ?>
                 </div>
             </div>
             <div class="image img-left">
-                <a href="/fotos">
-                    <?php
-                    if ($images == null) {
-                        echo "<p>Nog geen foto's</p>";
-                    } else {
-                        $image = $images[1]['image'];
-                        echo "<img src='$image' alt=''>";
+                
+                <?php
+
+                    if(isset($nieuwsContent[1]['foto'])){
+
+                        $nieuwsFoto = $nieuwsContent[1]['foto'];
+                        
                     }
-                    ?>
-                </a>
+
+                    if (isset($nieuwsContent[1]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[1]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+
+                    }else {
+                        
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+
+                ?>
+
             </div>
         </div>
         <div class="all-content">
@@ -104,24 +191,56 @@ if (count($images) < 2) {
                 <span class="icon"></span>
                 <span class="date data-2">14 JUNE 2017</span>
                 <div class="content">
-                    <h2>Groot nieuws</h2>
-                    <a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>
+                    <?php
+                    
+                        if (isset($nieuwsContent[2]['Comments'])) {
+
+                            $nieuwsCon = $nieuwsContent[2]['Comments'];
+                            echo '<h2>' . $nieuwsCon . '</h2>';
+                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                        
+                        }elseif(isset($nieuwsContent[2]['foto']) == 'Geen' || empty($nieuwsContent[2]['foto'])) {
+                            
+                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                        }
+                    
+                    ?>
                 </div>
             </div>
             <div class="image">
-                <a href="/fotos">
-                    <?php
-                    if ($images == null) {
-                        echo "<p>Nog geen foto's</p>";
-                    } else {
-                        $image = $images[2]['image'];
-                        echo "<img src='$image' alt=''>";
+                
+                <?php
+
+                    if(isset($nieuwsContent[2]['foto'])){
+
+                        $nieuwsFoto = $nieuwsContent[2]['foto'];
+                        
                     }
-                    ?>
-                </a>
+
+                    if (isset($nieuwsContent[2]['foto']) && $nieuwsFoto !== '0') {
+
+                        $foto = $nieuwsContent[2]['foto'];
+                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+
+                    }else {
+                        
+                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                    }
+
+                ?>
+
             </div>
         </div>
     </div>
+    <?php
+
+        if(count($nieuwsContent) > 3){
+                    
+            echo '<form method="POST" action="/nieuws-weergeven"><button type="submit" name="nieuws-weergeven-salland" class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button></form>';
+
+        }
+
+    ?>
 </section>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f9f9f9" fill-opacity="1" d="M0,192L120,176C240,160,480,128,720,122.7C960,117,1200,139,1320,149.3L1440,160L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
 <div class="clearfix"></div>

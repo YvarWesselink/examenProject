@@ -81,7 +81,7 @@ $(document).ready(function () {
 
     $('.deleteRowC').click(function () {
         if (confirm("Weet je zeker dat je deze rij wilt verwijderen, dit verwijdert ook alle data in de rij!")) {
-            var id = $(this).parent('div').text().slice(0,-1);
+            var id = $(this).attr('id');
 
             $.ajax({
                 url: '/deleteRowCo',
@@ -129,7 +129,7 @@ $(document).ready(function () {
             type: 'GET',
         })
 
-        location.reload();
+        // location.reload();
     });
 
     $('.down').click(function () {
@@ -142,5 +142,33 @@ $(document).ready(function () {
 
         location.reload();
     });
+
+    $('.upCon').click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            url: '/moveupCon',
+            data: {'id' : id},
+            type: 'GET',
+        })
+    });
+
+    $('.downCon').click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            url: '/movedownCon',
+            data: {'id' : id},
+            type: 'GET',
+        })
+
+        location.reload();
+    });
+
+    $('.sendExcersiseBtn').click(function () {
+        if (!this.form.checkbox.checked)
+        {
+            alert('Je moet eerst de algemene voorwaarden accepteren.');
+            return false;
+        }
+    })
 });
 

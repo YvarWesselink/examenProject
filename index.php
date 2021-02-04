@@ -104,7 +104,8 @@ if (isset($_POST['delete-image'])) {
 
 if (isset($_POST['homepage'])) {
     $id = $_POST['album'];
-    Admin::homepageImage($id);
+    $naam = $_POST['naam'];
+    Admin::homepageImage($id, $naam);
 }
 
 if (isset($_POST['news'])) {
@@ -112,7 +113,9 @@ if (isset($_POST['news'])) {
     $email = $_POST['Email'];
     $company = $_POST['Company'];
     $comments = $_POST['Comments'];
-    nieuws::UploadNews($name, $email, $company, $comments);
+    $foto = $_POST['foto'];
+    $school = $_POST['school'];
+    nieuws::UploadNews($name, $email, $company, $comments, $foto, $school);
 }
 
 if (isset($_POST['upload_contact'])) {

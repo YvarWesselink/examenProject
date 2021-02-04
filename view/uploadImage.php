@@ -19,7 +19,7 @@ if (empty($_SESSION['username'])) {
     <div>
         <div class="txthome-main">
             <h1>Foto's Uploaden</h1>
-            <h3>Hier kunt u foto's uploaden .</h3>
+            <h3>Hier kunt u foto's uploaden. <br> U kunt alleen een foto uploaden tot 1MB</h3>
         </div>
         <div class="txthome-sub">
             <p>Foto's</p>

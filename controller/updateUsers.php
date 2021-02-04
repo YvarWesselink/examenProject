@@ -18,7 +18,6 @@ class updateUsers extends Database {
         $i = 1;
 
         $id = $_SESSION['id'];
-        echo $id;
         $stmt = $pdo->prepare("SELECT * FROM users WHERE uid = $id");
         $stmt->execute();
         $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
