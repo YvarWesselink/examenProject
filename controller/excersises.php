@@ -47,11 +47,23 @@ class excersises extends Database {
             if (isset($_POST['sendExcersise'])) {
                 $value = $_POST;
                 $key = $tables[$i]['Field'];
+                $to = "yourname@yourwebsite.com";
+                $headers = "From: $email_from \r\n";
+                $headers .= "Reply-To: $visitor_email \r\n";
+                mail($to,$email_subject,$email_body,$headers);
 
                 $backLog = $value[$key];
             } else {
                 $backLog = "";
             }
+
+
+
+            
+
+ 
+
+ 
 
             $table = str_replace('_', ' ',$tables[$i]['Field']);
 
