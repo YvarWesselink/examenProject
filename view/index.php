@@ -61,13 +61,14 @@ $(document).ready(function(){
                 <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
             </div>
           </div>
-        </div>
+        
      <hr>
         <div>
             <div class="child first">
                 <h2>Zwolle</h2>
                 <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
             </div>
+        </div>
         </div>
 </section>
 <div class="clearfix"></div>
