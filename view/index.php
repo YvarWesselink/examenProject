@@ -165,6 +165,13 @@ $(document).ready(function(){
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->
 <?PHP
+
+$sql = "SELECT Datum into $date FROM projectenopdrachtenz";
+
+
+echo $date;
+
+
 $datetime = DateTime::createFromFormat('YmdHi', '201308131830');
 echo $datetime->format('D');
 ?>
