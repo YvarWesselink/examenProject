@@ -165,7 +165,7 @@ $(document).ready(function(){
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->
 <?PHP
-$datetime = DateTime::createFromFormat('Ymd', '201308131');
+$datetime = DateTime::createFromFormat('YmdHi', '201308131830');
 echo $datetime->format('D');
 ?>
 
