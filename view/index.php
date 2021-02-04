@@ -166,7 +166,7 @@ $(document).ready(function(){
 <!-- ---------------------------- -->
 <?PHP
 
-$sql = "SELECT Datum into $date FROM projectenopdrachtenz";
+$date = "SELECT Datum into $date FROM projectenopdrachtens";
 
 
 echo $date;
