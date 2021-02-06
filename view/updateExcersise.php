@@ -2,7 +2,24 @@
 <html lang="en">
 <?php
 include_once "includes/header.php";
+if (empty($_SESSION['username'])) {
+    header('Location: index.php');
+    $username = $_SESSION['username'];
+}
+
+//-------------< user level check functie  >-----------------|
+//haalt user level op uit admin                            //|
+// < 5 alleen admins kunnen op deze pagina                 //|
+// < 4 betekend dat docenten en admins op pagina kunnen    //|
+// < 3 studenten en meer kunnen op deze pagina             //|
+// < 2 gasten kunnen de pagina bekijken                    //|
+// < 1 alleen een geldig acount kan deze pagina zien       //|
+if($_SESSION['user_lv'] < 0){                              //|
+    header('Location: index.php');                         //|
+}                                                          //|
+//-----------------------------------------------------------|
 ?>
+
 <!-- Start Banner Section -->
 <section class="banner">
     <div class="banner-img" style="height: 400px"></div>
@@ -17,7 +34,6 @@ include_once "includes/header.php";
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
-
 <div class="txthome-container opdracht">
     <div class="txthome-main">
         <h1>Opdrachten Indienen</h1>
@@ -41,7 +57,13 @@ include_once "includes/header.php";
             updateExcersise::showFields($errormsg);
             ?>
             <!-- Dit is het form voor de gegevens van het bedrijf. -->
+            <?php 
+                if($_SESSION['user_lv'] == 5){         
+            ?>
             <input type="submit" class="sendExcersiseBtn" name="updateExcersise" value="Opdracht updaten">
+            <?php
+                }
+            ?>
     </form>
 </div>
 </html>

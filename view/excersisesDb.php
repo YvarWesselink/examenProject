@@ -3,6 +3,22 @@
 
 <?php
 include_once "includes/header.php";
+if (empty($_SESSION['username'])) {
+    header('Location: index.php');
+    $username = $_SESSION['username'];
+}
+
+//-------------< user level check functie  >-----------------|
+//haalt user level op uit admin                            //|
+// < 5 alleen admins kunnen op deze pagina                 //|
+// < 4 betekend dat docenten en admins op pagina kunnen    //|
+// < 3 studenten en meer kunnen op deze pagina             //|
+// < 2 gasten kunnen de pagina bekijken                    //|
+// < 1 alleen een geldig acount kan deze pagina zien       //|
+if($_SESSION['user_lv'] < 0){                              //|
+    header('Location: index.php');                         //|
+}                                                          //|
+//-----------------------------------------------------------|
 ?>
 
 <!-- Start Banner Section -->
@@ -21,6 +37,7 @@ include_once "includes/header.php";
 <!-- End Banner Section -->
 <!-- Get all data from db for the excersises -->
 <?php 
+if($_SESSION['user_lv'] == 5){
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM projectenopdrachtens");
@@ -48,8 +65,10 @@ include_once "includes/header.php";
     } else {
     echo "<div>* Er zijn nog geen opdrachten.</div><br>";
   }
+}
 ?>
 <?php
+if($_SESSION['user_lv'] == 5){
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM projectenopdrachtenz");
@@ -77,11 +96,19 @@ include_once "includes/header.php";
     } else {
     echo "<div>* Er zijn nog geen opdrachten.</div><br>";
   }
+}
+?>
+<?php
+if($_SESSION['user_lv'] == 5){
 ?>
 <a href="/oude-opdrachten" class="oldExcBtn">Oude opdrachten</a><br>
+<?php
+}
+?>
 
 <!-- Get all data from db for the users -->
 <?php 
+if($_SESSION['user_lv'] == 5){
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM users");
@@ -108,10 +135,12 @@ include_once "includes/header.php";
     } else {
     echo "<div>* Er zijn nog geen gebruikers.</div>";
   }
+}
 ?>
 
 <!-- Get all data from db for the news -->
 <?php 
+if($_SESSION['user_lv'] == 5){
   $conn = self::connect();
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $result = $conn->query("SELECT * FROM feedback");
@@ -140,6 +169,151 @@ include_once "includes/header.php";
     } else {
     echo "<div>* Er is nog geen nieuws.</div><br>";
   }
+}
+?>
+<br>
+<br>
+<!-- Get all data from db for the excersises -->
+<?php 
+if($_SESSION['user_lv'] == 3){
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM projectenopdrachtens");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Salland</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><form method='post' action='/update-opdracht'><button type='submit' value='Bekijk' name='editBtn' class='editBtn'>Bekijk</button><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
+      echo "<td>". $row[$i]['Opdracht'] ."</td>";
+      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
+      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
+      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table><br><br>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
+  }
+}
+?>
+<?php
+if($_SESSION['user_lv'] == 3){
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM projectenopdrachtenz");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Zwolle</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><form method='post' action='/update-opdracht-zwolle'><button type='submit' value='' name='editBtnZ' class='editBtn'>Bekijk</button><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowZ' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
+        if (isset($row[$i]['Opdracht'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Opmerkingen'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Aantal_studenten'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Uitvoerings_dag_en_datum'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table><br><br>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
+  }
+}
+?>
+<?php
+if($_SESSION['user_lv'] == 3){
+?>
+<a href="/oude-opdrachten" class="oldExcBtn">Oude opdrachten</a><br>
+<?php
+}
+?>
+<br>
+<br>
+<!-- Get all data from db for the excersises -->
+<?php 
+if($_SESSION['user_lv'] == 2){
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM projectenopdrachtens");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Salland</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><form method='post' action='/update-opdracht'><button type='submit' value='' name='editBtn' class='fa fa-edit editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
+      echo "<td>". $row[$i]['Opdracht'] ."</td>";
+      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
+      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
+      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table><br><br>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
+  }
+}
+?>
+<?php
+if($_SESSION['user_lv'] == 2){
+  $conn = self::connect();
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $result = $conn->query("SELECT * FROM projectenopdrachtenz");
+  if ($result->rowCount() > 0){
+    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+    $count = count($row);
+    $i = 0;
+    echo "<div style='border-top-right-radius: 5px; border-top-left-radius:5px; box-shadow: 5px 5px 10px darkgrey; background-color: #ed135d; padding: 10px; width: 90%; margin-left: 5vw;'><h2 style='color: #ffffff;'>Opdrachten Zwolle</h2></div>";
+    echo "<table  style='text-align: center;'>";
+    echo "<th></th><th></th><th>Id</th><th>Opdracht</th><th>Opmerkingen</th><th>Aantal Studenten</th><th>Uitvoeringsdatum</th>";
+
+    while($count > $i){
+      echo "<tr>";
+      echo "<td><form method='post' action='/update-opdracht-zwolle'><button type='submit' value='' name='editBtnZ' class='fa fa-edit editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
+      echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRowZ' id=". $row[$i]['id'] ."></button></td>";
+      echo "<td id='id'>". $row[$i]['id'] ."</td>";
+        if (isset($row[$i]['Opdracht'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Opmerkingen'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Aantal_studenten'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Uitvoerings_dag_en_datum'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+      echo "</tr>";
+      $i ++;
+    }
+    echo "<table><br><br>";
+    } else {
+    echo "<div>* Er zijn nog geen opdrachten.</div><br>";
+  }
+}
+?>
+<?php
+if($_SESSION['user_lv'] == 2){
+?>
+<a href="/oude-opdrachten" class="oldExcBtn">Oude opdrachten</a><br>
+<?php
+}
 ?>
 <br>
 <br>

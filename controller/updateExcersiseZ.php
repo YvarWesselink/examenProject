@@ -9,173 +9,401 @@ class updateExcersiseZ extends Database {
     }
 
     public static function showFieldsZ($errormsg) {
-        $pdo = self::connect();
-        $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
-        $st->execute();
+        if($_SESSION['user_lv'] == 5){         
+            $pdo = self::connect();
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
+            $st->execute();
 
-        $tables = $st->fetchAll(PDO::FETCH_ASSOC);
-        $count = count($tables);
-        $i = 1;
+            $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+            $count = count($tables);
+            $i = 1;
 
-        $id = $_SESSION['id'];
-        $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtenz WHERE id = $id");
-        $stmt->execute();
-        $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $variableCount = count($values);
-        $index = 0;
-        while ($count > $i) {
-            switch ($tables[$i]['Type']) {
-                case "varchar(255)":
-                    $type = "text";
-                    break;
-                case "date":
-                    $type = "date";
-                    break;
-                case "time":
-                    $type = "time";
-                    break;
-                case "int(255)":
-                    $type = "number";
-                    break;
-            }
-
-            if (empty($errormsg)) {
-                $error = "";
-            } else {
-                $error = $errormsg[$tables[$i]['Field']];
-            }
-            if (isset($_POST['uploadExcersise'])) {
-                $value = $_POST;
-                $key = $tables[$i]['Field'];
-                $backLog = $value[$key];
-            } else {
-                while($variableCount > $index){
-                    $value = $values;
-                    $variables = array_values($value[$index]);
-                    $index ++;
+            $id = $_SESSION['id'];
+            $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtenz WHERE id = $id");
+            $stmt->execute();
+            $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $variableCount = count($values);
+            $index = 0;
+            while ($count > $i) {
+                switch ($tables[$i]['Type']) {
+                    case "varchar(255)":
+                        $type = "text";
+                        break;
+                    case "date":
+                        $type = "date";
+                        break;
+                    case "time":
+                        $type = "time";
+                        break;
+                    case "int(255)":
+                        $type = "number";
+                        break;
                 }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tables[$i]['Field']];
+                }
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tables[$i]['Field'];
+                    $backLog = $value[$key];
+                } else {
+                    while($variableCount > $index){
+                        $value = $values;
+                        $variables = array_values($value[$index]);
+                        $index ++;
+                    }
+                }
+                $ind = 0;
+                echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+                $i ++;
+                $index ++;
+                $ind++;
             }
+
+            echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
+
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
+            $st->execute();
+
+            $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
+            $countt = count($tabless);
+
+            $e = 0;
+            $x = 1;
+            $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevensz WHERE id = $id");
+            $stm->execute();
+            $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $variableContactCount = count($contactValues);
             $ind = 0;
-            echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
-            $i ++;
-            $index ++;
-            $ind++;
-        }
-
-        echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
-
-        $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
-        $st->execute();
-
-        $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countt = count($tabless);
-
-        $e = 0;
-        $x = 1;
-        $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevensz WHERE id = $id");
-        $stm->execute();
-        $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
-        $variableContactCount = count($contactValues);
-        $ind = 0;
-        while ($countt > $x) {
-            switch ($tabless[$x]['Type']) {
-                case "varchar(255)":
-                    $typee = "text";
-                    break;
-                case "date":
-                    $typee = "date";
-                    break;
-                case "time":
-                    $typee = "time";
-                    break;
-                case "int(255)":
-                    $typee = "number";
-                    break;
-            }
-
-            if (empty($errormsg)) {
-                $error = "";
-            } else {
-                $error = $errormsg[$tabless[$x]['Field']];
-            }
-
-            if (isset($_POST['uploadExcersise'])) {
-                $value = $_POST;
-                $key = $tabless[$x]['Field'];
-
-                $backLog = $value[$key];
-            } else {
-                while($variableContactCount > $ind){
-                    $value = $contactValues;
-                    $variables = array_values($value[$ind]);
-                    $ind ++;
+            while ($countt > $x) {
+                switch ($tabless[$x]['Type']) {
+                    case "varchar(255)":
+                        $typee = "text";
+                        break;
+                    case "date":
+                        $typee = "date";
+                        break;
+                    case "time":
+                        $typee = "time";
+                        break;
+                    case "int(255)":
+                        $typee = "number";
+                        break;
                 }
-            }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
-            $x ++;
-            $e ++;
-            $ind ++;
-        }
-
-        echo '<div class="txthome-sub"><p>3 Verborgen waardes</p></div>';
-
-        $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardenz");
-        $st->execute();
-
-        $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
-        $countt = count($tabless);
-
-        $e = 0;
-        $x = 1;
-        $stm = $pdo->prepare("SELECT * FROM verborgenwaardenz WHERE id = $id");
-        $stm->execute();
-        $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
-        $variableContactCount = count($contactValues);
-        $ind = 0;
-        while ($countt > $x) {
-            switch ($tabless[$x]['Type']) {
-                case "varchar(255)":
-                    $typee = "text";
-                    break;
-                case "date":
-                    $typee = "date";
-                    break;
-                case "time":
-                    $typee = "time";
-                    break;
-                case "int(255)":
-                    $typee = "number";
-                    break;
-            }
-
-            if (empty($errormsg)) {
-                $error = "";
-            } else {
-                $error = $errormsg[$tabless[$x]['Field']];
-            }
-
-            if (isset($_POST['uploadExcersise'])) {
-                $value = $_POST;
-                $key = $tabless[$x]['Field'];
-
-                $backLog = $value[$key];
-            } else {
-                while($variableContactCount > $ind){
-                    $value = $contactValues;
-                    $variables = array_values($value[$ind]);
-                    $ind ++;
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tabless[$x]['Field']];
                 }
+
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tabless[$x]['Field'];
+
+                    $backLog = $value[$key];
+                } else {
+                    while($variableContactCount > $ind){
+                        $value = $contactValues;
+                        $variables = array_values($value[$ind]);
+                        $ind ++;
+                    }
+                }
+
+                echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+                $x ++;
+                $e ++;
+                $ind ++;
             }
 
-            echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
-            $x ++;
-            $e ++;
-            $ind ++;
+            echo '<div class="txthome-sub"><p>3 Verborgen waardes</p></div>';
+
+            $st = $pdo->prepare("SHOW COLUMNS FROM verborgenwaardenz");
+            $st->execute();
+
+            $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
+            $countt = count($tabless);
+
+            $e = 0;
+            $x = 1;
+            $stm = $pdo->prepare("SELECT * FROM verborgenwaardenz WHERE id = $id");
+            $stm->execute();
+            $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $variableContactCount = count($contactValues);
+            $ind = 0;
+            while ($countt > $x) {
+                switch ($tabless[$x]['Type']) {
+                    case "varchar(255)":
+                        $typee = "text";
+                        break;
+                    case "date":
+                        $typee = "date";
+                        break;
+                    case "time":
+                        $typee = "time";
+                        break;
+                    case "int(255)":
+                        $typee = "number";
+                        break;
+                }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tabless[$x]['Field']];
+                }
+
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tabless[$x]['Field'];
+
+                    $backLog = $value[$key];
+                } else {
+                    while($variableContactCount > $ind){
+                        $value = $contactValues;
+                        $variables = array_values($value[$ind]);
+                        $ind ++;
+                    }
+                }
+
+                echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+                $x ++;
+                $e ++;
+                $ind ++;
+            }
+        }
+        // Hier komt alles voor user_lv == 3
+        if($_SESSION['user_lv'] == 3){         
+            $pdo = self::connect();
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
+            $st->execute();
+
+            $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+            $count = count($tables);
+            $i = 1;
+
+            $id = $_SESSION['id'];
+            $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtenz WHERE id = $id");
+            $stmt->execute();
+            $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $variableCount = count($values);
+            $index = 0;
+            while ($count > $i) {
+                switch ($tables[$i]['Type']) {
+                    case "varchar(255)":
+                        $type = "text";
+                        break;
+                    case "date":
+                        $type = "date";
+                        break;
+                    case "time":
+                        $type = "time";
+                        break;
+                    case "int(255)":
+                        $type = "number";
+                        break;
+                }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tables[$i]['Field']];
+                }
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tables[$i]['Field'];
+                    $backLog = $value[$key];
+                } else {
+                    while($variableCount > $index){
+                        $value = $values;
+                        $variables = array_values($value[$index]);
+                        $index ++;
+                    }
+                }
+                $ind = 0;
+                // echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+                echo "<label ><b style='color: #ED135D;'>".$tables[$i]['Field']."</b></label>"."<br>"."<div>$variables[$i]</div><br>";
+                $i ++;
+                $index ++;
+                $ind++;
+            }
+
+            echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
+
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
+            $st->execute();
+
+            $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
+            $countt = count($tabless);
+
+            $e = 0;
+            $x = 1;
+            $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevensz WHERE id = $id");
+            $stm->execute();
+            $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $variableContactCount = count($contactValues);
+            $ind = 0;
+            while ($countt > $x) {
+                switch ($tabless[$x]['Type']) {
+                    case "varchar(255)":
+                        $typee = "text";
+                        break;
+                    case "date":
+                        $typee = "date";
+                        break;
+                    case "time":
+                        $typee = "time";
+                        break;
+                    case "int(255)":
+                        $typee = "number";
+                        break;
+                }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tabless[$x]['Field']];
+                }
+
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tabless[$x]['Field'];
+
+                    $backLog = $value[$key];
+                } else {
+                    while($variableContactCount > $ind){
+                        $value = $contactValues;
+                        $variables = array_values($value[$ind]);
+                        $ind ++;
+                    }
+                }
+
+                // echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+                echo "<label ><b style='color: #ED135D;'>".$tables[$x]['Field']."</b></label>"."<br>"."<div>$variables[$x]</div><br>";
+                $x ++;
+                $e ++;
+                $ind ++;
+            }
+        }
+        // Hier komt alles voor user_lv == 2
+        if($_SESSION['user_lv'] == 2){         
+            $pdo = self::connect();
+            $st = $pdo->prepare("SHOW COLUMNS FROM projectenopdrachtenz");
+            $st->execute();
+
+            $tables = $st->fetchAll(PDO::FETCH_ASSOC);
+            $count = count($tables);
+            $i = 1;
+
+            $id = $_SESSION['id'];
+            $stmt = $pdo->prepare("SELECT * FROM projectenopdrachtenz WHERE id = $id");
+            $stmt->execute();
+            $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $variableCount = count($values);
+            $index = 0;
+            while ($count > $i) {
+                switch ($tables[$i]['Type']) {
+                    case "varchar(255)":
+                        $type = "text";
+                        break;
+                    case "date":
+                        $type = "date";
+                        break;
+                    case "time":
+                        $type = "time";
+                        break;
+                    case "int(255)":
+                        $type = "number";
+                        break;
+                }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tables[$i]['Field']];
+                }
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tables[$i]['Field'];
+                    $backLog = $value[$key];
+                } else {
+                    while($variableCount > $index){
+                        $value = $values;
+                        $variables = array_values($value[$index]);
+                        $index ++;
+                    }
+                }
+                $ind = 0;
+                // echo "<label>".$tables[$i]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$i]' type='$type' name='".$tables[$i]['Field']."'><p style='color: red'>$error</p><br>";
+                echo "<label ><b style='color: #ED135D;'>".$tables[$i]['Field']."</b></label>"."<br>"."<div>$variables[$i]</div><br>";
+                $i ++;
+                $index ++;
+                $ind++;
+            }
+
+            echo '<div class="txthome-sub"><p>2 Contact/bedrijf gegevens</p></div>';
+
+            $st = $pdo->prepare("SHOW COLUMNS FROM contactbedrijfgegevensz");
+            $st->execute();
+
+            $tabless = $st->fetchAll(PDO::FETCH_ASSOC);
+            $countt = count($tabless);
+
+            $e = 0;
+            $x = 1;
+            $stm = $pdo->prepare("SELECT * FROM contactbedrijfgegevensz WHERE id = $id");
+            $stm->execute();
+            $contactValues = $stm->fetchAll(PDO::FETCH_ASSOC);
+            $variableContactCount = count($contactValues);
+            $ind = 0;
+            while ($countt > $x) {
+                switch ($tabless[$x]['Type']) {
+                    case "varchar(255)":
+                        $typee = "text";
+                        break;
+                    case "date":
+                        $typee = "date";
+                        break;
+                    case "time":
+                        $typee = "time";
+                        break;
+                    case "int(255)":
+                        $typee = "number";
+                        break;
+                }
+
+                if (empty($errormsg)) {
+                    $error = "";
+                } else {
+                    $error = $errormsg[$tabless[$x]['Field']];
+                }
+
+                if (isset($_POST['uploadExcersise'])) {
+                    $value = $_POST;
+                    $key = $tabless[$x]['Field'];
+
+                    $backLog = $value[$key];
+                } else {
+                    while($variableContactCount > $ind){
+                        $value = $contactValues;
+                        $variables = array_values($value[$ind]);
+                        $ind ++;
+                    }
+                }
+
+                // echo "<label>".$tabless[$x]['Field']."</label>"."<br>"."<input class='titel' value='$variables[$x]' type='$typee' name='".$tabless[$x]['Field']."'><p style='color: red'>$error</p><br>";
+                echo "<label ><b style='color: #ED135D;'>".$tables[$x]['Field']."</b></label>"."<br>"."<div>$variables[$x]</div><br>";
+                $x ++;
+                $e ++;
+                $ind ++;
+            }
         }
     }
 
-    public static function checkExcersiseZ($waarden) {
+    public static function checkExcersise($waarden) {
 
         $errormsg = array();
 
@@ -207,7 +435,7 @@ class updateExcersiseZ extends Database {
         return $errormsg;
     }
 
-    public static function UploadExersiseZ($waarden) {
+    public static function UploadExersise($waarden) {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'
