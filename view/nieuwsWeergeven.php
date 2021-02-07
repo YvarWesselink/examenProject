@@ -99,6 +99,7 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                 <div class="nieuws-container left" style="margin: 1% 0;">
                 <span class="icon"></span>
                     <div class="content">
+                        <div><span>Naam:</span><p>' . $row[$i]['Name'] . '</p></div>
                     ';
                     ?>
                         <?php
