@@ -53,7 +53,7 @@ if(isset($_GET['action']) == "albumsNaam"){
         </div>
     </div>
 
-    <div id="signup">
+    <div id="signup" style="width: 700px;">
     <form method="post" action="" name="nieuws">
         <label>Naam:</label>
         <input type="text" name="Name" autocomplete="off" />
