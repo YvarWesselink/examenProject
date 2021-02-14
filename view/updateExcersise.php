@@ -40,6 +40,7 @@ if($_SESSION['user_lv'] < 0){                              //|
         <h3>*hier moet nog een tekstje komen.*</h3>
     </div>
     <!-- Dit is het form waar je de opdracht in kunt vullen. -->
+    <div id="printableTable">
     <div class="txthome-sub">
         <p>1 Opdracht </p>
     </div>
@@ -64,6 +65,28 @@ if($_SESSION['user_lv'] < 0){                              //|
             <?php
                 }
             ?>
+        </div>
     </form>
+    </div>
+    <button class="Button Button--outline sendExcersiseBtn" onclick="printDiv()">Print</button>
+    <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 </div>
 </html>
+
+<script type="text/javascript">
+    function printDiv() {
+        window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+</script>
+
+<style>
+@media print {
+  * {
+    display: none;
+  }
+  #printableTable {
+    display: block;
+  }
+}</style>
