@@ -165,19 +165,18 @@ $(document).ready(function(){
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->
 <?PHP
-
-
-
-$sql = "SELECT Datum FROM projectenopdrachtens";
-        $prepare=$conn->prepare($sql);
-        $prepare->execute();
-        $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
-echo $result;
-
-
-$datetime = DateTime::createFromFormat('YmdHi', '201308131830');
-echo $datetime->format('D');
+//
+//
+//$sql = "SELECT Datum FROM projectenopdrachtens";
+//        $prepare=$conn->prepare($sql);
+//        $prepare->execute();
+//        $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+//
+//echo $result;
+//
+//
+//$datetime = DateTime::createFromFormat('YmdHi', '201308131830');
+//echo $datetime->format('D');
 ?>
 
 <!-- Start Footer -->

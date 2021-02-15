@@ -115,6 +115,7 @@ if (isset($_POST['news'])) {
     $comments = $_POST['Comments'];
     $foto = $_POST['foto'];
     $school = $_POST['school'];
+
     nieuws::UploadNews($name, $email, $company, $comments, $foto, $school);
 }
 

@@ -646,7 +646,7 @@ class Admin extends controller
             $st->bindParam(":nummer", $nummer);
             $st->bindParam(":input", $inputType);
             $st->execute();
-        } else {
+        } elseif ($type == "projectenopdrachten") {
             // upload element to volgodeContact table in db
             $st = $pdo->prepare("SELECT * FROM volgordeopdracht");
             $st->execute();
