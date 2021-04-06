@@ -9,6 +9,9 @@ if (isset($_POST["album-weergeven"])) {
     $album = $_POST['album'];
 }
 
+if (isset($_POST["album-nieuws"])) {
+    $album = $_POST['album-nieuws'];
+}
 ?>
 
 <body>

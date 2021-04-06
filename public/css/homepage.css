@@ -825,6 +825,11 @@ div .image img:hover{
     ----------------------
 */
 
+.nieuws-image {
+  width: auto;
+  height: 150px;
+}
+
 .fotos {
   width: 100%;
   min-height: 600px;

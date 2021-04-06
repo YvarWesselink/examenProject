@@ -142,13 +142,26 @@ include_once "includes/header.php";
                     if(isset($nieuwsContent[0]['foto'])){
 
                         $nieuwsFoto = $nieuwsContent[0]['foto'];
-                        
+
+                        // get album from selected image
+                        $pdo = Database::connect();
+                        $st = $pdo->prepare("SELECT album FROM images WHERE image=:image");
+                        $st->bindParam(":image", $nieuwsFoto);
+                        $st->execute();
+                        $album = $st->fetch(PDO::FETCH_ASSOC);
+                        $album = $album['album'];
                     }
 
                     if (isset($nieuwsContent[0]['foto']) && $nieuwsFoto !== '0') {
 
                         $foto = $nieuwsContent[0]['foto'];
                         echo "<form method='POST' action='/nieuws-artikel'><a type'submit'  name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[0]['userID'] ."'><img src='$foto' alt=''/></a></form>";                    
+
+                        echo "<form method='post' action='/album-weergeven-school'>";
+                        echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";
+                        echo "<input type='hidden' name='album-nieuws' value='$album'>";
+                        echo "</form>";
+                    
                     }else {
                         
                         echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
@@ -184,6 +197,14 @@ include_once "includes/header.php";
                     if(isset($nieuwsContent[1]['foto'])){
 
                         $nieuwsFoto = $nieuwsContent[1]['foto'];
+
+                        // get album from selected image
+                        $pdo = Database::connect();
+                        $st = $pdo->prepare("SELECT album FROM images WHERE image=:image");
+                        $st->bindParam(":image", $nieuwsFoto);
+                        $st->execute();
+                        $album = $st->fetch(PDO::FETCH_ASSOC);
+                        $album = $album['album'];
                         
                     }
                     
@@ -191,9 +212,14 @@ include_once "includes/header.php";
 
                         $foto = $nieuwsContent[1]['foto'];
                         echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[1]['userID'] ."'><img src='$foto' alt=''/></a></form>";                    
+                        echo "<form method='post' action='/album-weergeven-school'>";
+                        echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";
+                        echo "<input type='hidden' name='album-nieuws' value='$album'>";
+                        echo "</form>";
+                    
                         $nieuwsFoto = $nieuwsContent[1]['foto'];
                     
-                    }else {
+                    } else {
                         
                         echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
                     }
@@ -234,7 +260,13 @@ include_once "includes/header.php";
                     if (isset($nieuwsContent[2]['foto']) && $nieuwsFoto !== '0') {
 
                         $foto = $nieuwsContent[2]['foto'];
+
                         echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[2]['userID'] ."'><img src='$foto' alt=''/></a></form>";
+
+                        echo "<form method='post' action='/album-weergeven-school'>";
+                        echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";
+                        echo "<input type='hidden' name='album-nieuws' value='$album'>";
+                        echo "</form>";
                     
                         $nieuwsFoto = $nieuwsContent[2]['foto'];
                     
@@ -249,10 +281,8 @@ include_once "includes/header.php";
     </div>
     <?php
 
-        if(count($nieuwsContent) > 3){
-            
+        if (count($nieuwsContent) > 3) {
             echo '<form method="POST" action="/nieuws-weergeven"><button type="submit" name="nieuws-weergeven-zwolle" class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button></form>';
-        
         }
 
     ?>
