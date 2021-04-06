@@ -930,7 +930,8 @@ class Admin extends controller
         $st->bindParam(":id", $uid, PDO::PARAM_STR);
         $st->bindParam(":userlv", $user_lv, PDO::PARAM_STR);
         $st->execute();
-        header("Location: /adminpanel");
+//        header("Location: /adminpanel");
+        echo "<script> location.href='/userlevel'; </script>";
         }
 
         public static function contactTXT() {

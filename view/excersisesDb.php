@@ -54,10 +54,10 @@ if($_SESSION['user_lv'] == 5){
       echo "<td><form method='post' action='/update-opdracht'><button type='submit' value='' name='editBtn' class='fa fa-edit editBtn'/><input type='hidden' name='project_id' value=". $row[$i]['id'] ." /> </form></td>";
       echo "<td><button type='submit' class='fa fa-trash deleteBtn deleteTableRow' id=". $row[$i]['id'] ."></button></td>";
       echo "<td id='id'>". $row[$i]['id'] ."</td>";
-      echo "<td>". $row[$i]['Opdracht'] ."</td>";
-      echo "<td>". $row[$i]['Opmerkingen'] ."</td>";
-      echo "<td>". $row[$i]['Aantal_studenten'] ."</td>";
-      echo "<td>". $row[$i]['Uitvoerings_dag_en_datum'] ."</td>";
+        if (isset($row[$i]['Opdracht'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Opmerkingen'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Aantal_studenten'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
+        if (isset($row[$i]['Uitvoerings_dag_en_datum'])) {echo "<td>". $row[$i]['Opdracht'] ."</td>";}
       echo "</tr>";
       $i ++;
     }

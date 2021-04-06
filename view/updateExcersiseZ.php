@@ -52,6 +52,7 @@ if($_SESSION['user_lv'] < 0){                              //|
                 $errormsg = updateExcersiseZ::checkExcersiseZ($_POST);
 
                 if (!array_filter($errormsg)) {
+                    // de functie "UplaodExersizeZ" bestaat niet in de class "updateExcersizeZ". "UplaodExersize" zonder "z" bestaat wel, waarschijnlijk is dit de zelfde functie.
                     updateExcersiseZ::UploadExersiseZ($_POST);
                 }
             }
