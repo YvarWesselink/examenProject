@@ -8,6 +8,24 @@ include_once "includes/header.php";
 ?>
 
 <style>
+
+    .nieuws-container .content {
+        overflow: hidden;
+    }
+
+    .nieuws-container .content h2{
+        word-wrap: break-word;
+    }
+
+    div .image{
+        border: 1px solid #ddd;
+    }
+
+    div .image img{
+        width: 100%;
+        height: 140px;
+    }
+
     .kijk_meer{
         display: block;
         margin: 50px auto 0;
@@ -107,8 +125,8 @@ include_once "includes/header.php";
                         if (isset($nieuwsContent[0]['Comments'])) {
 
                             $nieuwsCon = $nieuwsContent[0]['Comments'];
-                            echo '<h2>' . $nieuwsCon . '</h2>';
-                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                            echo '<h2>' . $nieuwsContent[0]['Name'] . '</h2>';
+                            echo '<form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $nieuwsContent[0]['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form>';
                         
                         }else {
                             
@@ -130,8 +148,7 @@ include_once "includes/header.php";
                     if (isset($nieuwsContent[0]['foto']) && $nieuwsFoto !== '0') {
 
                         $foto = $nieuwsContent[0]['foto'];
-                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
-                    
+                        echo "<form method='POST' action='/nieuws-artikel'><a type'submit'  name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[0]['userID'] ."'><img src='$foto' alt=''/></a></form>";                    
                     }else {
                         
                         echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
@@ -150,8 +167,8 @@ include_once "includes/header.php";
                         if (isset($nieuwsContent[1]['Comments'])) {
 
                             $nieuwsCon = $nieuwsContent[1]['Comments'];
-                            echo '<h2>' . $nieuwsCon . '</h2>';
-                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                            echo '<h2>' . $nieuwsContent[1]['Name'] . '</h2>';
+                            echo '<form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $nieuwsContent[1]['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form>';
                         
                         }else {
                             
@@ -173,8 +190,7 @@ include_once "includes/header.php";
                     if (isset($nieuwsContent[1]['foto']) && $nieuwsFoto !== '0') {
 
                         $foto = $nieuwsContent[1]['foto'];
-                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
-                    
+                        echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[1]['userID'] ."'><img src='$foto' alt=''/></a></form>";                    
                         $nieuwsFoto = $nieuwsContent[1]['foto'];
                     
                     }else {
@@ -195,8 +211,8 @@ include_once "includes/header.php";
                         if (isset($nieuwsContent[2]['Comments'])) {
 
                             $nieuwsCon = $nieuwsContent[2]['Comments'];
-                            echo '<h2>' . $nieuwsCon . '</h2>';
-                            echo '<a href="#">Lees meer <i class="fas fa-arrow-right icons"></i></a>';
+                            echo '<h2>' . $nieuwsContent[2]['Name'] . '</h2>';
+                            echo '<form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $nieuwsContent[2]['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form>';
                         
                         }else {
                             
@@ -218,7 +234,7 @@ include_once "includes/header.php";
                     if (isset($nieuwsContent[2]['foto']) && $nieuwsFoto !== '0') {
 
                         $foto = $nieuwsContent[2]['foto'];
-                        echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+                        echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[2]['userID'] ."'><img src='$foto' alt=''/></a></form>";
                     
                         $nieuwsFoto = $nieuwsContent[2]['foto'];
                     

@@ -99,19 +99,16 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                 <div class="nieuws-container left" style="margin: 1% 0;">
                 <span class="icon"></span>
                     <div class="content">
-                        <div><span>Naam:</span><p>' . $row[$i]['Name'] . '</p></div>
                     ';
                     ?>
                         <?php
                         
-                            if (isset($row[$i]['Comments'])) {
+                            if (!isset($row[$i]['Name']) || !isset($row[$i]['Comments'])) {
 
-                                $nieuwsCon = $row[$i]['Comments'];
-                                echo '<div><span>Bericht:</span><p style="margin: 15px 15px 42px;">' . $nieuwsCon . '</p></div>';
-                            
-                            }else {
-                                
                                 echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                            
+                            }else{
+                                echo "<div><span>Titel:</span><p>'" . $row[$i]['Name'] . "'</p></div>";
                             }
                         
                         ?>

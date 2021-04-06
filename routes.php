@@ -191,6 +191,11 @@ Route::set('nieuws-weergeven', function () {
 });
 
 
+Route::set('nieuws-artikel', function () {
+    Index::CreateView('nieuwsArtikel');
+});
+
+
 Route::set('fotos', function () {
     Index::CreateView('fotos');
 });

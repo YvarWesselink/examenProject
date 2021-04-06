@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="public/js/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="public/js/slick-1.8.1/slick/slick-theme.css"/>
 
-    
+    <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <!--    <link rel="stylesheet" href="{{asset('/public/css/style.css')}}">-->
 
     <!-- JS Script -->

@@ -9,17 +9,7 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $images = $conn->query("SELECT * FROM images");
 $albums = $conn->query("SELECT * FROM albums");
 
-if(isset($_GET['action']) == "albumsNaam"){
-
-    echo 'goed getest';
-
-}else{
-    
-    echo 'Error met images ophalen uit Ajax';
-}
-
 ?>
-<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 <style>
 
     label input{
@@ -38,6 +28,12 @@ if(isset($_GET['action']) == "albumsNaam"){
     label input:active{
         outline: none;
         border-color: #f4b40e !important;
+    }
+
+    .ck-editor__main,
+    .ck-content{
+        min-height: 300px;
+        resize: vertical;
     }
 
 </style>
@@ -62,35 +58,12 @@ if(isset($_GET['action']) == "albumsNaam"){
         <label>Bedrijf</label>
         <input type="text" name="Company" autocomplete="off" />
         <label>Bericht</label>
-        <textarea name="editor1"></textarea>
+        <textarea name="Comments" id="editor"></textarea>
         <script>
-                CKEDITOR.replace( 'editor1' );
+                CKEDITOR.replace( 'editor' );
         </script>
         <br>
-        <label style="display: block;">
-            <span style="display: block; margin-bottom: 15px;">Kies album:</span>
-            <?php
-
-            if ($albums->rowCount() > 0){
-                $row = $albums->fetchAll(PDO::FETCH_ASSOC);
-                $count = count($row);
-                $a = 0;
-
-                while($count > $a){
-
-                    echo '<input type="button" class="albumsNaam" value="' . $row[$a]['naam'] . '">';
-                    $a++;
-                    
-                }
-                
-            } else {
-
-                    echo "<select name='foto'>Er zijn geen foto's om te kiezen!</select><br>";
-                
-            }
-
-            ?>
-        </label>
+        
         <!-- <form method="post" action="" enctype='multipart/form-data' class="upload-image"> -->
         <label>Nieuws foto:</label>
         <div class="images" style="text-align: left; display: block;">
@@ -103,31 +76,47 @@ if(isset($_GET['action']) == "albumsNaam"){
                     $d = 0;
                     
                     while($count > $i){
-                        echo "<div style='width: 85px; height: auto; position: relative; overflow: hidden; margin: 0 5px 15px; display: inline-block;'>
-                                <img src='". $row[$i]['image'] ."' style='width: 100%; height: 85px;border-radius: 3px;'/>
+                        echo "<div class='copyable' style='cursor: pointer; width: 85px; height: auto; position: relative; overflow: hidden; margin: 0 5px 15px; display: inline-block;'>
+                                <img src='". $row[$i]['image'] ."' style='width: 100%; height: 85px;border-radius: 3px;'  alt='Copy Image to Clipboard via Javascript!'/>
                                 <span style='display: block; text-align: center;'>" . $row[$i]['id'] . "</span>
                             </div>";
                         $i++;
                         }
 
                         ?>
-
+                        <!-- kopiëren function van de image -->
                         <script>
-                            $('.albumsNaam').click(function(){
-                                $.ajax({
-                                    url: 'http://192.168.2.19/nieuws',
-                                    type: "GET",
-                                    dataType: 'JSON',
-                                    success: function(albumsNaam){
-                                        alert('done');
-                                    },
-                                    error: function(a,b,c){
-                                        alert(b.responseText);
+                                //Cross-browser function to select content
+                                function SelectText(element) {
+                                    var doc = document;
+                                    if (doc.body.createTextRange) {
+                                        var range = document.body.createTextRange();
+                                        range.moveToElementText(element);
+                                        range.select();
+                                    } else if (window.getSelection) {
+                                        var selection = window.getSelection();
+                                        var range = document.createRange();
+                                        range.selectNodeContents(element);
+                                        selection.removeAllRanges();
+                                        selection.addRange(range);
                                     }
+                                }
+                                $(".copyable").click(function (e) {
+                                    //Make the container Div contenteditable
+                                    $(this).attr("contenteditable", true);
+                                    //Select the image
+                                    SelectText($(this).get(0));
+                                    //Execute copy Command
+                                    //Note: This will ONLY work directly inside a click listenner
+                                    document.execCommand('copy');
+                                    //Unselect the content
+                                    window.getSelection().removeAllRanges();
+                                    //Make the container Div uneditable again
+                                    $(this).removeAttr("contenteditable");
+                                    //Success!!
+                                    alert("Het image is gekopieerd!");
                                 });
-                            });
                         </script>
-
             <label>Kies foto:
                 <select name="foto">
                     <option value="0">Geen foto</option>
