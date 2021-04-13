@@ -88,6 +88,8 @@ echo "<h2>".$salland['titels']."</h2>"."<h3>".$salland['tussens']."</h3>"."<p>".
     $school = $_SESSION['school'];
     $nieuwsContent = Admin::downloadNieuwsHome($school);
 
+    print_r($nieuwsContent);
+
     if (count($nieuwsContent) == 0) {
         $nieuwsContent = null;
     }

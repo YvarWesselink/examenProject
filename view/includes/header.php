@@ -66,6 +66,7 @@
         <?php
         if (!empty($_SESSION['school'])) {
             echo '<li><a href="/opdrachten">Opdracht</a></li>';
+            echo '<li><a href="/fotos">Fotos</a></li>';
         }
         ?>
     </ul>
