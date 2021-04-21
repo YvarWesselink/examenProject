@@ -52,15 +52,30 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
 <!-- ---------------------------- -->
 <!-- Start Banner Section -->
 <section class="banner">
-    <div class="banner-img"></div>
-    <div class="banner-svg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#fff" fill-opacity="1"
-                  d="M0,96L80,112C160,128,320,160,480,154.7C640,149,800,107,960,90.7C1120,75,1280,85,1360,90.7L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-            </path>
-        </svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,128L120,112C240,96,480,64,720,64C960,64,1200,96,1320,112L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg> -->
-    </div>
+    <section class="banner">
+        <div class="banner-img">
+            <div class="banner-svg">
+                <div class="slider">
+                    <?php
+                    Admin::downloadFotosSlide($_SESSION['school']);
+                    ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('.slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    autoplay: true,
+                    autoplaySpeed: 1700,
+                });
+            });
+
+        </script>
+    </section>
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
@@ -108,7 +123,7 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                                 echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
                             
                             }else{
-                                echo "<div><span>Titel:</span><p>'" . $row[$i]['Name'] . "'</p></div>";
+                                echo '<div><span>Titel:</span><p>' . $row[$i]['Name'] . '</p><form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $row[$i]['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form></div>';
                             }
                         
                         ?>
@@ -128,7 +143,7 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
                             if (isset($row[$i]['foto']) && $nieuwsFoto !== '0') {
 
                                 $foto = $row[$i]['foto'];
-                                echo "<a href='/fotos'><img src='$foto' alt=''/></a>";
+                                echo "<a href='/nieuws-artikel?artikel=" . $row[$i]['userID'] ."''><img src='$foto' alt=''/></a>";
                             
                             }else {
                                 

@@ -261,7 +261,7 @@ include_once "includes/header.php";
 
                         $foto = $nieuwsContent[2]['foto'];
 
-                        echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[2]['userID'] ."'><img src='$foto' alt=''/></a></form>";
+                        echo "<form method='POST' action='/nieuws-artikel'><a type='submit' name='userID' href='/nieuws-artikel?artikel=" . $nieuwsContent[2]['userID'] . "'artikel=" . $nieuwsContent[2]['userID'] ."'><img src='$foto' alt=''/></a></form>";
 
                         echo "<form method='post' action='/album-weergeven-school'>";
                         echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";

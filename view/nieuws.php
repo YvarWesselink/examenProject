@@ -144,6 +144,7 @@ $albums = $conn->query("SELECT * FROM albums");
         <label style="display: block;">
             Kies School:
             <select name="school">
+                <option value="">Kies school</option>
                 <option value="z">Zwolle</option>
                 <option value="s">Salland</option>
             </select>

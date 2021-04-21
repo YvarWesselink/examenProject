@@ -51,7 +51,7 @@ include_once "includes/header.php";
 
         $pdo = self::connect();
 
-        $userID = $_GET['artikel'];
+        $userID = ($_GET['artikel'] - 1);
         $st = $pdo->prepare("SELECT * FROM feedback ORDER BY userID");
         $st->execute();
     
@@ -59,7 +59,7 @@ include_once "includes/header.php";
     
     ?>
     <div class="artikelposter">    
-        <img class="artikelimg" src="<?php echo $artikel[0]['foto'] ?>" alt="">
+        <img class="artikelimg" src="<?php echo $artikel[$userID]['foto'] ?>" alt="">
     </div>
     <?php
         
@@ -69,8 +69,8 @@ include_once "includes/header.php";
 
     ?>
     <div class="artikelcontent">
-        <h1><?php echo $artikel[0]['Name'] ?></h1>
-        <div><?php echo $artikel[0]['Comments'] ?></div>
+        <h1><?php echo $artikel[$userID]['Name'] ?></h1>
+        <div><?php echo $artikel[$userID]['Comments'] ?></div>
     </div>
 
 <?php
