@@ -56,10 +56,12 @@ $(document).ready(function(){
 <section class="info">
     <div class="container">
             <div>
-                <div href="www.salland.nl" class="child last">
+            <a href="www.salland.nl">
+                <div class="child last">
                     <h2>Salland</h2>
                     <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
                 </div>
+                </a>
             </div>
         </a>
         <hr>
