@@ -245,7 +245,7 @@ if($_SESSION['user_lv'] < 0){                              //|
         <a href='/txtcontact' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/edit.png'>
+                    <img src='/public/img/contact.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Contact info aanpassen</p>
