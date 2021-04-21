@@ -29,6 +29,31 @@ class Admin extends controller
         echo "<script> location.href='txthome'; </script>";
     }
 
+    public static function uploadoveronsTXT($titel_over, $tussenkop_over, $txthome_over)
+    {
+        if (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $titel_over)) {
+            echo "<script> location.href='overons'; </script>";
+            exit();
+        } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $tussenkop_over)) {
+            echo "<script> location.href='overons'; </script>";
+            exit();
+        } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $txthome_over)) {
+            echo "<script> location.href='overons'; </script>";
+            exit();
+        }
+
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("UPDATE overons SET titel=:titel, tussenkopje=:tussenkopje, home=:overons WHERE id = 1");
+
+        $st->bindParam(":titel", $titel,PDO::PARAM_STR);
+        $st->bindParam(":tussenkopje", $tussenkop,PDO::PARAM_STR);
+        $st->bindParam(":overons", $txthome,PDO::PARAM_STR);
+        $st->execute();
+
+        echo "<script> location.href='overons'; </script>";
+    }
+
     public static function uploadImage($album) {
         try {
             $pdo = self::connect();
@@ -450,6 +475,17 @@ class Admin extends controller
         $home = $st->fetch(PDO::FETCH_ASSOC);
 
         return $home;
+    }
+
+    public static function overTXT() {
+        $pdo = self::connect();
+
+        $st = $pdo->prepare("SELECT * FROM overons WHERE id = 1");
+        $st->execute();
+
+        $over = $st->fetch(PDO::FETCH_ASSOC);
+
+        return $over;
     }
 
     public static function editUser($username, $voornaam, $achternaam, $email, $straat, $plaats, $postcode, $mobiel, $website, $id)

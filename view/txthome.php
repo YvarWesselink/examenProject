@@ -37,6 +37,11 @@ if($_SESSION['user_lv'] < 5){                              //|
         $titelz = $zwolle['titelz'];
         $tussenz = $zwolle['tussenz'];
         $zwolletxt = $zwolle['zwolletxt'];
+
+        $overons = Admin::overTXT();
+        $titelO = $overons['titel'];
+        $tussenO = $overons['tussenkopje'];
+        $overtxt = $overons['home'];
         ?>
 
         <div>
@@ -125,6 +130,30 @@ if($_SESSION['user_lv'] < 5){                              //|
 
             <input class="submit" type="submit" name="uploadsalland" value="send">
         </form>
+
+        <form method="post">
+            <label>
+                Over ons tekst<br>
+                <?php
+                echo "<input class='titel' type='text' name='titelO' value='$titelO'>"
+                ?>
+            </label><br>
+            <label>
+                Tussenkopje (optioneel) <br>
+                <?php
+                echo "<textarea class='tussenkopje' name='tussenO'>$tussenO</textarea>"
+                ?>
+            </label><br>
+            <label>
+                Inhoud tekst <br>
+                <?php
+                echo "<textarea class='hometxt' name='overtxt'>$overtxt</textarea>"
+                ?>
+            </label><br>
+
+            <input class="submit" type="submit" name="uploadoverons" value="send">
+        </form>
+
 
     </div>
 </body>
