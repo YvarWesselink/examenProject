@@ -51,7 +51,7 @@ include_once "includes/header.php";
 
         $pdo = self::connect();
 
-        $userID = $_GET['artikel'];
+        $userID = ($_GET['artikel'] - 1);
         $st = $pdo->prepare("SELECT * FROM feedback ORDER BY userID");
         $st->execute();
     

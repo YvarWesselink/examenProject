@@ -264,7 +264,7 @@ echo "<h2>".$salland['titels']."</h2>"."<h3>".$salland['tussens']."</h3>"."<p>".
     <?php
 
         if (count($nieuwsContent) > 3) {
-            echo '<form method="POST" action="/nieuws-weergeven"><button type="submit" name="nieuws-weergeven-zwolle" class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button></form>';
+            echo '<form method="POST" action="/nieuws-weergeven"><button type="submit" name="nieuws-weergeven-salland" class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button></form>';
         }
 
     ?>
