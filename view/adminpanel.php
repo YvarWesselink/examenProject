@@ -144,7 +144,7 @@ if($_SESSION['user_lv'] < 0){                              //|
     <a href='/foto-uploaden' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/uploaden.png'>
+                    <img src='/public/img/upload.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Foto's Uploaden</p>
@@ -190,7 +190,7 @@ if($_SESSION['user_lv'] < 0){                              //|
 <a href='/foto-uploaden' class='admin-button'>
     <div>
         <div class='button-top'>
-            <img src='/public/img/uploaden.png'>
+            <img src='/public/img/upload.png'>
         </div>
         <div class='button-bot'>
             <p>Foto's Uploaden</p>
