@@ -66,7 +66,7 @@ class excersises extends Database {
 
             $table = $tableNames[$i]['colomn'];
 
-            echo "<label>".$table."</label>"."<br>"."<input class='titel' value='$backLog' type='$type' name='".$tableNames[$i]['colomn']."'><p style='color: red'>$error</p><br>";
+            echo "<label>".$table."</label>"."<br>"."<input class='titel' min='0' value='$backLog' type='$type' name='".$tableNames[$i]['colomn']."'><p style='color: red'>$error</p><br>";
             $i ++;
         }
 

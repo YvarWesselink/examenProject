@@ -4,7 +4,7 @@ $(document).ready(function () {
     $(".add-form-1").click( function() {
         $('.submit-form-1').remove();
         $('.form-1').append('<div class="add-forms">' +
-            '<input type="text" name="titel">' +
+            '<input type="text" min="0" name="titel">' +
             '<select name="input-type">' +
             '<option value="txt">Tekstvlak</option>' +
             '<option value="int">Nummeriek</option>' +
@@ -22,7 +22,7 @@ $(document).ready(function () {
     $(".add-form-2").click( function() {
             $('.submit-form-2').remove();
             $('.form-2').append('<div class="add-forms">' +
-                '<input type="text" name="titel">' +
+                '<input type="text" min="0" name="titel">' +
                 '<select name="input-type">' +
                 '<option value="txt">Tekstvlak</option>' +
                 '<option value="int">Nummeriek</option>' +
@@ -40,7 +40,7 @@ $(document).ready(function () {
     $(".add-form-4").click( function() {
             $('.submit-form-3').remove();
             $('.form-3').append('<div class="add-forms">' +
-                '<input type="text" name="titel">' +
+                '<input type="text" min="0" name="titel">' +
                 '<select name="input-type">' +
                 '<option value="txt">Tekstvlak</option>' +
                 '<option value="int">Nummeriek</option>' +

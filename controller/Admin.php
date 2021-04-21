@@ -15,7 +15,7 @@ class Admin extends controller
         $st->bindParam(":txthome", $txthome,PDO::PARAM_STR);
         $st->execute();
 
-        echo "<script> location.href='formulier'; </script>";
+        echo "<script> location.href='txthome'; </script>";
     }
 
     public static function uploadImage($album) {
@@ -98,6 +98,7 @@ class Admin extends controller
                     $naam = $album['naam'];
                     $id = $album['id'];
                     $homepage = $album['homepage'];
+
                     $st = $pdo->prepare("SELECT * FROM images WHERE album = :album");
                     $st->bindParam(':album', $naam);
                     $st->execute();
@@ -127,11 +128,18 @@ class Admin extends controller
                         echo "<input type='submit' class='uploadfotobut' name='delete-album' value='Album Verwijderen'>";
                         echo "</form>";
 
-                        if ($homepage == false) {
+                        if ($homepage == 1) {
+                            // salland
                             echo "<form method='post'>";
                             echo "<input type='hidden' name='naam' value='$naam'>";
                             echo "<input type='hidden' name='album' value='$id'>";
-                            echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren'>";
+                            echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren (Salland)'>";
+                            echo "</form>";
+                        } elseif ($homepage == 0) {
+                            echo "<form method='post'>";
+                            echo "<input type='hidden' name='naam' value='$naam'>";
+                            echo "<input type='hidden' name='album' value='$id'>";
+                            echo "<input type='submit' class='uploadfotobut' name='homepage' value='als homepage slide selecteren (Zwolle)'>";
                             echo "</form>";
                         }
 
@@ -202,29 +210,48 @@ class Admin extends controller
         return $albums;
     }
 
-    public static function downloadFotosSlide() {
+    public static function downloadFotosSlide($school) {
         $pdo = self::connect();
 
-        $st = $pdo->prepare("SELECT * FROM images WHERE homepage = true ");
-        $st->execute();
+        echo $school;
 
-        $slides = $st->fetchAll(PDO::FETCH_ASSOC);
+        if ($school === "salland") {
+            $st = $pdo->prepare("SELECT * FROM images WHERE homepage = 0 ");
+            $st->execute();
+            $slides = $st->fetchAll(PDO::FETCH_ASSOC);
 
-        if($slides != ""){
-            foreach ($slides as $slide) {
-                echo "<div>";
-                echo "<img src='".$slide['image']."'>";
-                echo "</div>";
+            if ($slides != "") {
+                foreach ($slides as $slide) {
+                    echo "<div>";
+                    echo "<img src='".$slide['image']."'>";
+                    echo "</div>";
+                }
             }
-    
-        }else{
-        echo"
-        <div>TEST1</div>
-        <div>TEST2</div>
-        <div>TEST3</div>
-        ";
+        } elseif ($school === "zwolle") {
+            $st = $pdo->prepare("SELECT * FROM images WHERE homepage = 1 ");
+            $st->execute();
+            $slides = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($slides != "") {
+                foreach ($slides as $slide) {
+                    echo "<div>";
+                    echo "<img src='".$slide['image']."'>";
+                    echo "</div>";
+                }
+            }
+        } elseif ($school === "") {
+            $st = $pdo->prepare("SELECT * FROM images WHERE homepage BETWEEN 0 AND 1");
+            $st->execute();
+            $slides = $st->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($slides != "") {
+                foreach ($slides as $slide) {
+                    echo "<div>";
+                    echo "<img src='".$slide['image']."'>";
+                    echo "</div>";
+                }
+            }
         }
-        //return $slides;
     }
 
     public static function downloadAlbumImages($album) {

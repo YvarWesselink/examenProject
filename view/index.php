@@ -16,7 +16,7 @@ include_once "includes/header.php";
     <div class="banner-svg">
     <div class="slider">
     <?php
-    Admin::downloadFotosSlide();
+    Admin::downloadFotosSlide("");
     ?>
 </div>
 </div>
@@ -55,20 +55,20 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-        <div>
-            <div class="child last">
-                <h2>Salland</h2>
-                <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
-            </div>
-          </div>
+    <div onclick="location.href='salland';">
         
-     <hr>
-        <div>
-            <div class="child first">
-                <h2>Zwolle</h2>
-                <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
+                <div class="child last">
+                    <h2>Salland</h2>
+                    <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
+                </div>
+                </div>
+        <hr>
+        <div onclick="location.href='zwolle';">
+                <div class="child first">
+                    <h2>Zwolle</h2>
+                    <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
+                </div>
             </div>
-        </div>
         </div>
 </section>
 <div class="clearfix"></div>
@@ -165,17 +165,17 @@ $(document).ready(function(){
 <!-- End Foto's Section -->
 <!-- ---------------------------- -->
 <?PHP
-$conn = self::connect();
-$sql = "SELECT Datum FROM projectenopdrachtens";
-        $prepare=$conn->prepare($sql);
-        $prepare->execute();
-        $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
-
-        echo $result;
-
-
-        $datetime = DateTime::createFromFormat('YmdHi', '201308131830');
-        echo $datetime->format('D');
+//$conn = self::connect();
+//$sql = "SELECT Datum FROM projectenopdrachtens";
+//        $prepare=$conn->prepare($sql);
+//        $prepare->execute();
+//        $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+//
+////        echo $result;
+//
+//
+//        $datetime = DateTime::createFromFormat('YmdHi', '201308131830');
+//        echo $datetime->format('D');
 
 //
 //

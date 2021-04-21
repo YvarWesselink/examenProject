@@ -144,7 +144,7 @@ if($_SESSION['user_lv'] < 0){                              //|
     <a href='/foto-uploaden' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/logout.png'>
+                    <img src='/public/img/upload.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Foto's Uploaden</p>
@@ -190,7 +190,7 @@ if($_SESSION['user_lv'] < 0){                              //|
 <a href='/foto-uploaden' class='admin-button'>
     <div>
         <div class='button-top'>
-            <img src='/public/img/logout.png'>
+            <img src='/public/img/upload.png'>
         </div>
         <div class='button-bot'>
             <p>Foto's Uploaden</p>
@@ -201,7 +201,7 @@ if($_SESSION['user_lv'] < 0){                              //|
          <a href='/nieuws' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/editopdracht.png'>
+                    <img src='/public/img/form.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Nieuws Uploaden</p>
@@ -245,7 +245,7 @@ if($_SESSION['user_lv'] < 0){                              //|
         <a href='/txtcontact' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/edit.png'>
+                    <img src='/public/img/contact.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Contact info aanpassen</p>
