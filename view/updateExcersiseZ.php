@@ -101,8 +101,15 @@ function printCrossword(printContainer) {
     display: none;
   }
   #printableTable {
-    display: none;
-    margin-top: 100px;
+    display: block;
+    
   }
 
-}</style>
+  
+
+}
+@page :left {
+margin: 0.5cm;
+}
+
+</style>
