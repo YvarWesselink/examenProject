@@ -201,7 +201,7 @@ if($_SESSION['user_lv'] < 0){                              //|
          <a href='/nieuws' class='admin-button'>
             <div>
                 <div class='button-top'>
-                    <img src='/public/img/editopdracht.png'>
+                    <img src='/public/img/form.png'>
                 </div>
                 <div class='button-bot'>
                     <p>Nieuws Uploaden</p>
