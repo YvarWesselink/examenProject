@@ -403,7 +403,7 @@ class updateExcersiseZ extends Database {
         }
     }
 
-    public static function checkExcersise($waarden) {
+    public static function checkExcersiseZ($waarden) {
 
         $errormsg = array();
 
@@ -435,7 +435,7 @@ class updateExcersiseZ extends Database {
         return $errormsg;
     }
 
-    public static function UploadExersise($waarden) {
+    public static function UploadExersiseZ($waarden) {
         $pdo = self::connect();
 
         // get columns from 'projectenopdrachten'

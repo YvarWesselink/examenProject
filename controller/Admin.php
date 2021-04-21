@@ -18,7 +18,7 @@ class Admin extends controller
         }
 
         $pdo = self::connect();
-        
+
         $st = $pdo->prepare("UPDATE texthome SET titel=:titel, tussenkopje=:tussenkopje, home=:txthome WHERE id = 1");
 
         $st->bindParam(":titel", $titel,PDO::PARAM_STR);
@@ -923,10 +923,10 @@ class Admin extends controller
         $pdo = self::connect();
         // Delete the excersise
         $st = $pdo->prepare("DELETE FROM projectenopdrachtenz WHERE id = $id");
-        // $st->execute();    
+        $st->execute();    
         //  Delete the contact from the excersise 
         $st = $pdo->prepare("DELETE FROM contactbedrijfgegevensz WHERE id = $id");
-        // $st->execute();        
+        $st->execute();        
         //  Delete the hidden fields from the excersise 
         $st = $pdo->prepare("DELETE FROM verborgenwaardenz WHERE id = $id");
         $st->execute();
