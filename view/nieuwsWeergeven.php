@@ -8,13 +8,13 @@ include_once "includes/header.php";
 if (isset($_POST["nieuws-weergeven-zwolle"])) {
     
     session_start();
-    $_SESSION['school'] = "z";
+    $_SESSION['school'] = "zwolle";
     $nieuws = $_SESSION['school'];
 
 }elseif (isset($_POST["nieuws-weergeven-salland"])){
 
     session_start();
-    $_SESSION['school'] = "s";
+    $_SESSION['school'] = "salland";
     $nieuws = $_SESSION['school'];
 
 }
