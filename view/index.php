@@ -55,7 +55,7 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-    <div onclick="location.href='newurl.html';"></div>
+    <div onclick="location.href='newurl.html';">
         
                 <div class="child last">
                     <h2>Salland</h2>
