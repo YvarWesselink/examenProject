@@ -81,7 +81,7 @@ if($_SESSION['user_lv'] < 0){                              //|
         window.frames["print_frame"].window.print();
     }
 </script>
-<script>
+<!--<script>
 function printCrossword(printContainer) {
     var DocumentContainer = getElement(printContainer);
     var WindowObject = window.open('', "PrintWindow", "width=5,height=5,top=200,left=200,toolbars=no,scrollbars=no,status=no,resizable=no");
@@ -91,7 +91,7 @@ function printCrossword(printContainer) {
     WindowObject.print();
     WindowObject.close();
 }
-</script>
+</script> -->
 
 <style>
 @media print {
