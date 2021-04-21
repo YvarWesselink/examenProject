@@ -69,19 +69,19 @@ if($_SESSION['user_lv'] < 0){                              //|
         </div>
     </form>
     </div>
-    <button class="Button Button--outline sendExcersiseBtn" onclick="printContainer()">Print</button>
+    <button class="Button Button--outline sendExcersiseBtn" onclick="printDiv()">Print</button>
     <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 </div>
 </html>
 
-<!--<script type="text/javascript">
+<script type="text/javascript">
     function printDiv() {
         window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
         window.frames["print_frame"].window.focus();
         window.frames["print_frame"].window.print();
     }
 </script> -->
-<script>
+<!--<script>
 function printCrossword(printContainer) {
     var DocumentContainer = getElement(printContainer);
     var WindowObject = window.open('', "PrintWindow", "width=5,height=5,top=200,left=200,toolbars=no,scrollbars=no,status=no,resizable=no");
@@ -91,9 +91,11 @@ function printCrossword(printContainer) {
     WindowObject.print();
     WindowObject.close();
 }
-</script>
+</script> -->
 
 <style>
+
+
 @media print {
   * {
     display: none;
