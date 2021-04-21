@@ -55,9 +55,8 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-        <a href="www.salland.nl">
             <div>
-                <div class="child last">
+                <a href="www.salland.nl" class="child last">
                     <h2>Salland</h2>
                     <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
                 </div>
