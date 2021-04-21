@@ -69,7 +69,7 @@ if($_SESSION['user_lv'] < 0){                              //|
         </div>
     </form>
     </div>
-    <button class="Button Button--outline sendExcersiseBtn" onclick="printCrossword()">Print</button>
+    <button class="Button Button--outline sendExcersiseBtn" onclick="printContainer()">Print</button>
     <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 </div>
 </html>
