@@ -55,13 +55,15 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
+    
+    <a href="www.salland.nl">
             <div>
-            <a href="www.salland.nl">
+            </a>
                 <div class="child last">
                     <h2>Salland</h2>
                     <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
                 </div>
-                </a>
+             
                
             </div>
      
