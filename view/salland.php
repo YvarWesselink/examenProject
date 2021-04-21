@@ -42,7 +42,7 @@ include_once "includes/header.php";;
             <div class="banner-svg">
                 <div class="slider">
                     <?php
-                    Admin::downloadFotosSlide();
+                    Admin::downloadFotosSlide($_SESSION['school']);
                     ?>
                 </div>
             </div>

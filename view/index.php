@@ -16,7 +16,7 @@ include_once "includes/header.php";
     <div class="banner-svg">
     <div class="slider">
     <?php
-    Admin::downloadFotosSlide();
+    Admin::downloadFotosSlide("");
     ?>
 </div>
 </div>
