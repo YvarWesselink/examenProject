@@ -55,22 +55,21 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-        <div>
         <a href="www.salland.nl">
-            <div class="child last">
-                <h2>Salland</h2>
-                <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
+            <div>
+                <div class="child last">
+                    <h2>Salland</h2>
+                    <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
+                </div>
             </div>
         </a>
-          </div>
-        
-     <hr>
-        <div>
-            <div class="child first">
-                <h2>Zwolle</h2>
-                <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
+        <hr>
+            <div>
+                <div class="child first">
+                    <h2>Zwolle</h2>
+                    <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
+                </div>
             </div>
-        </div>
         </div>
 </section>
 <div class="clearfix"></div>
