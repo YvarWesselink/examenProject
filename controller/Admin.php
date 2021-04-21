@@ -6,8 +6,19 @@ class Admin extends controller
 
     public static function uploadHomeTXT($titel, $tussenkop, $txthome)
     {
-        $pdo = self::connect();
+        if (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $titel)) {
+            echo "<script> location.href='txthome'; </script>";
+            exit();
+        } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $tussenkop)) {
+            echo "<script> location.href='txthome'; </script>";
+            exit();
+        } elseif (!preg_match('/^[a-zA-Z0-9^@:"\'\/. -]*$/', $txthome)) {
+            echo "<script> location.href='txthome'; </script>";
+            exit();
+        }
 
+        $pdo = self::connect();
+        
         $st = $pdo->prepare("UPDATE texthome SET titel=:titel, tussenkopje=:tussenkopje, home=:txthome WHERE id = 1");
 
         $st->bindParam(":titel", $titel,PDO::PARAM_STR);
