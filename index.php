@@ -143,3 +143,18 @@ if (isset($_POST['uploadsalland'])) {
 
     Admin::uploadsallandTXT($titels, $tussens, $sallandtxt);
 }
+
+if(isset($_POST["uploadoverons"])) {
+    $tussenO = $_POST["tussenO"];
+    $titelO = $_POST["titelO"];
+    $overtxt = $_POST["overtxt"];
+  
+    // print_r($_POST);
+    // exit();
+  
+    $uid = Admin::uploadoveronsTXT($titelO, $tussenO, $overtxt);
+  
+    if ($uid) {
+          echo "<script> location.href='/adminpanel'; </script>";
+      }
+  }
