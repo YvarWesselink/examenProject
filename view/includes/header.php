@@ -54,8 +54,10 @@
             ?>
         </ul>
     </div>
+    <div onclick="location.href='salland';">
     <div class="logo">
         <img src="/public/img/LandstedeL.png" alt="">
+    </div>
     </div>
     <div class="overlay"></div>
     <div class="border-bottom"></div>
