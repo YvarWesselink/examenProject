@@ -240,7 +240,7 @@ class Admin extends controller
                 }
             }
         } elseif ($school === "") {
-            $st = $pdo->prepare("SELECT * FROM images WHERE homepage = 1 OR 0 ");
+            $st = $pdo->prepare("SELECT * FROM images WHERE homepage BETWEEN 0 AND 1");
             $st->execute();
             $slides = $st->fetchAll(PDO::FETCH_ASSOC);
 

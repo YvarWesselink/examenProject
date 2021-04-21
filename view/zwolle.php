@@ -280,11 +280,11 @@ include_once "includes/header.php";
         </div>
     </div>
     <?php
-
+    if (!empty($nieuwsContent)) {
         if (count($nieuwsContent) > 3) {
             echo '<form method="POST" action="/nieuws-weergeven"><button type="submit" name="nieuws-weergeven-zwolle" class="kijk_meer">Kijk meer <i class="fas fa-arrow-right icons"></i></button></form>';
         }
-
+    }
     ?>
     
 </section>
