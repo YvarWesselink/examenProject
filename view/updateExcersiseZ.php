@@ -109,7 +109,7 @@ function printCrossword(printContainer) {
 
 }
 @page :left {
-margin: 0.5cm;
+margin: 30cm;
 }
 
 </style>
