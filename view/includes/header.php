@@ -57,7 +57,7 @@
     
     <div class="logo">
     <div onclick="location.href='salland';">
-        <img src="/public/img/LandstedeL.png" alt="">
+        <img href="salland" src="/public/img/LandstedeL.png" alt="">
         </div>
     </div>
     
