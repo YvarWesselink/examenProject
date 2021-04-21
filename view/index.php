@@ -55,7 +55,7 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-    <div onclick="location.href='newurl.html';">
+    <div onclick="location.href='salland';">
         
                 <div class="child last">
                     <h2>Salland</h2>
@@ -63,7 +63,7 @@ $(document).ready(function(){
                 </div>
                 </div>
         <hr>
-            <div>
+        <div onclick="location.href='zwolle';">
                 <div class="child first">
                     <h2>Zwolle</h2>
                     <a href="zwolle">Kies voor regio Zwolle <i class="fas fa-arrow-right icons"></i></a>
