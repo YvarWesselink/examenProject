@@ -55,10 +55,9 @@ $(document).ready(function(){
 <!-- Start Information Section -->
 <section class="info">
     <div class="container">
-            <div>
-            </a>
-            <div class="child last" onclick="location.href='newurl.html';">&nbsp;</div>
-                
+    <div onclick="location.href='newurl.html';">&nbsp;</div>
+        
+                <div class="child last">
                     <h2>Salland</h2>
                     <a href="salland">Kies voor regio Salland <i class="fas fa-arrow-right icons"></i></a>
                 </div>
