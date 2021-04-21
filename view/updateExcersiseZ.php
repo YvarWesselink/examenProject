@@ -101,7 +101,7 @@ function printCrossword(printContainer) {
     display: none;
   }
   #printableTable {
-    display: block;
+    display: none;
     margin-top: 100px;
   }
 
