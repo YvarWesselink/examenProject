@@ -52,28 +52,30 @@ if (isset($_POST["nieuws-weergeven-zwolle"])) {
 <!-- ---------------------------- -->
 <!-- Start Banner Section -->
 <section class="banner">
-    <div class="banner-img">
-    <div class="banner-svg">
-    <div class="slider">
-    <?php
-    Admin::downloadFotosSlide();
-    ?>
-</div>
-</div>
-</div>
-<script>
-$(document).ready(function(){
-  $('.slider').slick({
-    dots: true,
-  infinite: true,
-  speed: 500,
-  fade: true,
-  autoplay: true,
-  autoplaySpeed: 1700,
-  });
-});
+    <section class="banner">
+        <div class="banner-img">
+            <div class="banner-svg">
+                <div class="slider">
+                    <?php
+                    Admin::downloadFotosSlide($_SESSION['school']);
+                    ?>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('.slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    autoplay: true,
+                    autoplaySpeed: 1700,
+                });
+            });
 
-</script>
+        </script>
+    </section>
 </section>
 <div class="clearfix"></div>
 <!-- End Banner Section -->
