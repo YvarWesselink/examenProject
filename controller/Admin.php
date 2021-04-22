@@ -519,7 +519,7 @@ class Admin extends controller
         $st->bindParam(":id", $id, PDO::PARAM_STR);
         $st->execute();
 
-        header("Location: /acgegevens");
+        echo "<script> location.href='/acgegevens'; </script>";
     }
 
     public static function downloadUser($id) {

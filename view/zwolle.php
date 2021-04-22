@@ -118,68 +118,71 @@ include_once "includes/header.php";
         $leftRight = 0;
         $articleCount = 0;
 
-        foreach ($nieuwsContent as $content) {
-            switch ($leftRight) {
-                case 0:
-                    $side = 'right';
-                    $sideImg = 'left';
-                    $leftRight += 1;
-                    break;
-                case 1:
-                    $leftRight -= 1;
-                    $sideImg = 'right';
-                    $side = 'left';
-                    break;
-            }
-            ?>
-        <div class="all-content">
-            <div class="nieuws-container <?php echo $side ?>">
-                <div class="content">
-                    <?php
-                        if (isset($content['Comments'])) {
-                            $nieuwsCon = $content['Comments'];
-                            echo '<h2>' . $content['Name'] . '</h2>';
-                            echo '<form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $content['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form>';
-                        } else {
-                            echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
-                        }
-                    ?>
-                </div>
-            </div>
-            <div class="image img-<?php echo $sideImg  ?>">
-                <?php
-                    if (isset($content['foto'])) {
-                        $nieuwsFoto = $content['foto'];
-
-                        // get album from selected image
-                        $pdo = Database::connect();
-                        $st = $pdo->prepare("SELECT album FROM images WHERE image=:image");
-                        $st->bindParam(":image", $nieuwsFoto);
-                        $st->execute();
-                        $album = $st->fetch(PDO::FETCH_ASSOC);
-                        $album = $album['album'];
-                    }
-
-                    if (isset($content['foto']) && $nieuwsFoto !== '0') {
-                        $foto = $content['foto'];
-                        echo "<form method='POST' action='/nieuws-artikel'><a type'submit'  name='userID' href='/nieuws-artikel?artikel=" . $content['userID'] ."'><img src='$foto' alt=''/></a></form>";
-                        echo "<form method='post' action='/album-weergeven-school'>";
-                        echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";
-                        echo "<input type='hidden' name='album-nieuws' value='$album'>";
-                        echo "</form>";
-                    }else {
-                        echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
-                    }
+        if (!empty($nieuwsContent)) {
+            foreach ($nieuwsContent as $content) {
+                switch ($leftRight) {
+                    case 0:
+                        $side = 'right';
+                        $sideImg = 'left';
+                        $leftRight += 1;
+                        break;
+                    case 1:
+                        $leftRight -= 1;
+                        $sideImg = 'right';
+                        $side = 'left';
+                        break;
+                }
                 ?>
-            </div>
-        </div>
-        <?php
-            $articleCount ++;
-            if ($articleCount >= 3) {
-                break;
+                <div class="all-content">
+                    <div class="nieuws-container <?php echo $side ?>">
+                        <div class="content">
+                            <?php
+                            if (isset($content['Comments'])) {
+                                $nieuwsCon = $content['Comments'];
+                                echo '<h2>' . $content['Name'] . '</h2>';
+                                echo '<form method="POST" action="/nieuws-artikel"><a type="submit" name="userID" href="/nieuws-artikel?artikel=' . $content['userID'] . '">Lees meer <i class="fas fa-arrow-right icons"></i></a></form>';
+                            } else {
+                                echo "<h2 style='margin-bottom: 28px;'>Nog geen nieuws toegevoegd!</h2>";
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="image img-<?php echo $sideImg  ?>">
+                        <?php
+                        if (isset($content['foto'])) {
+                            $nieuwsFoto = $content['foto'];
+
+                            // get album from selected image
+                            $pdo = Database::connect();
+                            $st = $pdo->prepare("SELECT album FROM images WHERE image=:image");
+                            $st->bindParam(":image", $nieuwsFoto);
+                            $st->execute();
+                            $album = $st->fetch(PDO::FETCH_ASSOC);
+                            $album = $album['album'];
+                        }
+
+                        if (isset($content['foto']) && $nieuwsFoto !== '0') {
+                            $foto = $content['foto'];
+                            echo "<form method='POST' action='/nieuws-artikel'><a type'submit'  name='userID' href='/nieuws-artikel?artikel=" . $content['userID'] ."'><img src='$foto' alt=''/></a></form>";
+                            echo "<form method='post' action='/album-weergeven-school'>";
+                            echo "<input class='nieuws-image' type='image' src='$foto' alt='image'>";
+                            echo "<input type='hidden' name='album-nieuws' value='$album'>";
+                            echo "</form>";
+                        }else {
+                            echo "<p style='text-decoration: underline;'>Nog geen foto!</p>";
+                        }
+                        ?>
+                    </div>
+                </div>
+                <?php
+                $articleCount ++;
+                if ($articleCount >= 3) {
+                    break;
+                }
+                // end for each loop
             }
-        // end for each loop
-        }
+
+        } else {echo "<h3>Er is nog geen nieuws geplaatst</h3>";}
         ?>
     </div>
 
