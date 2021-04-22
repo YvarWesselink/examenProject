@@ -16,18 +16,18 @@ class nieuws extends controller {
 
             $stmt->execute();
 
-            echo"<div style='color:navy;'><h2>We hebben het volgende bericht van u ontvangen::</h2>";
-            echo"Uw naam: ".$name;
-            echo"<br>";
-            echo"Uw email adres: ".$email;
-            echo"<br>";
-            echo"Uw bedrijf: ".$company;
-            echo"<br>";
-            echo"Uw bericht: ".$comments;
-            echo"<br>";
-            echo"Uw school: ".$school;
-            echo"<br>";
-            echo"<h2>We zullen er zo snel mogelijk naar kijken!</h2></div>";
+            // echo"<div style='color:navy;'><h2>We hebben het volgende bericht van u ontvangen::</h2>";
+            // echo"Uw naam: ".$name;
+            // echo"<br>";
+            // echo"Uw email adres: ".$email;
+            // echo"<br>";
+            // echo"Uw bedrijf: ".$company;
+            // echo"<br>";
+            // echo"Uw bericht: ".$comments;
+            // echo"<br>";
+            // echo"Uw school: ".$school;
+            // echo"<br>";
+            // echo"<h2>We zullen er zo snel mogelijk naar kijken!</h2></div>";
 
         }
     }
