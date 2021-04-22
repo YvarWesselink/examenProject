@@ -9,7 +9,7 @@ include_once "includes/header.php"
 
 </section>
 <section class="info-container">
-<<div class="sport-container">
+<div class="sport-container">
         <?php
         $home = Admin::overTXT();
 
