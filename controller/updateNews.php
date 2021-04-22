@@ -14,7 +14,7 @@ class updateNews extends Database {
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
-        $count = count($tables);
+        $count = 5;
         $i = 1;
 
         $id = $_SESSION['id'];
@@ -103,7 +103,7 @@ class updateNews extends Database {
         $st->execute();
 
         $tables = $st->fetchAll(PDO::FETCH_ASSOC);
-        $count = count($tables);
+        $count = 5;
 
         $rij = 1;
         $war = 0;
