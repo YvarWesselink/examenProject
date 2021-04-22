@@ -11,6 +11,11 @@ include_once "includes/header.php"
 <div class="clearfix"></div>
 <!-- End Banner Section -->
 <!-- ---------------------------- -->
+<style>
+    #signup {
+        margin-top: 7%;
+    }
+</style>
 <!-- ---------------------------- -->
 <!-- Start Signup Section -->
 <div id="signup">
@@ -31,3 +36,4 @@ include_once "includes/header.php"
 </body>
 
 </html>
+
