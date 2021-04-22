@@ -215,7 +215,7 @@ if($_SESSION['user_lv'] < 0){                              //|
                     <img src='/public/img/edit.png'>
                 </div>
                 <div class='button-bot'>
-                    <p>Text Op Voor Pagina's Aanpassen</p>
+                    <p>Text Op Pagina's Aanpassen</p>
                 </div>
             </div>
         </a>

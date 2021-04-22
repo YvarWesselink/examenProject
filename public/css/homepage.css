@@ -718,14 +718,9 @@ hr {
   color: #ed135d;
 }
 
-.nieuws-container .content a.blauw{
-  text-shadow: 2px 2px 2px rgb(88, 221, 221);
-}
 
-.nieuws-container .content a.blauw,
-.nieuws-container .content a.blauw i.icons{
-  color: #30777A;
-}
+
+
 
 div .image{
   position: absolute;
