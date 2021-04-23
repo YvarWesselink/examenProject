@@ -23,7 +23,6 @@
 //
 // Als je een functie aan wilt roepen
 
-
 Route::set('index.php', function () {
     Index::CreateView('Index');
 });
@@ -52,7 +51,7 @@ Route::set('update-opdracht', function () {
     session_start();
     if (isset($_POST['editBtn'])) {
         $_SESSION['id'] = $_POST['project_id'];
-    }    
+    }
     updateExcersise::CreateView('updateExcersise');
 });
 
@@ -84,7 +83,7 @@ Route::set('oude-opdracht', function () {
     session_start();
     if (isset($_POST['editBtn'])) {
         $_SESSION['id'] = $_POST['project_id'];
-    }    
+    }
     showOldExcersise::CreateView('showOldExcersise');
 });
 
